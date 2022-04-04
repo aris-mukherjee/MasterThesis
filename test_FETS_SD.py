@@ -24,7 +24,7 @@ from normalisation_module import Normalisation_Module_flair, Normalisation_Modul
 from tensorboardX import SummaryWriter
 
 
-seed = 1234
+seed = 2
 model_type = 'UNET'
 data_aug = '0.25'
 use_tta = True
@@ -67,7 +67,7 @@ args = parser.parse_args()
 
 def inference(args, model, test_save_path=None):
     
-    writer = SummaryWriter(f'/scratch_net/biwidl217_second/arismu/Tensorboard/2022/FETS/{model_type}/TTA/TEST/' + f'SD_FETS_{model_type}_log_seed{seed}_da{data_aug}')
+    writer = SummaryWriter(f'/scratch_net/biwidl217_second/arismu/Tensorboard/2022/FETS/{model_type}/TTA/TEST/Entropy/' + f'SD_FETS_{model_type}_log_seed{seed}_da{data_aug}')
 
 
     # ============================
@@ -195,10 +195,10 @@ def inference(args, model, test_save_path=None):
         i2n_module_t2 = Normalisation_Module_t2(in_channels = 1)
         i2n_module_flair = Normalisation_Module_flair(in_channels = 1)
 
-        save_t1_path = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_{seed}_da{data_aug}_TTA_NO_DICT_OPTIM_NORM_T1' + '.pth')
-        save_t1ce_path = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_{seed}_da{data_aug}_TTA_NO_DICT_OPTIM_NORM_T1CE' + '.pth')
-        save_t2_path = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_{seed}_da{data_aug}_TTA_NO_DICT_OPTIM_NORM_T2' + '.pth')
-        save_flair_path = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_{seed}_da{data_aug}_TTA_NO_DICT_OPTIM_NORM_FLAIR' + '.pth')
+        save_t1_path = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_{seed}_da{data_aug}_TTA_NORM_T1' + '.pth')
+        save_t1ce_path = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_{seed}_da{data_aug}_TTA_NORM_T1CE' + '.pth')
+        save_t2_path = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_{seed}_da{data_aug}_TTA_NORM_T2' + '.pth')
+        save_flair_path = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_{seed}_da{data_aug}_TTA_NORM_FLAIR' + '.pth')
 
         i2n_module_t1.load_state_dict(torch.load(save_t1_path))
         i2n_module_t1ce.load_state_dict(torch.load(save_t1ce_path))
@@ -241,7 +241,7 @@ def inference(args, model, test_save_path=None):
         # Perform the prediction for each test patient individually & calculate dice score and Hausdorff distance
         # ============================ 
         
-        metric_whole, metric_enhancing, metric_core, pred_l, label_l = test_single_volume_FETS(image, label, model, i2n_module_t1, i2n_module_t1ce, i2n_module_t2, i2n_module_flair, use_tta, tta_epochs, writer, classes=args.num_classes, dataset = 'FETS_SD', optim = 'ADAM', model_type = f'{model_type}', seed = '{seed}', patch_size=[args.img_size, args.img_size],
+        metric_whole, metric_enhancing, metric_core, pred_l, label_l = test_single_volume_FETS(image, label, model, i2n_module_t1, i2n_module_t1ce, i2n_module_t2, i2n_module_flair, use_tta, tta_epochs, writer, layer_names_for_stats, classes=args.num_classes, dataset = 'FETS_SD', optim = 'ADAM', model_type = f'{model_type}', seed = '{seed}', patch_size=[args.img_size, args.img_size],
                                       test_save_path=test_save_path, case=sub_num, z_spacing=args.z_spacing)
         
 
@@ -375,7 +375,7 @@ if __name__ == "__main__":
     #net = ViT_seg(config_vit, img_size=args.img_size, num_classes=config_vit.n_classes).cuda()
     net = UNET(in_channels = 4, out_channels = 4, features = [32, 64, 128, 256]).cuda()
 
-    snapshot = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_UNET_best_val_loss_seed1234_da0.25_TTA_NO_DICT_OPTIM.pth')
+    snapshot = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_best_val_loss_seed{seed}_da{data_aug}_TTA.pth')
     #if not os.path.exists(snapshot): snapshot = snapshot.replace('best_model', 'no_data_aug_' + 'epoch_' + str(args.max_epochs-1))
 
     # ============================
@@ -400,12 +400,20 @@ if __name__ == "__main__":
     logging.info(str(args))
     logging.info(snapshot_name)
 
+
+    layer_names_for_stats = []
+    for name, m in net.named_modules():
+        if isinstance(m, torch.nn.modules.conv.Conv2d):
+            layer_names_for_stats.append(name)
+
+
+
     # ============================
     # Save the predictions as nii files
     # ============================ 
     #import pdb; pdb.set_trace()
    
-    test_save_dir = f'../predictions_2022/FETS/{model_type}/TTA/'
+    test_save_dir = f'../predictions_2022/FETS/{model_type}/TTA/Entropy/'
     test_save_path = os.path.join(test_save_dir, f'SD_FETS_{model_type}_test_seed{seed}_da{data_aug}_TTA')
     os.makedirs(test_save_path, exist_ok=True)
 

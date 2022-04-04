@@ -297,9 +297,9 @@ def load_training_data(train_dataset,
 
 
 
-    elif train_dataset in ['FETS_train']:
+    elif train_dataset in ['FETS_train_part1']:
 
-        data_pros_part1, data_pros_part2, data_pros_part3 = data_fets.load_training_data(input_folder = sys_config.orig_data_root_fets,
+        data_pros_part1 = data_fets.load_training_data_part1(input_folder = sys_config.orig_data_root_fets,
                                                             preproc_folder = sys_config.preproc_folder_fets,
                                                             size = image_size,
                                                             target_resolution = target_resolution
@@ -317,6 +317,28 @@ def load_training_data(train_dataset,
         name_training_subjects_part1 = data_pros_part1['patnames']
         num_train_subjects_part1 = orig_data_siz_z_part1.shape[0]
 
+
+        return (imtr_part1, #0
+            gttr_part1, #1
+            num_train_subjects_part1 #2
+            ) 
+            
+
+       
+
+        
+
+
+    elif train_dataset in ['FETS_train_part2']:
+
+        data_pros_part2 = data_fets.load_training_data_part2(input_folder = sys_config.orig_data_root_fets,
+                                                            preproc_folder = sys_config.preproc_folder_fets,
+                                                            size = image_size,
+                                                            target_resolution = target_resolution
+                                                            )
+
+
+
         imtr_part2 = data_pros_part2['images']
         gttr_part2 = data_pros_part2['labels']
         orig_data_res_x_part2 = data_pros_part2['px'][:]
@@ -328,6 +350,21 @@ def load_training_data(train_dataset,
         name_training_subjects_part2 = data_pros_part2['patnames']
         num_train_subjects_part2 = orig_data_siz_z_part2.shape[0]
 
+
+        return (imtr_part2, #0
+            gttr_part2, #1
+            num_train_subjects_part2 #2
+            ) 
+
+    elif train_dataset in ['FETS_train_part3']:
+
+        data_pros_part3 = data_fets.load_training_data_part3(input_folder = sys_config.orig_data_root_fets,
+                                                            preproc_folder = sys_config.preproc_folder_fets,
+                                                            size = image_size,
+                                                            target_resolution = target_resolution
+                                                            )
+
+        
         imtr_part3 = data_pros_part3['images']
         gttr_part3 = data_pros_part3['labels']
         orig_data_res_x_part3 = data_pros_part3['px'][:]
@@ -340,15 +377,11 @@ def load_training_data(train_dataset,
         num_train_subjects_part3 = orig_data_siz_z_part3.shape[0]
 
 
-        return (imtr_part1, #0
-            gttr_part1, #1
-            num_train_subjects_part1, #2
-            imtr_part2, #3
-            gttr_part2, #4
-            num_train_subjects_part2, #5
-            imtr_part3, #6
-            gttr_part3, #7
-            num_train_subjects_part3) #11
+        return (
+            imtr_part3, #3
+            gttr_part3, #4
+            num_train_subjects_part3, #5
+            ) #8
             
 
 

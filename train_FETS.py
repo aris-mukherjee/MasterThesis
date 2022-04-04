@@ -26,7 +26,7 @@ parser.add_argument('--max_iterations', type=int,
 parser.add_argument('--max_epochs', type=int,
                     default=140, help='maximum epoch number to train')
 parser.add_argument('--batch_size', type=int,
-                    default=8, help='batch_size per gpu')
+                    default=16, help='batch_size per gpu')
 parser.add_argument('--n_gpu', type=int, default=1, help='total gpu')
 parser.add_argument('--deterministic', type=int,  default=1,
                     help='whether use deterministic training')
@@ -35,7 +35,7 @@ parser.add_argument('--base_lr', type=float,  default=1e-3,
 parser.add_argument('--img_size', type=int,
                     default=240, help='input patch size of network input')
 parser.add_argument('--seed', type=int,
-                    default=1234, help='random seed')
+                    default=50, help='random seed')
 parser.add_argument('--n_skip', type=int,
                     default=3, help='using number of skip-connect, default is num')
 parser.add_argument('--vit_name', type=str,
@@ -93,11 +93,12 @@ if __name__ == "__main__":
     # create an instance of the model 
     # ===========================      
     
-    #net = ViT_seg(config_vit, img_size=args.img_size, num_classes=config_vit.n_classes).cuda()
+    net = ViT_seg(config_vit, img_size=args.img_size, num_classes=config_vit.n_classes).cuda()
     #net.load_state_dict(torch.load('/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/UNWT/FETS_UNWT_seed100_iternum84999.pth'))
 
     #net.load_from(weights=np.load(config_vit.pretrained_path))
-    task_model = UNET(in_channels = 4, out_channels = 4, features = [32, 64, 128, 256]).cuda()
+    #net = UNET(in_channels = 4, out_channels = 4, features = [32, 64, 128, 256]).cuda()
+
 
     #task_model.load_state_dict(torch.load('/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/UNET/FETS_UNET_best_val_loss_seed1234_da0.25.pth'))
 
@@ -106,4 +107,4 @@ if __name__ == "__main__":
     # ===========================  
 
     trainer = {'FETS_train': trainer_fets}
-    trainer[dataset_name](args, task_model)
+    trainer[dataset_name](args, net)

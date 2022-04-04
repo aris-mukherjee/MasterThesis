@@ -861,7 +861,7 @@ def prepare_test_td2_data(input_folder,
 # Training Data
 # ===============================
 
-def load_training_data(input_folder,
+def load_training_data_part1(input_folder,
               preproc_folder,
               size,
               target_resolution,
@@ -879,8 +879,81 @@ def load_training_data(input_folder,
     train_file_name_part1 = 'data_training_part1.hdf5' 
     train_file_path_part1 = os.path.join(preproc_folder, train_file_name_part1)
 
+    
+    # ===============================
+    # if the images have not already been extracted, do so
+    # ===============================
+    #if not os.path.exists(train_file_path_part1 or train_file_path_part2 or train_file_path_part3) or force_overwrite:
+    if not os.path.exists(train_file_path_part1) or force_overwrite:
+
+        logging.info('Training Data Part 1 has not yet been preprocessed')
+        logging.info('Preprocessing now...')
+        prepare_training_data_part1(input_folder,
+                     preproc_folder,
+                     train_file_path_part1,
+                     size,
+                     target_resolution
+                     )
+    else:        
+        logging.info('Already preprocessed Training Data Part 1. Loading now...')
+        
+    return h5py.File(train_file_path_part1, 'r')
+
+def load_training_data_part2(input_folder,
+              preproc_folder,
+              size,
+              target_resolution,
+              force_overwrite = False):
+
+    # ===============================
+    # create the pre-processing folder, if it does not exist
+    # ===============================
+    utils.makefolder(preproc_folder)    
+    
+    # ===============================
+    # file to create or directly read if it already exists
+    # ===============================
+
     train_file_name_part2 = 'data_training_part2.hdf5' 
     train_file_path_part2 = os.path.join(preproc_folder, train_file_name_part2)
+
+
+    
+    # ===============================
+    # if the images have not already been extracted, do so
+    # ===============================
+
+    if not os.path.exists(train_file_path_part2) or force_overwrite:
+        logging.info('Training Data Part 2 has not yet been preprocessed')
+        logging.info('Preprocessing now...')
+        prepare_training_data_part2(input_folder,
+                     preproc_folder,
+                     train_file_path_part2,
+                     size,
+                     target_resolution
+                     )
+        
+    else:        
+        logging.info('Already preprocessed Training Data Part2. Loading now...')
+        
+    return h5py.File(train_file_path_part2, 'r')
+
+
+
+def load_training_data_part3(input_folder,
+              preproc_folder,
+              size,
+              target_resolution,
+              force_overwrite = False):
+
+    # ===============================
+    # create the pre-processing folder, if it does not exist
+    # ===============================
+    utils.makefolder(preproc_folder)    
+    
+    # ===============================
+    # file to create or directly read if it already exists
+    # ===============================
 
     train_file_name_part3 = 'data_training_part3.hdf5' 
     train_file_path_part3 = os.path.join(preproc_folder, train_file_name_part3)
@@ -890,33 +963,29 @@ def load_training_data(input_folder,
     # ===============================
     # if the images have not already been extracted, do so
     # ===============================
-    #if not os.path.exists(train_file_path_part1 or train_file_path_part2 or train_file_path_part3) or force_overwrite:
-    if not os.path.exists(train_file_path_part1 or train_file_path_part2 or train_file_path_part3) or force_overwrite:
 
-        logging.info('This configuration of protocol and data indices has not yet been preprocessed')
+    if not os.path.exists(train_file_path_part3) or force_overwrite:
+        logging.info('Training Data Part 3 has not yet been preprocessed')
         logging.info('Preprocessing now...')
-        prepare_training_data(input_folder,
+        prepare_training_data_part3(input_folder,
                      preproc_folder,
-                     train_file_path_part1,
-                     train_file_path_part2,
                      train_file_path_part3,
                      size,
                      target_resolution
                      )
-    else:        
-        logging.info('Already preprocessed this configuration. Loading now...')
         
-    return h5py.File(train_file_path_part1, 'r'), h5py.File(train_file_path_part2, 'r'), h5py.File(train_file_path_part3, 'r')
+    else:        
+        logging.info('Already preprocessed Training Data Part3. Loading now...')
+        
+    return h5py.File(train_file_path_part3, 'r')
 
 
 
 
 
-def prepare_training_data(input_folder,
+def prepare_training_data_part1(input_folder,
                  preprocessing_folder, 
                  train_file_path_part1,
-                 train_file_path_part2,
-                 train_file_path_part3,
                  size,
                  target_resolution
                  ):
@@ -939,19 +1008,12 @@ def prepare_training_data(input_folder,
     training_folder = input_folder + 'MICCAI_FeTS2021_TrainingData/'
 
     folder_list_part1 = []
-    folder_list_part2 = []
-    folder_list_part3 = []
+    
 
     training_ids_part1 = [1, 96, 95, 94, 93, 92, 91, 90, 89, 88, 87, 86, 85, 83, 97, 82, 80, 79, 78, 77, 76, 75, 74, 73, 72, 71, 70, 69, 68] 
-    training_ids_part2 = [81, 98, 99, 100, 129, 128, 127, 126, 125, 124, 123, 122, 121, 120, 119, 118, 117, 116, 115, 114, 113, 112, 111, 110, 109,
-                          108, 107, 106, 105] 
-    training_ids_part3 = [104, 103, 102, 101, 67, 66, 84, 64, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 65, 13, 12, 11, 10, 9]
-    #validation_ids = [54, 53, 51, 50, 49, 52, 47, 35, 36, 37, 38, 48, 40, 41, 39, 43, 44, 45, 46, 42]
 
     num_slices_part1 = 0
-    num_slices_part2 = 0
-    num_slices_part3 = 0
-
+    
 
     for folder in os.listdir(training_folder):
         if not (folder.lower().endswith('.csv') or folder.lower().endswith('.md')):
@@ -976,40 +1038,6 @@ def prepare_training_data(input_folder,
                                     image_flair, _, _ = utils.load_nii(training_folder + folder + '/' + filename)
                                     num_slices_part1 += image_flair.shape[2]
                     
-                elif patient_id in training_ids_part2:
-                    folder_list_part2.append(folder_path)
-                    for _, _, fileList in os.walk(folder_path):
-                        for filename in fileList:
-                                if filename.lower().endswith('t1.nii.gz'):
-                                    image_t1, _, _ = utils.load_nii(training_folder + folder + '/' + filename)
-                                    num_slices_part2 += image_t1.shape[2]
-                                elif filename.lower().endswith('t1ce.nii.gz'):
-                                    image_t1ce, _, _ = utils.load_nii(training_folder + folder + '/' + filename)
-                                    num_slices_part2 += image_t1ce.shape[2]
-                                elif filename.lower().endswith('t2.nii.gz'):
-                                    image_t2, _, _= utils.load_nii(training_folder + folder + '/' + filename)
-                                    num_slices_part2 += image_t2.shape[2]
-                                elif filename.lower().endswith('flair.nii.gz'):
-                                    image_flair, _, _ = utils.load_nii(training_folder + folder + '/' + filename)
-                                    num_slices_part2 += image_flair.shape[2]
-
-                elif patient_id in training_ids_part3:
-                    folder_list_part3.append(folder_path)
-                    for _, _, fileList in os.walk(folder_path):
-                        for filename in fileList:
-                                if filename.lower().endswith('t1.nii.gz'):
-                                    image_t1, _, _ = utils.load_nii(training_folder + folder + '/' + filename)
-                                    num_slices_part3 += image_t1.shape[2]
-                                elif filename.lower().endswith('t1ce.nii.gz'):
-                                    image_t1ce, _, _ = utils.load_nii(training_folder + folder + '/' + filename)
-                                    num_slices_part3 += image_t1ce.shape[2]
-                                elif filename.lower().endswith('t2.nii.gz'):
-                                    image_t2, _, _= utils.load_nii(training_folder + folder + '/' + filename)
-                                    num_slices_part3 += image_t2.shape[2]
-                                elif filename.lower().endswith('flair.nii.gz'):
-                                    image_flair, _, _ = utils.load_nii(training_folder + folder + '/' + filename)
-                                    num_slices_part3 += image_flair.shape[2]
-        
 
     # ===============================
     # Create datasets for images and labels
@@ -1022,10 +1050,7 @@ def prepare_training_data(input_folder,
 
     
 
-    #data = {}
-    #num_slices = count_slices(folder_list, idx_start, idx_end)
-    #data['images'] = hdf5_file.create_dataset("images", list((size,size)) + [num_slices], dtype=np.float32)
-    #data['labels'] = hdf5_file.create_dataset("labels", list((size,size)) + [num_slices], dtype=np.uint8)
+    
     
     # ===============================
     # initialize lists
@@ -1041,25 +1066,6 @@ def prepare_training_data(input_folder,
     pz_list_part1= []
     pat_names_list_part1 = []
 
-    label_list_part2 = []
-    image_list_part2 = []
-    nx_list_part2 = []
-    ny_list_part2 = []
-    nz_list_part2 = []
-    px_list_part2 = []
-    py_list_part2 = []
-    pz_list_part2 = []
-    pat_names_list_part2 = []
-
-    label_list_part3 = []
-    image_list_part3 = []
-    nx_list_part3 = []
-    ny_list_part3 = []
-    nz_list_part3 = []
-    px_list_part3 = []
-    py_list_part3 = []
-    pz_list_part3= []
-    pat_names_list_part3 = []
 
     # ===============================        
     # ===============================        
@@ -1211,12 +1217,124 @@ def prepare_training_data(input_folder,
     hdf5_file_part1.close()
 
 
+
+
+
+
+
+
+
+
+
+def prepare_training_data_part2(input_folder,
+                 preprocessing_folder, 
+                 train_file_path_part2,
+                 size,
+                 target_resolution
+                 ):
+
+
+
+       # ===============================
+    # create a hdf5 file
+    # ===============================
     hdf5_file_part2 = h5py.File(train_file_path_part2, "w")
+    
+    
+
+    
+    # ===============================
+    # read all the patient folders from the base input folder
+    # ===============================
+
+
+    logging.info('Counting files and parsing meta data...')
+
+    training_folder = input_folder + 'MICCAI_FeTS2021_TrainingData/'
+
+    folder_list_part2 = []
+    
+
+    training_ids_part2 = [81, 98, 99, 100, 129, 128, 127, 126, 125, 124, 123, 122, 121, 120, 119, 118, 117, 116, 115, 114, 113, 112, 111, 110, 109,
+                          108, 107, 106, 105] 
+
+    
+    num_slices_part2 = 0
+    
+
+
+    for folder in os.listdir(training_folder):
+        if not (folder.lower().endswith('.csv') or folder.lower().endswith('.md')):
+            folder_path = os.path.join(training_folder, folder)  
+            patient_id = int(folder.split('_')[-1])      
+            if os.path.isdir(folder_path):
+                
+                    
+                if patient_id in training_ids_part2:
+                    folder_list_part2.append(folder_path)
+                    for _, _, fileList in os.walk(folder_path):
+                        for filename in fileList:
+                                if filename.lower().endswith('t1.nii.gz'):
+                                    image_t1, _, _ = utils.load_nii(training_folder + folder + '/' + filename)
+                                    num_slices_part2 += image_t1.shape[2]
+                                elif filename.lower().endswith('t1ce.nii.gz'):
+                                    image_t1ce, _, _ = utils.load_nii(training_folder + folder + '/' + filename)
+                                    num_slices_part2 += image_t1ce.shape[2]
+                                elif filename.lower().endswith('t2.nii.gz'):
+                                    image_t2, _, _= utils.load_nii(training_folder + folder + '/' + filename)
+                                    num_slices_part2 += image_t2.shape[2]
+                                elif filename.lower().endswith('flair.nii.gz'):
+                                    image_flair, _, _ = utils.load_nii(training_folder + folder + '/' + filename)
+                                    num_slices_part2 += image_flair.shape[2]
+
+
+        
+
+    # ===============================
+    # Create datasets for images and labels
+    # ===============================
+
     data_part2 = {}
+
     data_part2['images'] = hdf5_file_part2.create_dataset("images", list((size,size)) + [num_slices_part2], dtype=np.float32)
     data_part2['labels'] = hdf5_file_part2.create_dataset("labels", list((size,size)) + [num_slices_part2], dtype=np.uint8)
 
+    
 
+    #data = {}
+    #num_slices = count_slices(folder_list, idx_start, idx_end)
+    #data['images'] = hdf5_file.create_dataset("images", list((size,size)) + [num_slices], dtype=np.float32)
+    #data['labels'] = hdf5_file.create_dataset("labels", list((size,size)) + [num_slices], dtype=np.uint8)
+    
+    # ===============================
+    # initialize lists
+    # ===============================    
+
+
+    label_list_part2 = []
+    image_list_part2 = []
+    nx_list_part2 = []
+    ny_list_part2 = []
+    nz_list_part2 = []
+    px_list_part2 = []
+    py_list_part2 = []
+    pz_list_part2 = []
+    pat_names_list_part2 = []
+
+
+
+    # ===============================        
+    # ===============================        
+    logging.info('Parsing image files')
+    
+        
+    patient_counter = 0
+    write_buffer = 0
+    counter_from = 0
+
+
+
+   
     for folder in folder_list_part2:
 
         patient_counter += 1
@@ -1359,10 +1477,128 @@ def prepare_training_data(input_folder,
     hdf5_file_part2.close()
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def prepare_training_data_part3(input_folder,
+                 preprocessing_folder, 
+                 train_file_path_part3,
+                 size,
+                 target_resolution
+                 ):
+
+
+
+       # ===============================
+    # create a hdf5 file
+    # ===============================
     hdf5_file_part3 = h5py.File(train_file_path_part3, "w")
+    
+    
+
+    
+    # ===============================
+    # read all the patient folders from the base input folder
+    # ===============================
+
+
+    logging.info('Counting files and parsing meta data...')
+
+    training_folder = input_folder + 'MICCAI_FeTS2021_TrainingData/'
+
+    folder_list_part3 = []
+    
+
+    training_ids_part3 = [104, 103, 102, 101, 67, 66, 84, 64, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 65, 13, 12, 11, 10, 9]
+
+    
+    num_slices_part3 = 0
+    
+
+
+    for folder in os.listdir(training_folder):
+        if not (folder.lower().endswith('.csv') or folder.lower().endswith('.md')):
+            folder_path = os.path.join(training_folder, folder)  
+            patient_id = int(folder.split('_')[-1])      
+            if os.path.isdir(folder_path):
+                
+                    
+                if patient_id in training_ids_part3:
+                    folder_list_part3.append(folder_path)
+                    for _, _, fileList in os.walk(folder_path):
+                        for filename in fileList:
+                                if filename.lower().endswith('t1.nii.gz'):
+                                    image_t1, _, _ = utils.load_nii(training_folder + folder + '/' + filename)
+                                    num_slices_part3 += image_t1.shape[2]
+                                elif filename.lower().endswith('t1ce.nii.gz'):
+                                    image_t1ce, _, _ = utils.load_nii(training_folder + folder + '/' + filename)
+                                    num_slices_part3 += image_t1ce.shape[2]
+                                elif filename.lower().endswith('t2.nii.gz'):
+                                    image_t2, _, _= utils.load_nii(training_folder + folder + '/' + filename)
+                                    num_slices_part3 += image_t2.shape[2]
+                                elif filename.lower().endswith('flair.nii.gz'):
+                                    image_flair, _, _ = utils.load_nii(training_folder + folder + '/' + filename)
+                                    num_slices_part3 += image_flair.shape[2]
+
+
+        
+
+    # ===============================
+    # Create datasets for images and labels
+    # ===============================
+
     data_part3 = {}
+
     data_part3['images'] = hdf5_file_part3.create_dataset("images", list((size,size)) + [num_slices_part3], dtype=np.float32)
     data_part3['labels'] = hdf5_file_part3.create_dataset("labels", list((size,size)) + [num_slices_part3], dtype=np.uint8)
+
+    
+
+    
+    
+    # ===============================
+    # initialize lists
+    # ===============================    
+
+
+    label_list_part3 = []
+    image_list_part3 = []
+    nx_list_part3 = []
+    ny_list_part3 = []
+    nz_list_part3 = []
+    px_list_part3 = []
+    py_list_part3 = []
+    pz_list_part3 = []
+    pat_names_list_part3 = []
+
+
+
+    # ===============================        
+    # ===============================        
+    logging.info('Parsing image files')
+    
+        
+    patient_counter = 0
+    write_buffer = 0
+    counter_from = 0
 
 
     for folder in folder_list_part3:

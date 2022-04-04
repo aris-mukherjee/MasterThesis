@@ -14,7 +14,7 @@ class ConvRELU(nn.Module):
         return self.convrelu(x)
 
 class Normalisation_Module_t1(nn.Module):
-    def __init__(self, in_channels, features=[32, 64, 32, 1]): #16 #16 #16 #1
+    def __init__(self, in_channels, features=[16, 16, 1]): #16 #16 #1
         super(Normalisation_Module_t1, self).__init__()
 
         self.layers = nn.Sequential(OrderedDict([
@@ -27,9 +27,7 @@ class Normalisation_Module_t1(nn.Module):
             ('block3', nn.Sequential(OrderedDict(
                 [('unit4', ConvRELU(features[1], features[2]))] 
                 ))),
-            ('block4', nn.Sequential(OrderedDict(
-                [('unit5', ConvRELU(features[2], features[3]))] 
-                ))),
+
         ]))
 
     def forward(self, x):
@@ -39,7 +37,7 @@ class Normalisation_Module_t1(nn.Module):
         return x + z
 
 class Normalisation_Module_t1ce(nn.Module):
-    def __init__(self, in_channels, features=[32, 64, 32, 1]):
+    def __init__(self, in_channels, features=[16, 16, 1]):
         super(Normalisation_Module_t1ce, self).__init__()
 
         self.layers = nn.Sequential(OrderedDict([
@@ -51,9 +49,6 @@ class Normalisation_Module_t1ce(nn.Module):
                 ))),
             ('block3', nn.Sequential(OrderedDict(
                 [('unit4', ConvRELU(features[1], features[2]))] 
-                ))),
-            ('block4', nn.Sequential(OrderedDict(
-                [('unit5', ConvRELU(features[2], features[3]))] 
                 ))),
         ]))
 
@@ -67,7 +62,7 @@ class Normalisation_Module_t1ce(nn.Module):
 
 
 class Normalisation_Module_t2(nn.Module):
-    def __init__(self, in_channels, features=[32, 64, 32, 1]):
+    def __init__(self, in_channels, features=[16, 16, 1]):
         super(Normalisation_Module_t2, self).__init__()
 
         self.layers = nn.Sequential(OrderedDict([
@@ -80,9 +75,6 @@ class Normalisation_Module_t2(nn.Module):
             ('block3', nn.Sequential(OrderedDict(
                 [('unit4', ConvRELU(features[1], features[2]))] 
                 ))),
-            ('block4', nn.Sequential(OrderedDict(
-                [('unit5', ConvRELU(features[2], features[3]))] 
-                ))),
         ]))
 
     def forward(self, x):
@@ -93,7 +85,7 @@ class Normalisation_Module_t2(nn.Module):
 
 
 class Normalisation_Module_flair(nn.Module):
-    def __init__(self, in_channels, features=[32, 64, 32, 1]):
+    def __init__(self, in_channels, features=[16, 16, 1]):
         super(Normalisation_Module_flair, self).__init__()
 
         self.layers = nn.Sequential(OrderedDict([
@@ -105,9 +97,6 @@ class Normalisation_Module_flair(nn.Module):
                 ))),
             ('block3', nn.Sequential(OrderedDict(
                 [('unit4', ConvRELU(features[1], features[2]))] 
-                ))),
-            ('block4', nn.Sequential(OrderedDict(
-                [('unit5', ConvRELU(features[2], features[3]))] 
                 ))),
         ]))
 

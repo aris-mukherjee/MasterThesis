@@ -23,6 +23,7 @@ import matplotlib.pyplot as plt
 import torch.nn.functional as F
 import torch.optim as optimizer
 import copy
+import pickle
 
 writer = SummaryWriter('/scratch_net/biwidl217_second/arismu/Tensorboard/' + 'Test_Images_Output') 
 i = 0
@@ -1271,7 +1272,7 @@ def chunks(lst, n):
 
 
 
-def test_single_volume_FETS(image, label, net, i2n_module_t1, i2n_module_t1ce, i2n_module_t2, i2n_module_flair, use_tta, tta_epochs, writer, classes, dataset, optim, model_type, seed, patch_size=[256, 256], test_save_path=None, case=None, z_spacing=1):
+def test_single_volume_FETS(image, label, net, i2n_module_t1, i2n_module_t1ce, i2n_module_t2, i2n_module_flair, use_tta, tta_epochs, writer, layer_names_for_stats, classes, dataset, optim, model_type, seed, patch_size=[256, 256], test_save_path=None, case=None, z_spacing=1):
     image, label = image.cpu().detach().numpy(), label.cpu().detach().numpy()   
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     i2n_module_t1.to(device)
@@ -1298,18 +1299,31 @@ def test_single_volume_FETS(image, label, net, i2n_module_t1, i2n_module_t1ce, i
     foreground_list = []
     label_list = []
     entropy_loss = HLoss()  #Entropy Loss
-    
+    #loss = 0 # FoE loss
     iter_num = 0
     batch_size = 5
     max_iterations = image.shape[0]/batch_size * tta_epochs #31 iterations per volume x 10 epochs
     
+
+    activations = {}
+           
+    for name, m in net.named_modules():
+        if name in layer_names_for_stats:
+            hook_fn = _hook_store_activations(name, activations)
+            m.register_forward_hook(hook_fn)
 
     # ============================
     # Perform the prediction slice by slice
     # ============================ 
 
     if use_tta == True:
+
         for epoch in range(tta_epochs):
+
+
+            
+
+
             norm_out_t1 = torch.zeros(155, 240, 240)
             norm_out_t1ce = torch.zeros(155, 240, 240)
             norm_out_t2 = torch.zeros(155, 240, 240)
@@ -1367,6 +1381,68 @@ def test_single_volume_FETS(image, label, net, i2n_module_t1, i2n_module_t1ce, i
                     prediction[s] = out[i]
                     i =i+1
                 #out_soft = torch.softmax(outputs, dim=1)
+
+
+                
+                        
+
+                
+                """ gauss_param = {}
+                mu = {}
+                var = {}
+                loss = 0
+
+                iid_samples_seen = {}
+
+                for name in layer_names_for_stats:
+                    C = activations[name].size(1)
+
+                    mu[name] = torch.zeros(C).to(device)
+                    var[name] = torch.zeros(C).to(device)
+
+                    iid_samples_seen[name] = 0
+
+                #   Feature KDE computation
+                # ------------------------------
+                for name in layer_names_for_stats:
+
+                    # Act: (N, C, H, W) - consider as iid along N, H & W
+                    N, C, H, W = activations[name].size()
+                    iids = activations[name].permute(1, 0, 2, 3).flatten(1)
+
+                    N1 = iid_samples_seen[name]
+                    N2 = iids.size(1)
+
+                    batch_mean = torch.mean(iids, dim=1)
+                    batch_sqr_mean = torch.mean(iids**2, dim=1)
+
+                    mu[name] = (
+                        N1 / (N1 + N2) * mu[name] +
+                        N2 / (N1 + N2) * batch_mean
+                    )
+                    var[name] = (
+                        N1 / (N1 + N2) * var[name] +
+                        N2 / (N1 + N2) * batch_sqr_mean
+                    )
+
+                    iid_samples_seen[name] += N2
+
+                    gauss_param[name] = torch.stack([mu[name], var[name]], dim=1)
+
+                
+                sd_param, num_experts = load_pdfs('/scratch_net/biwidl217_second/arismu/Data_MT/data_FoE/SD_data.pkl')
+
+
+                for name in layer_names_for_stats:
+
+                    loss += kl_div_gauss(
+                        P=gauss_param[name],
+                        Q=sd_param[name].to(device)
+                    )
+
+                print(f'KL Loss: {loss}') """
+
+
                 loss = entropy_loss(outputs)
                 loss.backward()
                 loss_ii += loss.item()
@@ -1511,6 +1587,10 @@ def test_single_volume_FETS(image, label, net, i2n_module_t1, i2n_module_t1ce, i
     # ============================
     # Inference with updated parameters
     # ============================  
+
+    
+
+
     prediction = np.zeros_like(label[:, :, :, 0])
 
     for ind in range(image.shape[0]):  
@@ -1643,6 +1723,11 @@ def test_single_volume_FETS(image, label, net, i2n_module_t1, i2n_module_t1ce, i
         sitk.WriteImage(prd_itk, test_save_path + '/'+"{}".format(case) + "_pred.nii.gz")
         sitk.WriteImage(img_itk, test_save_path + '/'+"{}".format(case) + "_img.nii.gz")
         sitk.WriteImage(lab_itk, test_save_path + '/'+"{}".format(case) + "_gt.nii.gz")
+
+
+    for name in layer_names_for_stats:
+        del activations[name]
+
     return metric_list_whole_tumor, metric_list_enhancing_tumor, metric_list_tumor_core, foreground_list_arr, label_list_arr
 
 
@@ -1659,3 +1744,37 @@ class HLoss(nn.Module):
 
 def update_params(param, grad, loss, learning_rate):
   return param - learning_rate * grad
+
+
+def _hook_store_activations(module_name, activations):
+        """ """
+        def hook_fn(m, i, o):   
+            activations[module_name] = o
+        return hook_fn
+
+
+
+def kl_div_gauss(P, Q):
+    """ P, Q shapes: [C x 2]
+
+        P[:, 0] ... mean
+        P[:, 1] ... var
+    """
+    mu_p = P[:, 0]
+    mu_q = Q[:, 0]
+
+    var_p = P[:, 1]
+    var_q = Q[:, 1]
+
+    return torch.sum(0.5 * (
+        torch.log(var_q) - torch.log(var_p) +
+        (var_p - var_q + (mu_p - mu_q)**2) / var_q
+    ))
+
+
+def load_pdfs(cache_name):
+    with open(cache_name, 'rb') as f:
+        cache = pickle.load(f)
+        pdfs = cache['pdfs']
+        num_experts = cache['num_experts']
+    return pdfs, num_experts

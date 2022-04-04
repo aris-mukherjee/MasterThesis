@@ -22,9 +22,9 @@ from normalisation_module import Normalisation_Module_flair, Normalisation_Modul
 import torch.nn.functional as F
 
 
-seed = 1234
-model_type = 'UNET'
-data_aug = '0.25_TTA_NO_DICT_OPTIM'
+seed = 50
+model_type = 'UNWT'
+data_aug = '0.25_TTA'
 
 def trainer_fets(args, model):
 
@@ -46,17 +46,32 @@ def trainer_fets(args, model):
     # ============================   
     logging.info('============================================================')
     logging.info('Loading data...')
-    loaded_tr_data = utils_data.load_training_data(args.dataset,
+    loaded_tr_data_part1 = utils_data.load_training_data('FETS_train_part1',
                                                    args.img_size,
                                                    args.target_resolution,
                                                    args.tr_cv_fold_num)
-    imtr_part1 = loaded_tr_data[0]
-    gttr_part1 = loaded_tr_data[1]
-    imtr_part2 = loaded_tr_data[3]
-    gttr_part2 = loaded_tr_data[4]
-    imtr_part3 = loaded_tr_data[6]
-    gttr_part3 = loaded_tr_data[7]
+    imtr_part1 = loaded_tr_data_part1[0]
+    gttr_part1 = loaded_tr_data_part1[1]
+    
 
+    loaded_tr_data_part2 = utils_data.load_training_data('FETS_train_part2',
+                                                   args.img_size,
+                                                   args.target_resolution,
+                                                   args.tr_cv_fold_num)
+    imtr_part2 = loaded_tr_data_part2[0]
+    gttr_part2 = loaded_tr_data_part2[1]
+    
+
+    loaded_tr_data_part3 = utils_data.load_training_data('FETS_train_part3',
+                                                   args.img_size,
+                                                   args.target_resolution,
+                                                   args.tr_cv_fold_num)
+    imtr_part3 = loaded_tr_data_part3[0]
+    gttr_part3 = loaded_tr_data_part3[1]
+
+
+
+    
     loaded_val_data = utils_data.load_validation_data('FETS_val',
                                                    args.img_size,
                                                    args.target_resolution,
@@ -67,6 +82,12 @@ def trainer_fets(args, model):
     gtvl = loaded_val_data[1]
     imvl = np.array(imvl)
     gtvl = np.array(gtvl)
+
+    #import pdb; pdb.set_trace()
+
+    #utils.save_nii(img_path = '/scratch_net/biwidl217_second/arismu/Data_MT/' + 'PART3_SUBJECT_30.nii.gz', data = imvl[:, :, 11780:12400], affine = np.eye(4))
+    #utils.save_nii(img_path = '/scratch_net/biwidl217_second/arismu/Data_MT/' + 'PART3_LABEL_30.nii.gz', data = gtvl[:, :, 11780:12400], affine = np.eye(4))
+
 
     
     gtvl[np.where(gtvl == 4)] = 3 
@@ -557,6 +578,8 @@ def do_train_eval(images, labels, batch_size, model, ce_loss, dice_loss):
             train_loss_dice = dice_loss(outputs, y[:, 0, :, :], softmax=True)
             train_loss = 0.5 * train_loss_ce + 0.5 * train_loss_dice
 
+        
+
             loss_ii += train_loss
             num_batches += 1
 
@@ -639,6 +662,8 @@ def do_validation_eval(images, labels, batch_size, model, ce_loss, dice_loss):
             val_loss_dice = dice_loss(outputs, y[:, 0, :, :], softmax=True)
             val_loss = 0.5 * val_loss_ce + 0.5 * val_loss_dice
 
+        
+
 
             loss_ii += val_loss
             num_batches += 1
@@ -656,4 +681,7 @@ def do_validation_eval(images, labels, batch_size, model, ce_loss, dice_loss):
         avg_loss = loss_ii / num_batches
 
         return avg_loss 
+
+
+
 
