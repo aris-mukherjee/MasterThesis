@@ -22,9 +22,9 @@ from normalisation_module import Normalisation_Module_flair, Normalisation_Modul
 import torch.nn.functional as F
 
 
-seed = 50
-model_type = 'UNWT'
-data_aug = '0.25_TTA'
+seed = 100
+model_type = 'UNET'
+data_aug = '0.25'
 
 def trainer_fets(args, model):
 
@@ -286,7 +286,7 @@ def trainer_fets(args, model):
     optim_i2n_t1ce = optim.Adam(i2n_module_t1ce.parameters(), lr=base_lr)
     optim_i2n_t2 = optim.Adam(i2n_module_t2.parameters(), lr=base_lr)
     optim_i2n_flair = optim.Adam(i2n_module_flair.parameters(), lr=base_lr)
-    writer = SummaryWriter(f'/scratch_net/biwidl217_second/arismu/Tensorboard/2022/FETS/{model_type}/TTA/' + f'FETS_{model_type}_log_seed{seed}_da{data_aug}') 
+    writer = SummaryWriter(f'/scratch_net/biwidl217_second/arismu/Tensorboard/2022/FETS/{model_type}/' + f'FETS_{model_type}_log_seed{seed}_da{data_aug}') 
     iter_num = 0
     max_epoch = args.max_epochs
     max_iterations = 119351
@@ -312,12 +312,13 @@ def trainer_fets(args, model):
             i2n_module_t1ce.to(device)
             i2n_module_t2.to(device)
             i2n_module_flair.to(device)
+            model.to(device)
     
             
             image_batch, label_batch = sampled_batch[0], sampled_batch[1]
             image_batch = torch.from_numpy(image_batch)
             label_batch = torch.from_numpy(label_batch)
-               
+            image_batch, label_batch = image_batch.cuda(), label_batch.cuda()   
             image_batch = image_batch.permute(3, 2, 0, 1)
             label_batch = label_batch.permute(3, 2, 0, 1)
             norm_output_t1 = i2n_module_t1(image_batch[:, 0, :, :].unsqueeze(1))
@@ -335,10 +336,10 @@ def trainer_fets(args, model):
             loss_dice = dice_loss(outputs, label_batch[:, 0, :, :], softmax=True)
             loss = 0.5 * loss_ce + 0.5 * loss_dice
             optimizer.zero_grad()
-            optim_i2n_t1.zero_grad()
-            optim_i2n_t1ce.zero_grad()
-            optim_i2n_t2.zero_grad()
-            optim_i2n_flair.zero_grad()
+            #optim_i2n_t1.zero_grad()
+            #optim_i2n_t1ce.zero_grad()
+            #optim_i2n_t2.zero_grad()
+            #optim_i2n_flair.zero_grad()
             loss.backward()
             optimizer.step()
             #optim_i2n_t1.step()
@@ -407,17 +408,17 @@ def trainer_fets(args, model):
                 writer.add_scalar('info/total_loss_validation_set', val_loss, iter_num)
 
                 if val_loss < best_val_loss:
-                    save_mode_path = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_best_val_loss_seed{seed}_da{data_aug}' + '.pth')
+                    save_mode_path = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/', f'FETS_{model_type}_best_val_loss_seed{seed}_da{data_aug}' + '.pth')
                     torch.save(model.state_dict(), save_mode_path)
-                    save_t1_path = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_{seed}_da{data_aug}_NORM_T1' + '.pth')
-                    save_t1ce_path = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_{seed}_da{data_aug}_NORM_T1CE' + '.pth')
-                    save_t2_path = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_{seed}_da{data_aug}_NORM_T2' + '.pth')
-                    save_flair_path = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_{seed}_da{data_aug}_NORM_FLAIR' + '.pth')
+                    #save_t1_path = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_{seed}_da{data_aug}_NORM_T1' + '.pth')
+                    #save_t1ce_path = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_{seed}_da{data_aug}_NORM_T1CE' + '.pth')
+                    #save_t2_path = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_{seed}_da{data_aug}_NORM_T2' + '.pth')
+                    #save_flair_path = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_{seed}_da{data_aug}_NORM_FLAIR' + '.pth')
 
-                    torch.save(i2n_module_t1.state_dict(), save_t1_path)
-                    torch.save(i2n_module_t1ce.state_dict(), save_t1ce_path)
-                    torch.save(i2n_module_t2.state_dict(), save_t2_path)
-                    torch.save(i2n_module_flair.state_dict(), save_flair_path)
+                    #torch.save(i2n_module_t1.state_dict(), save_t1_path)
+                    #torch.save(i2n_module_t1ce.state_dict(), save_t1ce_path)
+                    #torch.save(i2n_module_t2.state_dict(), save_t2_path)
+                    #torch.save(i2n_module_flair.state_dict(), save_flair_path)
 
                     logging.info(f"Found new lowest validation loss at iteration {iter_num}! Save model to {save_mode_path}")
                     best_val_loss = val_loss
@@ -524,6 +525,7 @@ def do_train_eval(images, labels, batch_size, model, ce_loss, dice_loss):
     i2n_module_t1ce.to(device)
     i2n_module_t2.to(device)
     i2n_module_flair.to(device)
+    model.to(device)
 
     n_images = len(images)
     random_indices = np.random.permutation(n_images)
@@ -559,11 +561,11 @@ def do_train_eval(images, labels, batch_size, model, ce_loss, dice_loss):
             
             
             
-            x, y = x.cuda(), y.cuda()   
+               
 
             x = x.permute(0, 3, 1, 2)
             y = y.permute(0, 3, 1, 2)
-
+            x, y = x.cuda(), y.cuda() 
             norm_output_t1 = i2n_module_t1(x[:, 0, :, :].unsqueeze(1))
             norm_output_t1ce = i2n_module_t1ce(x[:, 1, :, :].unsqueeze(1))
             norm_output_t2 = i2n_module_t2(x[:, 2, :, :].unsqueeze(1))
@@ -572,8 +574,8 @@ def do_train_eval(images, labels, batch_size, model, ce_loss, dice_loss):
             norm_output = torch.cat((norm_output_t1, norm_output_t1ce, norm_output_t2, norm_output_flair), 1)
             
             norm_output = norm_output.cuda()
-            
-            outputs = model(norm_output)
+            x, y = x.cuda(), y.cuda()
+            outputs = model(x)
             train_loss_ce = ce_loss(outputs, y[:, 0, :, :].long())
             train_loss_dice = dice_loss(outputs, y[:, 0, :, :], softmax=True)
             train_loss = 0.5 * train_loss_ce + 0.5 * train_loss_dice
@@ -602,6 +604,7 @@ def do_validation_eval(images, labels, batch_size, model, ce_loss, dice_loss):
     i2n_module_t1ce.to(device)
     i2n_module_t2.to(device)
     i2n_module_flair.to(device)
+    model.to(device)
 
     writer = SummaryWriter(f'/scratch_net/biwidl217_second/arismu/Tensorboard/2022/FETS/{model_type}/TTA/' + f'FETS_{model_type}_log_seed{seed}_da{data_aug}') 
 
@@ -642,12 +645,12 @@ def do_validation_eval(images, labels, batch_size, model, ce_loss, dice_loss):
             #x = torch.from_numpy(x)
             #y = torch.from_numpy(y)
             
-            x, y = x.cuda(), y.cuda()   
+           
 
             x = x.permute(0, 3, 1, 2)
             y = y.permute(0, 3, 1, 2)
 
-
+            x, y = x.cuda(), y.cuda() 
             norm_output_t1 = i2n_module_t1(x[:, 0, :, :].unsqueeze(1))
             norm_output_t1ce = i2n_module_t1ce(x[:, 1, :, :].unsqueeze(1))
             norm_output_t2 = i2n_module_t2(x[:, 2, :, :].unsqueeze(1))
@@ -656,8 +659,8 @@ def do_validation_eval(images, labels, batch_size, model, ce_loss, dice_loss):
             norm_output = torch.cat((norm_output_t1, norm_output_t1ce, norm_output_t2, norm_output_flair), 1)
 
             norm_output = norm_output.cuda()
-
-            outputs = model(norm_output)
+            x, y = x.cuda(), y.cuda()   
+            outputs = model(x)
             val_loss_ce = ce_loss(outputs, y[:, 0, :, :].long())
             val_loss_dice = dice_loss(outputs, y[:, 0, :, :], softmax=True)
             val_loss = 0.5 * val_loss_ce + 0.5 * val_loss_dice

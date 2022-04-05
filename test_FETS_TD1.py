@@ -53,7 +53,7 @@ parser.add_argument('--test_cv_fold_num', type = int, default = 1) # 1 / 2 / 3 /
 parser.add_argument('--NORMALIZE', type = int, default = 1) # 1 / 0
 args = parser.parse_args()
 
-seed = 2
+seed = 1234
 model_type = 'UNET'
 data_aug = '0.25'
 use_tta = True
@@ -62,7 +62,7 @@ tta_epochs = 10
 
 def inference(args, model, test_save_path=None):
     
-    writer = SummaryWriter(f'/scratch_net/biwidl217_second/arismu/Tensorboard/2022/FETS/{model_type}/TTA/TEST/Entropy/' + f'TD1_FETS_{model_type}_log_seed{seed}_da{data_aug}')
+    writer = SummaryWriter(f'/scratch_net/biwidl217_second/arismu/Tensorboard/2022/FETS/{model_type}/TTA/TEST/FoE/' + f'TD1_FETS_{model_type}_log_seed{seed}_da{data_aug}')
 
 
     # ============================
@@ -406,7 +406,7 @@ if __name__ == "__main__":
     # ============================ 
 
     if args.is_savenii:
-        args.test_save_dir = f'../predictions_2022/FETS/{model_type}/TTA/Entropy/'
+        args.test_save_dir = f'../predictions_2022/FETS/{model_type}/TTA/FoE/'
         test_save_path = os.path.join(args.test_save_dir, f'TD1_FETS_{model_type}_test_seed{seed}_da{data_aug}_TTA')
         os.makedirs(test_save_path, exist_ok=True)
     else:

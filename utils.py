@@ -24,6 +24,7 @@ import torch.nn.functional as F
 import torch.optim as optimizer
 import copy
 import pickle
+import random
 
 writer = SummaryWriter('/scratch_net/biwidl217_second/arismu/Tensorboard/' + 'Test_Images_Output') 
 i = 0
@@ -1298,8 +1299,8 @@ def test_single_volume_FETS(image, label, net, i2n_module_t1, i2n_module_t1ce, i
 
     foreground_list = []
     label_list = []
-    entropy_loss = HLoss()  #Entropy Loss
-    #loss = 0 # FoE loss
+    #entropy_loss = HLoss()  #Entropy Loss
+    loss = 0 # FoE loss
     iter_num = 0
     batch_size = 5
     max_iterations = image.shape[0]/batch_size * tta_epochs #31 iterations per volume x 10 epochs
@@ -1330,6 +1331,8 @@ def test_single_volume_FETS(image, label, net, i2n_module_t1, i2n_module_t1ce, i
             norm_out_flair = torch.zeros(155, 240, 240)
             loss_ii = 0.0
             num_batches = 0
+            patient = random.randint(0, 87)
+            sd_param= load_pdfs(f'/scratch_net/biwidl217_second/arismu/Data_MT/data_FoE/SD_data_{patient}.pkl')
             shuffled_slices = np.random.permutation(image.shape[0])
             for slices in chunks(shuffled_slices, batch_size):
                 slice = image[slices, :, :]
@@ -1387,7 +1390,7 @@ def test_single_volume_FETS(image, label, net, i2n_module_t1, i2n_module_t1ce, i
                         
 
                 
-                """ gauss_param = {}
+                gauss_param = {}
                 mu = {}
                 var = {}
                 loss = 0
@@ -1430,7 +1433,8 @@ def test_single_volume_FETS(image, label, net, i2n_module_t1, i2n_module_t1ce, i
                     gauss_param[name] = torch.stack([mu[name], var[name]], dim=1)
 
                 
-                sd_param, num_experts = load_pdfs('/scratch_net/biwidl217_second/arismu/Data_MT/data_FoE/SD_data.pkl')
+                #breakpoint()
+               
 
 
                 for name in layer_names_for_stats:
@@ -1440,10 +1444,10 @@ def test_single_volume_FETS(image, label, net, i2n_module_t1, i2n_module_t1ce, i
                         Q=sd_param[name].to(device)
                     )
 
-                print(f'KL Loss: {loss}') """
+                #print(f'KL Loss: {loss}')
 
 
-                loss = entropy_loss(outputs)
+                #loss = entropy_loss(outputs)
                 loss.backward()
                 loss_ii += loss.item()
                 
@@ -1464,7 +1468,7 @@ def test_single_volume_FETS(image, label, net, i2n_module_t1, i2n_module_t1ce, i
             
             epoch_loss = loss_ii/(batch_size*240*240)
             #log loss_ii 
-            writer.add_scalar('info/tta_entropy_loss', epoch_loss, iter_num)
+            writer.add_scalar('info/tta_FoE_loss', epoch_loss, iter_num)
             #log dice score
             metric_whole_tumor = []
             metric_enhancing_tumor = []
@@ -1579,7 +1583,7 @@ def test_single_volume_FETS(image, label, net, i2n_module_t1, i2n_module_t1ce, i
             optim_i2n_flair.zero_grad()
 
 
-            logging.info(f"TTA Entropy loss: {epoch_loss}")
+            logging.info(f"TTA FoE loss: {epoch_loss}")
 
         logging.info(f"TTA loop done for subject {case}")
 
@@ -1669,6 +1673,16 @@ def test_single_volume_FETS(image, label, net, i2n_module_t1, i2n_module_t1ce, i
     foreground_list_arr = np.array(foreground_list)
     foreground_list_arr = foreground_list_arr.flatten()
 
+    if test_save_path is not None:
+        img_itk = sitk.GetImageFromArray(image.astype(np.float32))
+        prd_itk = sitk.GetImageFromArray(prediction.astype(np.float32))
+        lab_itk = sitk.GetImageFromArray(label.astype(np.float32))
+        img_itk.SetSpacing((1, 1, z_spacing))
+        prd_itk.SetSpacing((1, 1, z_spacing))
+        lab_itk.SetSpacing((1, 1, z_spacing))
+        sitk.WriteImage(prd_itk, test_save_path + '/'+"{}".format(case) + "_pred.nii.gz")
+        sitk.WriteImage(img_itk, test_save_path + '/'+"{}".format(case) + "_img.nii.gz")
+        sitk.WriteImage(lab_itk, test_save_path + '/'+"{}".format(case) + "_gt.nii.gz")
         
 
     # ============================
@@ -1713,16 +1727,7 @@ def test_single_volume_FETS(image, label, net, i2n_module_t1, i2n_module_t1ce, i
     # Save images, predictions and ground truths
     # ============================
     
-    if test_save_path is not None:
-        img_itk = sitk.GetImageFromArray(image.astype(np.float32))
-        prd_itk = sitk.GetImageFromArray(prediction.astype(np.float32))
-        lab_itk = sitk.GetImageFromArray(label.astype(np.float32))
-        img_itk.SetSpacing((1, 1, z_spacing))
-        prd_itk.SetSpacing((1, 1, z_spacing))
-        lab_itk.SetSpacing((1, 1, z_spacing))
-        sitk.WriteImage(prd_itk, test_save_path + '/'+"{}".format(case) + "_pred.nii.gz")
-        sitk.WriteImage(img_itk, test_save_path + '/'+"{}".format(case) + "_img.nii.gz")
-        sitk.WriteImage(lab_itk, test_save_path + '/'+"{}".format(case) + "_gt.nii.gz")
+    
 
 
     for name in layer_names_for_stats:
@@ -1775,6 +1780,6 @@ def kl_div_gauss(P, Q):
 def load_pdfs(cache_name):
     with open(cache_name, 'rb') as f:
         cache = pickle.load(f)
-        pdfs = cache['pdfs']
-        num_experts = cache['num_experts']
-    return pdfs, num_experts
+        pdfs = cache
+        #num_experts = cache['num_experts']
+    return pdfs

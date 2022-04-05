@@ -22,7 +22,7 @@ from normalisation_module import Normalisation_Module_flair, Normalisation_Modul
 import torch.nn.functional as F
 
 
-seed = 50
+seed = 21
 model_type = 'UNWT'
 data_aug = '0.25_TTA'
 

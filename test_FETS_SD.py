@@ -24,7 +24,7 @@ from normalisation_module import Normalisation_Module_flair, Normalisation_Modul
 from tensorboardX import SummaryWriter
 
 
-seed = 2
+seed = 1234
 model_type = 'UNET'
 data_aug = '0.25'
 use_tta = True
@@ -67,7 +67,7 @@ args = parser.parse_args()
 
 def inference(args, model, test_save_path=None):
     
-    writer = SummaryWriter(f'/scratch_net/biwidl217_second/arismu/Tensorboard/2022/FETS/{model_type}/TTA/TEST/Entropy/' + f'SD_FETS_{model_type}_log_seed{seed}_da{data_aug}')
+    writer = SummaryWriter(f'/scratch_net/biwidl217_second/arismu/Tensorboard/2022/FETS/{model_type}/TTA/TEST/FoE/' + f'SD_FETS_{model_type}_log_seed{seed}_da{data_aug}')
 
 
     # ============================
@@ -413,7 +413,7 @@ if __name__ == "__main__":
     # ============================ 
     #import pdb; pdb.set_trace()
    
-    test_save_dir = f'../predictions_2022/FETS/{model_type}/TTA/Entropy/'
+    test_save_dir = f'../predictions_2022/FETS/{model_type}/TTA/FoE/'
     test_save_path = os.path.join(test_save_dir, f'SD_FETS_{model_type}_test_seed{seed}_da{data_aug}_TTA')
     os.makedirs(test_save_path, exist_ok=True)
 
