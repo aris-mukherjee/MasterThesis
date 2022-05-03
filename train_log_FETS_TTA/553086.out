@@ -1,0 +1,62 @@
+2022-04-08 15:52:50,417 ============================================================
+2022-04-08 15:52:50,418 Loading data...
+2022-04-08 15:52:50,419 Already preprocessed Training Data Part 1. Loading now...
+2022-04-08 15:52:50,434 Already preprocessed Training Data Part2. Loading now...
+2022-04-08 15:52:50,442 Already preprocessed Training Data Part3. Loading now...
+2022-04-08 15:52:50,449 Already preprocessed this configuration. Loading now...
+2022-04-08 15:59:16,918 Training Images: torch.Size([240, 240, 54560])
+2022-04-08 15:59:16,918 Training Labels: torch.Size([240, 240, 54560])
+2022-04-08 15:59:16,918 Validation Images: torch.Size([240, 240, 12400])
+2022-04-08 15:59:16,918 Validation Labels: torch.Size([240, 240, 12400])
+2022-04-08 15:59:16,919 ============================================================
+2022-04-08 15:59:17,009 17 iterations per epoch. 119351 max iterations 
+  0%|                                         | 0/140 [00:00<?, ?it/s]EPOCH: 0
+MAX T1 diff: -0.923293948173523
+MIN T1 diff: -0.9998910427093506
+MAX T1CE diff: -0.923293948173523
+MIN T1CE diff: -0.9998910427093506
+MAX T2 diff: -0.923293948173523
+MIN T2 diff: -0.9999074935913086
+MAX FLAIR diff: -0.923293948173523
+MIN FLAIR diff: -0.9999034404754639
+  0%|                                         | 0/140 [00:03<?, ?it/s]
+Traceback (most recent call last):
+  File "/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/TTA/TTA/train_FETS.py", line 111, in <module>
+    trainer[dataset_name](args, net)
+  File "/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/TTA/TTA/trainer_FETS.py", line 407, in trainer_fets
+    outputs = model(norm_output)            
+  File "/scratch_net/biwidl217_second/arismu/conda_envs/pytorch_env/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1051, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/TTA/TTA/networks/vit_seg_modeling.py", line 390, in forward
+    x, attn_weights, features = self.transformer(x)  # (B, n_patch, hidden)
+  File "/scratch_net/biwidl217_second/arismu/conda_envs/pytorch_env/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1051, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/TTA/TTA/networks/vit_seg_modeling.py", line 255, in forward
+    embedding_output, features = self.embeddings(input_ids)
+  File "/scratch_net/biwidl217_second/arismu/conda_envs/pytorch_env/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1051, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/TTA/TTA/networks/vit_seg_modeling.py", line 157, in forward
+    x, features = self.hybrid_model(x)
+  File "/scratch_net/biwidl217_second/arismu/conda_envs/pytorch_env/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1051, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/TTA/TTA/networks/unet_for_TU.py", line 120, in forward
+    x = self.root(x)
+  File "/scratch_net/biwidl217_second/arismu/conda_envs/pytorch_env/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1051, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/scratch_net/biwidl217_second/arismu/conda_envs/pytorch_env/lib/python3.9/site-packages/torch/nn/modules/container.py", line 139, in forward
+    input = module(input)
+  File "/scratch_net/biwidl217_second/arismu/conda_envs/pytorch_env/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1051, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/TTA/TTA/networks/unet_for_TU.py", line 39, in forward
+    return self.conv(x)
+  File "/scratch_net/biwidl217_second/arismu/conda_envs/pytorch_env/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1051, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/scratch_net/biwidl217_second/arismu/conda_envs/pytorch_env/lib/python3.9/site-packages/torch/nn/modules/container.py", line 139, in forward
+    input = module(input)
+  File "/scratch_net/biwidl217_second/arismu/conda_envs/pytorch_env/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1051, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/scratch_net/biwidl217_second/arismu/conda_envs/pytorch_env/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 443, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "/scratch_net/biwidl217_second/arismu/conda_envs/pytorch_env/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 439, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+RuntimeError: Input type (torch.cuda.FloatTensor) and weight type (torch.FloatTensor) should be the same

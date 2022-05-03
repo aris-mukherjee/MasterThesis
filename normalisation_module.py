@@ -7,7 +7,8 @@ class ConvRELU(nn.Module):
         super(ConvRELU, self).__init__()
         self.convrelu = nn.Sequential(
             nn.Conv2d(in_channels, out_channels, 3, 1, 1, bias=False), 
-            nn.ReLU(inplace=True)
+            #nn.ReLU(inplace=True)
+            RBF(1)
         )
     
     def forward(self, x):
@@ -105,3 +106,21 @@ class Normalisation_Module_flair(nn.Module):
         for i in range(len(self.layers)):
             z = self.layers[i](z)
         return x + z
+
+
+class RBF(nn.Module):
+    r""" Applies function
+
+        $$ y = \exp(-0.5 \cdot \beta \cdot x^2) $$
+    """
+
+    def __init__(self, beta: float = 1.0) -> None:
+        super(RBF, self).__init__()
+        self.beta = nn.Parameter(torch.FloatTensor([beta]))
+
+    def forward(self, input: torch.Tensor) -> torch.Tensor:
+        return torch.exp(-0.5 * self.beta * input**2)
+
+
+
+

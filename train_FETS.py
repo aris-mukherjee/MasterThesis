@@ -9,16 +9,16 @@ from networks.unet_class import UNET
 from networks.vit_seg_modeling import VisionTransformer as ViT_seg
 from networks.vit_seg_modeling import CONFIGS as CONFIGS_ViT_seg
 from normalisation_module import Normalisation_Module_flair, Normalisation_Module_t1, Normalisation_Module_t1ce, Normalisation_Module_t2
-#from trainer import trainer_runmc
 from trainer_FETS import trainer_fets
+
+model_type = 'UNWT'
+load_pretrain = False
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--root_path', type=str,
                     default='/itet-stor/arismu/bmicdatasets-originals/Originals/Challenge_Datasets/NCI_Prostate/', help='root dir for data')
 parser.add_argument('--dataset', type=str,
                     default='FETS_train', help='experiment_name')
-#parser.add_argument('--list_dir', type=str,
-#                    default='./lists/lists_Synapse', help='list dir')
 parser.add_argument('--num_classes', type=int,
                     default=4, help='output channel of network')
 parser.add_argument('--max_iterations', type=int,
@@ -35,7 +35,7 @@ parser.add_argument('--base_lr', type=float,  default=1e-3,
 parser.add_argument('--img_size', type=int,
                     default=240, help='input patch size of network input')
 parser.add_argument('--seed', type=int,
-                    default=21, help='random seed')
+                    default=5555, help='random seed')
 parser.add_argument('--n_skip', type=int,
                     default=3, help='using number of skip-connect, default is num')
 parser.add_argument('--vit_name', type=str,
@@ -88,23 +88,29 @@ if __name__ == "__main__":
     config_vit.n_skip = args.n_skip
     if args.vit_name.find('R50') != -1:
         config_vit.patches.grid = (int(args.img_size / args.vit_patches_size), int(args.img_size / args.vit_patches_size))
-
+    
     # ===========================    
-    # create an instance of the model 
+    # Instantiate the model
     # ===========================      
     
-    net = ViT_seg(config_vit, img_size=args.img_size, num_classes=config_vit.n_classes).cuda()
-    #net.load_state_dict(torch.load('/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/UNWT/FETS_UNWT_seed100_iternum84999.pth'))
 
-    #net.load_from(weights=np.load(config_vit.pretrained_path))
-    #net = UNET(in_channels = 4, out_channels = 4, features = [32, 64, 128, 256]).cuda()
+    if model_type == 'UNWT':
+        net = ViT_seg(config_vit, img_size=args.img_size, num_classes=config_vit.n_classes).cuda()
+        if load_pretrain:
+            net.load_state_dict(torch.load(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/FETS_{model_type}_seed{args.seed}.pth'))
 
+    elif model_type == 'UNET':
+        net = UNET(in_channels = 4, out_channels = 4, features = [32, 64, 128, 256]).cuda()
+        if load_pretrain:
+            net.load_state_dict(torch.load(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/FETS_{model_type}_seed{args.seed}.pth'))
 
-    #task_model.load_state_dict(torch.load('/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/UNET/FETS_UNET_best_val_loss_seed1234_da0.25.pth'))
+    else:
+        print('Error: model instantiation')
+
 
     # ===========================    
     # start training 
     # ===========================  
-
+    
     trainer = {'FETS_train': trainer_fets}
     trainer[dataset_name](args, net)

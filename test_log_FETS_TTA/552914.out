@@ -1,0 +1,5 @@
+/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/TTA/TTA/utils.py:965: SyntaxWarning: "is" with a literal. Did you mean "=="?
+  if mask_type is 'squares_jigsaw':
+/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/TTA/TTA/utils.py:972: SyntaxWarning: "is" with a literal. Did you mean "=="?
+  elif mask_type is 'squares_zeros':
+slurmstepd: error: *** JOB 552914 ON biwirender08 CANCELLED AT 2022-04-08T11:09:22 ***

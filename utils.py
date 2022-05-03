@@ -84,7 +84,7 @@ def calculate_metric_percase(pred, gt):
 
 
 
-def  test_single_volume(image, label, net, classes, dataset, optim, model_type, seed, patch_size=[256, 256], test_save_path=None, case=None, z_spacing=1):
+def test_single_volume(image, label, net, classes, dataset, optim, model_type, seed, patch_size=[256, 256], test_save_path=None, case=None, z_spacing=1):
     image, label = image.cpu().detach().numpy(), label.cpu().detach().numpy()
     if len(image.shape) == 3:
         prediction = np.zeros_like(label)
@@ -216,28 +216,6 @@ def makefolder(folder):
         return True
     return False
 
-# ===================================================
-# ===================================================
-def get_latest_model_checkpoint_path(folder, name):
-    '''
-    Returns the checkpoint with the highest iteration number with a given name
-    :param folder: Folder where the checkpoints are saved
-    :param name: Name under which you saved the model
-    :return: The path to the checkpoint with the latest iteration
-    '''
-
-    iteration_nums = []
-    for file in glob.glob(os.path.join(folder, '%s*.meta' % name)):
-
-        file = file.split('/')[-1]
-        file_base, postfix_and_number, rest = file.split('.')[0:3]
-        it_num = int(postfix_and_number.split('-')[-1])
-
-        iteration_nums.append(it_num)
-
-    latest_iteration = np.max(iteration_nums)
-
-    return os.path.join(folder, name + '-' + str(latest_iteration))
 
 # ===================================================
 # ===================================================
@@ -306,152 +284,6 @@ def crop_or_pad_slice_to_size(slice, nx, ny):
 
     return slice_cropped
 
-# ===============================================================
-# ===============================================================
-def crop_or_pad_slice_to_size_1hot(slice, nx, ny):
-    
-    x, y, c = slice.shape
-
-    x_s = (x - nx) // 2
-    y_s = (y - ny) // 2
-    x_c = (nx - x) // 2
-    y_c = (ny - y) // 2
-
-    if x > nx and y > ny:
-        slice_cropped = slice[x_s:x_s + nx, y_s:y_s + ny, :]
-    else:
-        slice_cropped = np.zeros((nx, ny, c))
-        if x <= nx and y > ny:
-            slice_cropped[x_c:x_c + x, :, :] = slice[:, y_s:y_s + ny, :]
-        elif x > nx and y <= ny:
-            slice_cropped[:, y_c:y_c + y, :] = slice[x_s:x_s + nx, :, :]
-        else:
-            slice_cropped[x_c:x_c + x, y_c:y_c + y, :] = slice[:, :, :]
-
-    return slice_cropped
-
-# ===============================================================
-# ===============================================================
-def crop_or_pad_volume_to_size_along_x(vol, nx):
-    
-    x = vol.shape[0]
-    x_s = (x - nx) // 2
-    x_c = (nx - x) // 2
-
-    if x > nx: # original volume has more slices that the required number of slices
-        vol_cropped = vol[x_s:x_s + nx, :, :]
-    else: # original volume has equal of fewer slices that the required number of slices
-        vol_cropped = np.zeros((nx, vol.shape[1], vol.shape[2]))
-        vol_cropped[x_c:x_c + x, :, :] = vol
-
-    return vol_cropped
-
-# ===============================================================
-# ===============================================================
-def crop_or_pad_volume_to_size_along_x_1hot(vol, nx):
-    
-    x = vol.shape[0]
-    x_s = (x - nx) // 2
-    x_c = (nx - x) // 2
-
-    if x > nx: # original volume has more slices that the required number of slices
-        vol_cropped = vol[x_s:x_s + nx, :, :, :]
-    else: # original volume has equal of fewer slices that the required number of slices
-        vol_cropped = np.zeros((nx, vol.shape[1], vol.shape[2], vol.shape[3]))
-        vol_cropped[x_c:x_c + x, :, :, :] = vol
-        vol_cropped[:x_c, :, :, 0] = 1
-        vol_cropped[x_c+x:, :, :, 0] = 1
-
-    return vol_cropped
-
-# ===============================================================
-# ===============================================================
-def crop_or_pad_volume_to_size_along_z(vol, nz):
-    
-    z = vol.shape[2]
-    z_s = (z - nz) // 2
-    z_c = (nz - z) // 2
-
-    if z > nz: # original volume has more slices that the required number of slices
-        vol_cropped = vol[:, :, z_s:z_s + nz]
-    else: # original volume has equal of fewer slices that the required number of slices
-        vol_cropped = np.zeros((vol.shape[0], vol.shape[1], nz))
-        vol_cropped[:, :, z_c:z_c + z] = vol
-    
-    return vol_cropped
-
-# ===============================================================
-# Group the segmentation classes into the required categories 
-# ===============================================================
-def group_segmentation_classes(seg_mask):
-    
-    seg_mask_modified = group_segmentation_classes_15(seg_mask)
-    return seg_mask_modified
-
-# ===============================================================
-# Group the segmentation classes into the required categories 
-# ===============================================================
-def group_segmentation_classes_15(a):
-    """
-    Args:
-    label_data : Freesurfer generated Labels Data of a 3D MRI scan.
-    Returns:
-    relabelled_data
-    """
-    
-    background_ids = [0] # [background]
-    csf_ids = [24] # [csf]
-    brainstem_ids = [16] # [brain stem]    
-    cerebellum_wm_ids = [7, 46]
-    cerebellum_gm_ids = [8, 47]
-    cerebral_wm_ids = [2, 41, 251, 252, 253, 254, 255]
-    cerebral_gm_ids = np.arange(1000, 3000)
-    cerebral_cortex_ids = [3,42]
-    thalamus_ids = [10, 49]
-    hippocampus_ids = [17, 53]
-    amygdala_ids = [18, 54]
-    ventricle_ids = [4, 43, 14, 15, 72] # lat, 3rd, 4th, 5th
-    choroid_plexus_ids = [31, 63]
-    caudate_ids = [11, 50]
-    putamen_ids = [12, 51]
-    pallidum_ids = [13, 52]
-    accumbens_ids = [26, 58]
-    ventral_DC_ids = [28, 60]
-    misc_ids = [5, 44, 30, 62, 77, 80, 85] # inf lat ventricle, right, left vessel, hypointensities, optic-chiasm
-    
-    a = np.array(a, dtype = 'uint16')
-    b = np.zeros((a.shape[0], a.shape[1], a.shape[2]), dtype = 'uint16')
-
-    unique_ids = np.unique(a)    
-    # print("Unique labels in the original segmentation mask:", unique_ids)
-    
-    for i in unique_ids:
-        if (i in cerebral_gm_ids): b[a == i] = 3
-        elif (i in cerebral_cortex_ids): b[a == i] = 3
-        elif (i in accumbens_ids): b[a == i] = 3
-        elif (i in background_ids): b[a == i] = 0
-        elif (i in cerebellum_gm_ids): b[a == i] = 1
-        elif (i in cerebellum_wm_ids): b[a == i] = 2
-        elif (i in cerebral_wm_ids): b[a == i] = 4
-        elif (i in misc_ids): b[a == i] = 4
-        elif (i in thalamus_ids): b[a == i] = 5
-        elif (i in hippocampus_ids): b[a == i] = 6
-        elif (i in amygdala_ids): b[a == i] = 7
-        elif (i in ventricle_ids): b[a == i] = 8    
-        elif (i in choroid_plexus_ids): b[a == i] = 8    
-        elif (i in caudate_ids): b[a == i] = 9
-        elif (i in putamen_ids): b[a == i] = 10
-        elif (i in pallidum_ids): b[a == i] = 11
-        elif (i in ventral_DC_ids): b[a == i] = 12
-        elif (i in csf_ids): b[a == i] = 13
-        elif (i in brainstem_ids): b[a == i] = 14
-        else:
-            print('unknown id:', i)
-            print('num_voxels:', np.shape(np.where(a==i))[1])
-        
-    print("Unique labels in the modified segmentation mask: ", np.unique(b))
-    
-    return b
     
 # ==================================================================
 # taken from: https://gist.github.com/erniejunior/601cdf56d2b424757de5
@@ -483,91 +315,6 @@ def elastic_transform_image_and_label(image, # 2d
     
     return distored_image, distored_label
 
-# ==================================================================
-# taken from: https://gist.github.com/erniejunior/601cdf56d2b424757de5
-# ==================================================================   
-def elastic_transform_label(label, # 2d
-                            sigma,
-                            alpha,
-                            random_state=None):
-
-    if random_state is None:
-        random_state = np.random.RandomState(None)
-
-    shape = label.shape
-    
-    # random_state.rand(*shape) generate an array of image size with random uniform noise between 0 and 1
-    # random_state.rand(*shape)*2 - 1 becomes an array of image size with random uniform noise between -1 and 1
-    # applying the gaussian filter with a relatively large std deviation (~20) makes this a relatively smooth deformation field, but with very small deformation values (~1e-3)
-    # multiplying it with alpha (500) scales this up to a reasonable deformation (max-min:+-10 pixels)
-    # multiplying it with alpha (1000) scales this up to a reasonable deformation (max-min:+-25 pixels)
-    dx = gaussian_filter((random_state.rand(*shape) * 2 - 1), sigma, mode="constant", cval=0) * alpha
-    dy = gaussian_filter((random_state.rand(*shape) * 2 - 1), sigma, mode="constant", cval=0) * alpha
-
-    x, y = np.meshgrid(np.arange(shape[0]), np.arange(shape[1]))
-    indices = np.reshape(y+dy, (-1, 1)), np.reshape(x+dx, (-1, 1))
-
-    distored_label = map_coordinates(label, indices, order=0, mode='reflect').reshape(shape)
-    
-    return distored_label
-
-# ==================================================================
-# taken from: https://gist.github.com/erniejunior/601cdf56d2b424757de5
-# ==================================================================   
-def elastic_transform_label_3d(label, # 3d
-                               sigma,
-                               alpha,
-                               random_state=None):
-
-    if random_state is None:
-        random_state = np.random.RandomState(None)
-
-    shape = (label.shape[1], label.shape[2])    
-    
-    dx = gaussian_filter((random_state.rand(*shape) * 2 - 1), sigma, mode="constant", cval=0) * alpha
-    dy = gaussian_filter((random_state.rand(*shape) * 2 - 1), sigma, mode="constant", cval=0) * alpha
-    
-    x, y = np.meshgrid(np.arange(shape[0]), np.arange(shape[1]))
-    
-    indices = np.reshape(y+dy, (-1, 1)), np.reshape(x+dx, (-1, 1))
-
-    distored_label = np.copy(label)
-    # save deformation field for all slices of the image
-    for zz in range(label.shape[0]):
-        distored_label[zz,:,:] = map_coordinates(label[zz,:,:], indices, order=0, mode='reflect').reshape(shape)
-    
-    return distored_label
-
-# ==================================================================
-# taken from: https://gist.github.com/erniejunior/601cdf56d2b424757de5
-# ==================================================================   
-def elastic_transform_label_pair_3d(label1,
-                                    label2, # 3d
-                                    sigma,
-                                    alpha,
-                                    random_state=None):
-
-    if random_state is None:
-        random_state = np.random.RandomState(None)
-
-    shape = (label1.shape[1], label1.shape[2])    
-    
-    dx = gaussian_filter((random_state.rand(*shape) * 2 - 1), sigma, mode="constant", cval=0) * alpha
-    dy = gaussian_filter((random_state.rand(*shape) * 2 - 1), sigma, mode="constant", cval=0) * alpha
-    
-    x, y = np.meshgrid(np.arange(shape[0]), np.arange(shape[1]))
-    
-    indices = np.reshape(y+dy, (-1, 1)), np.reshape(x+dx, (-1, 1))
-
-    distored_label1 = np.copy(label1)
-    distored_label2 = np.copy(label2)
-    
-    # save deformation field for all slices of the 3d image
-    for zz in range(label1.shape[0]):
-        distored_label1[zz,:,:] = map_coordinates(label1[zz,:,:], indices, order=0, mode='reflect').reshape(shape)
-        distored_label2[zz,:,:] = map_coordinates(label2[zz,:,:], indices, order=0, mode='reflect').reshape(shape)
-    
-    return distored_label1, distored_label2
 
 # ===========================      
 # data augmentation: random elastic deformations, translations, rotations, scaling
@@ -595,11 +342,6 @@ def do_data_augmentation(images,
     images_ = np.copy(images)
     labels_ = np.copy(labels)
 
-    
-    #import utils
-    #utils.save_nii(img_path = '/scratch_net/biwidl217_second/arismu/Data_MT/NCI/NIFTI_NOTaugmented' + '_img_n4.nii.gz', data = images, affine = np.eye(4))
-    #utils.save_nii(img_path = '/scratch_net/biwidl217_second/arismu/Data_MT/NCI/NIFTI_NOTaugmented' + '_lbl.nii.gz', data = labels, affine = np.eye(4))
-    
     for i in range(images.shape[2]):
 
         # ========
@@ -717,263 +459,8 @@ def do_data_augmentation(images,
             images_[:,:,i] = images_[:,:,i] + n
 
     
-    #import utils
-    #utils.save_nii(img_path = '/scratch_net/biwidl217_second/arismu/Data_MT/NCI/NIFTI_augmented' + '_img_n4.nii.gz', data = images_, affine = np.eye(4))
-    #utils.save_nii(img_path = '/scratch_net/biwidl217_second/arismu/Data_MT/NCI/NIFTI_augmented' + '_lbl.nii.gz', data = labels_, affine = np.eye(4))
-
     return images_, labels_
 
-# ==================================================================
-#
-# ==================================================================        
-def do_data_augmentation_on_3d_labels(labels,
-                                      data_aug_ratio,
-                                      sigma,
-                                      alpha,
-                                      trans_min,
-                                      trans_max,
-                                      rot_min,
-                                      rot_max,
-                                      scale_min,
-                                      scale_max,
-                                      do_rot90 = False):
-    
-    labels_ = np.copy(labels[0,...])
-        
-    # ========
-    # elastic deformation
-    # ========
-    if np.random.rand() < data_aug_ratio:
-        
-        labels_ = elastic_transform_label_3d(labels_,
-                                             sigma = sigma,
-                                             alpha = alpha)
-        
-    # ========
-    # translation
-    # ========
-    if np.random.rand() < data_aug_ratio:
-        
-        random_shift_x = np.random.uniform(trans_min, trans_max)
-        random_shift_y = np.random.uniform(trans_min, trans_max)
-        
-        for zz in range(labels_.shape[0]):
-            labels_[zz,:,:] = scipy.ndimage.interpolation.shift(labels_[zz,:,:],
-                                                                shift = (random_shift_x, random_shift_y),
-                                                                order = 0)
-        
-    # ========
-    # rotation
-    # ========
-    if np.random.rand() < data_aug_ratio:
-        
-        random_angle = np.random.uniform(rot_min, rot_max)
-        
-        for zz in range(labels_.shape[0]):
-            labels_[zz,:,:] = scipy.ndimage.interpolation.rotate(labels_[zz,:,:],
-                                                                 reshape = False,
-                                                                 angle = random_angle,
-                                                                 axes = (1, 0),
-                                                                 order = 0)
-            
-    # ========
-    # scaling
-    # ========
-    if np.random.rand() < data_aug_ratio:
-        
-        n_x, n_y = labels_.shape[1], labels_.shape[2]
-        
-        scale_val = np.round(np.random.uniform(scale_min, scale_max), 2)
-        
-        for zz in range(labels_.shape[0]):
-            labels_i_tmp = transform.rescale(labels_[zz,:,:],
-                                             scale_val,
-                                             order = 0,
-                                             preserve_range = True,
-                                             mode = 'constant')
-    
-            labels_[zz,:,:] = crop_or_pad_slice_to_size(labels_i_tmp, n_x, n_y)
-
-    # ========
-    # 90 degree rotation
-    # ========
-    if do_rot90 == True:
-        if np.random.rand() < data_aug_ratio:
-            num_rotations = np.random.randint(1, 4) # 1 / 2 / 3
-            for zz in range(labels_.shape[0]): # assumes same dimensionality in x and y directions
-                labels_[zz,:,:] = np.rot90(labels_[zz,:,:], k=num_rotations)
-
-    return np.expand_dims(labels_, axis=0)
-
-# ===============================================================
-# ===============================================================
-def make_onehot(arr, nlabels):
-
-    # taken from https://stackoverflow.com/questions/36960320/convert-a-2d-matrix-to-a-3d-one-hot-matrix-numpy/36960495
-    ncols = nlabels
-    out = np.zeros((arr.size, ncols), dtype=np.uint8)
-    out[np.arange(arr.size), arr.ravel()] = 1
-    out.shape = arr.shape + (ncols,)
-    return out
-
-# ================================================================== 
-# Computes hausdorff distance between binary labels (compute separately for each label)
-# ==================================================================    
-def compute_surface_distance_per_label(y_1,
-                                       y_2,
-                                       sampling = 1,
-                                       connectivity = 1):
-
-    y1 = np.atleast_1d(y_1.astype(np.bool))
-    y2 = np.atleast_1d(y_2.astype(np.bool))
-    
-    conn = morphology.generate_binary_structure(y1.ndim, connectivity)
-
-    S1 = y1.astype(np.float32) - morphology.binary_erosion(y1, conn).astype(np.float32)
-    S2 = y2.astype(np.float32) - morphology.binary_erosion(y2, conn).astype(np.float32)
-    
-    S1 = S1.astype(np.bool)
-    S2 = S2.astype(np.bool)
-    
-    dta = morphology.distance_transform_edt(~S1, sampling)
-    dtb = morphology.distance_transform_edt(~S2, sampling)
-    
-    sds = np.concatenate([np.ravel(dta[S2 != 0]), np.ravel(dtb[S1 != 0])])
-    
-    return sds
-
-# ==================================================================   
-# ==================================================================   
-def compute_surface_distance(y1,
-                             y2,
-                             nlabels):
-    
-    mean_surface_distance_list = []
-    hausdorff_distance_list = []
-    
-    for l in range(1, nlabels):
-
-        surface_distance = compute_surface_distance_per_label(y_1 = (y1 == l),
-                                                              y_2 = (y2 == l))
-    
-        mean_surface_distance = surface_distance.mean()
-        # hausdorff_distance = surface_distance.max()
-        hausdorff_distance = np.percentile(surface_distance, 95)
-
-        mean_surface_distance_list.append(mean_surface_distance)
-        hausdorff_distance_list.append(hausdorff_distance)
-        
-    return np.array(hausdorff_distance_list)
-
-# ================================================================
-# ================================================================
-def print_results(fname, dataset):
-
-    with open(fname, "r") as f:
-        lines = f.readlines()
-
-    pat_id = []
-    dice = []
-
-    for count in range(2, 22):
-        line = lines[count]
-
-        if dataset == 'PROMISE':
-            pat_id.append(int(line[4:6]))
-            dice.append(float(line[46:46+line[46:].find(',')]))
-        elif dataset == 'USZ':
-            pat_id.append(int(line[6:line.find(':')]))
-            line = line[line.find(':') + 39 : ]
-            dice.append(float(line[:line.find(',')]))
-
-    pat_id = np.array(pat_id)
-    dice = np.array(dice)
-    results = np.stack((pat_id, dice))
-    sorted_results = np.stack((np.sort(results[0,:]), results[1, np.argsort(results[0,:])]))
-
-    # ==================================================================
-    # sort
-    # ==================================================================
-    print('========== sorted results ==========')
-    if dataset == 'PROMISE':
-        for c in range(1, sorted_results.shape[1]):
-            print(str(sorted_results[0,c]) + ',' + str(sorted_results[1,c]))
-            if c == 9:
-                print(str(sorted_results[0,0]) + ',' + str(sorted_results[1,0]))
-
-    elif dataset == 'USZ':
-        for c in range(0, sorted_results.shape[1]):
-            print(str(sorted_results[0,c]) + ',' + str(sorted_results[1,c]))
-
-    print('====================================')
-    print(lines[31])
-    print('====================================')
-
-# ==================================================================
-# ==================================================================
-def make_noise_masks_3d(shape,
-                        mask_type,
-                        mask_params,
-                        nlabels,
-                        labels_1hot = None,
-                        is_num_masks_fixed = False,
-                        is_size_masks_fixed = False):
-    
-    blank_masks = np.ones(shape = shape)
-    wrong_labels = np.zeros(shape = shape)
-                   
-    # ====================
-    # make a random number of noise boxes in this (3d) image
-    # ====================
-    if is_num_masks_fixed is True:
-        num_noise_squares = mask_params[1]
-    else:
-        num_noise_squares = np.random.randint(1, mask_params[1]+1)
-        
-    for _ in range(num_noise_squares):
-            
-        # ====================
-        # choose the size of the noise box randomly 
-        # ====================
-        if is_size_masks_fixed is True:
-            r = mask_params[0]
-        else:
-            r = np.random.randint(1, mask_params[0]+1)
-            
-        # ====================
-        # Ensure that the box can fit in the volume is all dimensions
-        # ====================
-        r1 = np.minimum(r, shape[1]//2 - 2)
-        r2 = np.minimum(r, shape[2]//2 - 2)
-        r3 = np.minimum(r, shape[3]//2 - 2)
-
-        # ====================
-        # choose the center of the noise box randomly 
-        # ====================
-        mcx = np.random.randint(r1+1, shape[1]-(r1+1))
-        mcy = np.random.randint(r2+1, shape[2]-(r2+1))
-        mcz = np.random.randint(r3+1, shape[3]-(r3+1))
-            
-        # ====================
-        # set the labels in this box to 0
-        # ====================
-        blank_masks[:, mcx-r1:mcx+r1, mcy-r2:mcy+r2, mcz-r3:mcz+r3, :] = 0
-        
-        # ====================
-        # Replace the labels in the box, either with zeros or with the labels in a box of the same dimensions, somewhere else in the volume
-        # ====================
-        if mask_type is 'squares_jigsaw':               
-            # choose another box in the image from which copy labels to the previous box
-            mcx_src = np.random.randint(r1+1, shape[1]-(r1+1))
-            mcy_src = np.random.randint(r2+1, shape[2]-(r2+1))
-            mcz_src = np.random.randint(r3+1, shape[3]-(r3+1))
-            wrong_labels[:, mcx-r1:mcx+r1, mcy-r2:mcy+r2, mcz-r3:mcz+r3, :] = labels_1hot[:, mcx_src-r1:mcx_src+r1, mcy_src-r2:mcy_src+r2, mcz_src-r3:mcz_src+r3, :]
-            
-        elif mask_type is 'squares_zeros':                
-            # set the labels in this box to zero
-            wrong_labels[:, mcx-r1:mcx+r1, mcy-r2:mcy+r2, mcz-r3:mcz+r3, 0] = 1
-    
-    return blank_masks, wrong_labels
 
 # ===========================================================================
 # ===========================================================================
@@ -1028,6 +515,22 @@ def rescale_image_and_label(image,
             
     return image_rescaled_cropped, label_rescaled_cropped
 
+# ===============================================================
+# ===============================================================
+def crop_or_pad_volume_to_size_along_x(vol, nx):
+    
+    x = vol.shape[0]
+    x_s = (x - nx) // 2
+    x_c = (nx - x) // 2
+
+    if x > nx: # original volume has more slices that the required number of slices
+        vol_cropped = vol[x_s:x_s + nx, :, :]
+    else: # original volume has equal of fewer slices that the required number of slices
+        vol_cropped = np.zeros((nx, vol.shape[1], vol.shape[2]))
+        vol_cropped[x_c:x_c + x, :, :] = vol
+
+    return vol_cropped
+
 
 def do_data_augmentation_FETS(images,
                          labels,
@@ -1051,11 +554,6 @@ def do_data_augmentation_FETS(images,
     images_ = np.copy(images)
     labels_ = np.copy(labels)
 
-    
-    #import utils
-    #utils.save_nii(img_path = '/scratch_net/biwidl217_second/arismu/Data_MT/NCI/NIFTI_NOTaugmented' + '_img_n4.nii.gz', data = images, affine = np.eye(4))
-    #utils.save_nii(img_path = '/scratch_net/biwidl217_second/arismu/Data_MT/NCI/NIFTI_NOTaugmented' + '_lbl.nii.gz', data = labels, affine = np.eye(4))
-    
     for i in range(images.shape[3]):
 
         # ========
@@ -1175,10 +673,6 @@ def do_data_augmentation_FETS(images,
                 augm_list.append(images[:, :, j, i])
                 lab_list.append(labels[:, :, j, i])
 
-                #augm_list.append(images_i_tmp)
-            
-            #augm_list = torch.Tensor(augm_list)
-            #images_i_tmp = torch.stack(augm_list, dim = -1)
             
             images_[..., i] = torch.stack(augm_list, dim = -1)
             labels_[..., i] = torch.stack(lab_list, dim = -1)
@@ -1258,11 +752,6 @@ def do_data_augmentation_FETS(images,
 
             images_[..., i] = torch.stack(augm_list, dim = -1)
 
-    
-    #import utils
-    #utils.save_nii(img_path = '/scratch_net/biwidl217_second/arismu/Data_MT/NCI/NIFTI_augmented' + '_img_n4.nii.gz', data = images_, affine = np.eye(4))
-    #utils.save_nii(img_path = '/scratch_net/biwidl217_second/arismu/Data_MT/NCI/NIFTI_augmented' + '_lbl.nii.gz', data = labels_, affine = np.eye(4))
-
     return images_, labels_
 
 
@@ -1273,76 +762,90 @@ def chunks(lst, n):
 
 
 
-def test_single_volume_FETS(image, label, net, i2n_module_t1, i2n_module_t1ce, i2n_module_t2, i2n_module_flair, use_tta, tta_epochs, writer, layer_names_for_stats, classes, dataset, optim, model_type, seed, patch_size=[256, 256], test_save_path=None, case=None, z_spacing=1):
+def test_single_volume_FETS(image, label, net, i2n_module_t1, i2n_module_t1ce, i2n_module_t2, i2n_module_flair, use_tta, tta_epochs, writer, layer_names_for_stats, tta_type, classes, dataset, optim, model_type, seed, patch_size=[256, 256], test_save_path=None, case=None, z_spacing=1):
+    
+    
     image, label = image.cpu().detach().numpy(), label.cpu().detach().numpy()   
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    i2n_module_t1.to(device)
-    i2n_module_t1ce.to(device)
-    i2n_module_t2.to(device)
-    i2n_module_flair.to(device)
+
     net.to(device)
+    if use_tta:
+        i2n_module_t1.to(device)
+        i2n_module_t1ce.to(device)
+        i2n_module_t2.to(device)
+        i2n_module_flair.to(device)
+   
 
     base_lr = 1e-3
     prediction = np.zeros_like(label[:, :, :, 0])
-    norm_out_t1 = torch.zeros(155, 240, 240)
-    norm_out_t1ce = torch.zeros(155, 240, 240)
-    norm_out_t2 = torch.zeros(155, 240, 240)
-    norm_out_flair = torch.zeros(155, 240, 240)
+    if use_tta:
+        norm_out_t1 = torch.zeros(155, 240, 240)
+        norm_out_t1ce = torch.zeros(155, 240, 240)
+        norm_out_t2 = torch.zeros(155, 240, 240)
+        norm_out_flair = torch.zeros(155, 240, 240)
 
     
-    label_copy = copy.deepcopy(label)
     optim_unet = optimizer.Adam(net.parameters(), lr=base_lr)
-    optim_i2n_t1 = optimizer.Adam(i2n_module_t1.parameters(), lr=base_lr)
-    optim_i2n_t1ce = optimizer.Adam(i2n_module_t1ce.parameters(), lr=base_lr)
-    optim_i2n_t2 = optimizer.Adam(i2n_module_t2.parameters(), lr=base_lr)
-    optim_i2n_flair = optimizer.Adam(i2n_module_flair.parameters(), lr=base_lr)
+    if use_tta:
+        optim_i2n_t1 = optimizer.Adam(i2n_module_t1.parameters(), lr=base_lr)
+        optim_i2n_t1ce = optimizer.Adam(i2n_module_t1ce.parameters(), lr=base_lr)
+        optim_i2n_t2 = optimizer.Adam(i2n_module_t2.parameters(), lr=base_lr)
+        optim_i2n_flair = optimizer.Adam(i2n_module_flair.parameters(), lr=base_lr)
 
     foreground_list = []
     label_list = []
-    #entropy_loss = HLoss()  #Entropy Loss
-    loss = 0 # FoE loss
+    if tta_type == 'Entropy':
+        entropy_loss = HLoss()  #Entropy Loss
+    else:
+        loss = 0 # FoE loss
     iter_num = 0
     batch_size = 5
-    max_iterations = image.shape[0]/batch_size * tta_epochs #31 iterations per volume x 10 epochs
+    max_iterations = image.shape[0]/batch_size * tta_epochs 
     
-
     activations = {}
-           
+
     for name, m in net.named_modules():
         if name in layer_names_for_stats:
             hook_fn = _hook_store_activations(name, activations)
             m.register_forward_hook(hook_fn)
+        
 
     # ============================
-    # Perform the prediction slice by slice
+    # TTA loop
     # ============================ 
 
     if use_tta == True:
 
         for epoch in range(tta_epochs):
 
-
-            
-
-
             norm_out_t1 = torch.zeros(155, 240, 240)
             norm_out_t1ce = torch.zeros(155, 240, 240)
             norm_out_t2 = torch.zeros(155, 240, 240)
             norm_out_flair = torch.zeros(155, 240, 240)
+
             loss_ii = 0.0
             num_batches = 0
-            patient = random.randint(0, 87)
-            sd_param= load_pdfs(f'/scratch_net/biwidl217_second/arismu/Data_MT/data_FoE/SD_data_{patient}.pkl')
+            gauss_param = {}
+
             shuffled_slices = np.random.permutation(image.shape[0])
+            slice_counter = 0
+
+            # ============================
+            # Feed slices to the model in batches
+            # ============================ 
             for slices in chunks(shuffled_slices, batch_size):
+                slice_counter += 1
                 slice = image[slices, :, :]
                 input = torch.from_numpy(slice).float().cuda()
                 input = input.permute(0, 3, 1, 2)
+
+                #freeze parameters of segmentation model but keep normalisation modules adaptable
                 i2n_module_t1.train()
                 i2n_module_t1ce.train()
                 i2n_module_t2.train()
                 i2n_module_flair.train()
-                net.eval()
+                net.eval()  
+
                 for param in i2n_module_t1.parameters():
                     param.requires_grad = True
 
@@ -1359,6 +862,7 @@ def test_single_volume_FETS(image, label, net, i2n_module_t1, i2n_module_t1ce, i
                     param.requires_grad = False
 
 
+
                 norm_output_t1 = i2n_module_t1(input[:, 0, :, :].unsqueeze(1))
                 norm_output_t1ce = i2n_module_t1ce(input[:, 1, :, :].unsqueeze(1))
                 norm_output_t2 = i2n_module_t2(input[:, 2, :, :].unsqueeze(1))
@@ -1367,7 +871,11 @@ def test_single_volume_FETS(image, label, net, i2n_module_t1, i2n_module_t1ce, i
                 norm_output = torch.cat((norm_output_t1, norm_output_t1ce, norm_output_t2, norm_output_flair), 1)
 
                 outputs = net(norm_output)
-                
+            
+                # ============================
+                # Since batches were shuffled, rearrange norm_outputs and predictions to have them at the right index for visualisation purposes
+                # ============================ 
+
                 with torch.no_grad():
                     i=0
                     for s_norm in slices:
@@ -1383,98 +891,161 @@ def test_single_volume_FETS(image, label, net, i2n_module_t1, i2n_module_t1ce, i
                 for s in slices:
                     prediction[s] = out[i]
                     i =i+1
-                #out_soft = torch.softmax(outputs, dim=1)
-
-
-                
                         
+                # ============================
+                # U-Net FoE 1D statistics & KL Divergence
+                # ============================ 
 
+                if tta_type == 'FoE' and model_type == 'UNET':
+                    
+                    
+                    mu = {}
+                    var = {}
+                    
+                    loss = 0
+
+                    iid_samples_seen = {}
+
+                    for name in layer_names_for_stats:
+                        C = activations[name].size(1)
+
+                        mu[name] = torch.zeros(C).to(device)
+                        var[name] = torch.zeros(C).to(device)
+
+                        iid_samples_seen[name] = 0
+
+                    #   Feature KDE computation
+                    # ------------------------------
+                    for name in layer_names_for_stats:
+
+                        # Act: (N, C, H, W) - consider as iid along N, H & W
+                        N, C, H, W = activations[name].size()
+                        iids = activations[name].permute(1, 0, 2, 3).flatten(1)
+
+                        N1 = iid_samples_seen[name]
+                        N2 = iids.size(1)
+
+                        batch_mean = torch.mean(iids, dim=1)
+                        batch_sqr_mean = torch.mean(iids**2, dim=1)
+
+                        mu[name] = (
+                            N1 / (N1 + N2) * mu[name] +
+                            N2 / (N1 + N2) * batch_mean
+                        )
+                        var[name] = (
+                            N1 / (N1 + N2) * var[name] +
+                            N2 / (N1 + N2) * batch_sqr_mean
+                        )
+
+                        iid_samples_seen[name] += N2
+
+                        gauss_param[name] = torch.stack([mu[name], var[name]], dim=1)
+
+                    patient = random.randint(0, 87) #randomly select training patient
+                    sd_param= load_pdfs(f'/scratch_net/biwidl217_second/arismu/Data_MT/data_FoE/old_UNET/SD_data_{patient}.pkl')
+
+                    for name in layer_names_for_stats:
+
+                        loss += kl_div_gauss(
+                            P=gauss_param[name],
+                            Q=sd_param[name].to(device)
+                        )
+
+                # ============================
+                # UNWT FoE 1D statistics & KL Divergence
+                # ============================ 
                 
-                gauss_param = {}
-                mu = {}
-                var = {}
-                loss = 0
+                elif tta_type == 'FoE' and model_type == 'UNWT':
 
-                iid_samples_seen = {}
-
-                for name in layer_names_for_stats:
-                    C = activations[name].size(1)
-
-                    mu[name] = torch.zeros(C).to(device)
-                    var[name] = torch.zeros(C).to(device)
-
-                    iid_samples_seen[name] = 0
-
-                #   Feature KDE computation
-                # ------------------------------
-                for name in layer_names_for_stats:
-
-                    # Act: (N, C, H, W) - consider as iid along N, H & W
-                    N, C, H, W = activations[name].size()
-                    iids = activations[name].permute(1, 0, 2, 3).flatten(1)
-
-                    N1 = iid_samples_seen[name]
-                    N2 = iids.size(1)
+                    gauss_param = {}
+                    batch_mean = 0
+                    batch_sqr_mean = 0
+                    batch_var = 0
+                    batch_sqr_var = 0
+                    
+                    iids = activations['transformer.encoder.encoder_norm'].permute(2, 0, 1).flatten(1) #shape [768, 1125] [5, 255, 768]
 
                     batch_mean = torch.mean(iids, dim=1)
                     batch_sqr_mean = torch.mean(iids**2, dim=1)
 
-                    mu[name] = (
-                        N1 / (N1 + N2) * mu[name] +
-                        N2 / (N1 + N2) * batch_mean
-                    )
-                    var[name] = (
-                        N1 / (N1 + N2) * var[name] +
-                        N2 / (N1 + N2) * batch_sqr_mean
-                    )
+                    batch_var = torch.var(iids, dim=1)
+                    batch_sqr_var = torch.var(iids**2, dim=1)
+                    
+                    case = random.randint(0, 87)
+                    gauss_param[case] = torch.stack([batch_mean, batch_var], dim=1)
 
-                    iid_samples_seen[name] += N2
+                    sd_param = load_pdfs(f'/scratch_net/biwidl217_second/arismu/Data_MT/data_FoE/{model_type}/SD_data_{case}_{model_type}.pkl')
+                    
+                    loss = kl_div_gauss(
+                            P=gauss_param[case],
+                            Q=sd_param[case].to(device)
+                        )
 
-                    gauss_param[name] = torch.stack([mu[name], var[name]], dim=1)
+                # ============================
+                # Entropy loss
+                # ============================ 
 
-                
-                #breakpoint()
-               
-
-
-                for name in layer_names_for_stats:
-
-                    loss += kl_div_gauss(
-                        P=gauss_param[name],
-                        Q=sd_param[name].to(device)
-                    )
-
-                #print(f'KL Loss: {loss}')
-
-
-                #loss = entropy_loss(outputs)
-                loss.backward()
+                elif tta_type == 'Entropy':
+                    loss = entropy_loss(outputs)                   
+                 
                 loss_ii += loss.item()
+                loss.backward()
                 
-                lr_ = base_lr * (1.0 - iter_num / max_iterations) ** 0.9
-                for param_group in optim_unet.param_groups:
-                    param_group['lr'] = lr_
-                for param_group in optim_i2n_t1.param_groups:
-                    param_group['lr'] = lr_
-                for param_group in optim_i2n_t1ce.param_groups:
-                    param_group['lr'] = lr_   
-                for param_group in optim_i2n_t2.param_groups:
-                    param_group['lr'] = lr_
-                for param_group in optim_i2n_flair.param_groups:
-                    param_group['lr'] = lr_
+        
+            lr_ = base_lr * (1.0 - iter_num / max_iterations) ** 0.9
+            for param_group in optim_unet.param_groups:
+                param_group['lr'] = lr_
+            for param_group in optim_i2n_t1.param_groups:
+                param_group['lr'] = lr_
+            for param_group in optim_i2n_t1ce.param_groups:
+                param_group['lr'] = lr_   
+            for param_group in optim_i2n_t2.param_groups:
+                param_group['lr'] = lr_
+            for param_group in optim_i2n_flair.param_groups:
+                param_group['lr'] = lr_
 
-                iter_num += 1
-                num_batches += 1
+
+            # ============================
+            # Only update parameters after every epoch
+            # ============================ 
+
+
+            optim_i2n_t1.step()
+            optim_i2n_t1ce.step()
+            optim_i2n_t2.step()
+            optim_i2n_flair.step()
+
+            optim_i2n_t1.zero_grad()
+            optim_i2n_t1ce.zero_grad()
+            optim_i2n_t2.zero_grad()
+            optim_i2n_flair.zero_grad()
+
+
+            
+
+            iter_num += 1
+            num_batches += 1
+
+            #make copy of the label to maintain the original whole label, as we modify the copy to obtain Dice scores for the different tumor sub-regions
+            label_copy = copy.deepcopy(label)  
             
             epoch_loss = loss_ii/(batch_size*240*240)
-            #log loss_ii 
-            writer.add_scalar('info/tta_FoE_loss', epoch_loss, iter_num)
-            #log dice score
+     
+            writer.add_scalar(f'info/tta_{tta_type}_loss', epoch_loss, iter_num)
+
+            logging.info(f"TTA {tta_type} loss: {epoch_loss}")
+  
             metric_whole_tumor = []
             metric_enhancing_tumor = []
             metric_tumor_core = []
+
+            # ============================
+            # Calculate intermediate Dice score for whole tumor (labels 1, 2, 3)
+            # ============================ 
+
             metric_whole_tumor.append(calculate_metric_percase(prediction > 0, label_copy[:, :, :, 0] > 0))
 
+            #rotate predictions and labels for tensorboard visualisation
             prediction_whole = copy.deepcopy(prediction)
             prediction_whole = prediction_whole.swapaxes(1, 0)
             prediction_whole = prediction_whole.swapaxes(2, 1)
@@ -1484,15 +1055,10 @@ def test_single_volume_FETS(image, label, net, i2n_module_t1, i2n_module_t1ce, i
             label_tensorboard = label_tensorboard.swapaxes(0, 1)
             label_tensorboard = label_tensorboard.swapaxes(1, 2)
             label_tensorboard = np.rot90(label_tensorboard, 3)
-            
 
-            utils.save_nii(img_path = '/scratch_net/biwidl217_second/arismu/Data_MT/' + f'TTA_prediction_whole_iter{iter_num}.nii.gz', data = prediction_whole[:, :, :], affine = np.eye(4))
-            utils.save_nii(img_path = '/scratch_net/biwidl217_second/arismu/Data_MT/' + f'TTA_label_iter{iter_num}.nii.gz', data = label_tensorboard[:, :, :, 0], affine = np.eye(4))
-            
-            writer.add_image(f'prediction_whole_tumor{dataset}/Image', prediction_whole[:, :, 99], iter_num)
-
-            writer.add_image(f'label_whole_tumor{dataset}/Image', label_tensorboard[:, :, 99, 0], iter_num)
-            
+            # ============================
+            # Calculate intermediate Dice score for tumor core (labels 1, 3)
+            # ============================ 
 
             prediction = np.array(prediction)
             label_copy = np.array(label_copy)
@@ -1505,11 +1071,9 @@ def test_single_volume_FETS(image, label, net, i2n_module_t1, i2n_module_t1ce, i
             prediction_core = prediction_core.swapaxes(2, 1)
             prediction_core = np.rot90(prediction_core, 3)
 
-            writer.add_image(f'prediction_tumor_core{dataset}/Image', prediction_core[:, :, 99], iter_num)
-            utils.save_nii(img_path = '/scratch_net/biwidl217_second/arismu/Data_MT/' + f'TTA_prediction_core_iter{iter_num}.nii.gz', data = prediction_core[:, :, :], affine = np.eye(4))
-
-            writer.add_image(f'label_tumor_core{dataset}/Image', label_tensorboard[:, :, 99, 0], iter_num)
-    
+            # ============================
+            # Calculate intermediate Dice score for enhancing tumor (label 3)
+            # ============================ 
 
             prediction = np.array(prediction)
             label_copy = np.array(label_copy)
@@ -1522,19 +1086,20 @@ def test_single_volume_FETS(image, label, net, i2n_module_t1, i2n_module_t1ce, i
             prediction_enhancing = prediction_enhancing.swapaxes(2, 1)
             prediction_enhancing = np.rot90(prediction_enhancing, 3)
 
-            writer.add_image(f'prediction_enhancing_tumor_t1_{dataset}/Image', prediction_enhancing[:, :, 99], iter_num)
-            utils.save_nii(img_path = '/scratch_net/biwidl217_second/arismu/Data_MT/' + f'TTA_prediction_enhancing_iter{iter_num}.nii.gz', data = prediction_enhancing[:, :, :], affine = np.eye(4))
-
-            writer.add_image(f'label_enhancing_tumor_t1_{dataset}/Image', label_tensorboard[:, :, 99, 0], iter_num)
-
             metric_whole_tumor = np.array(metric_whole_tumor)
             metric_enhancing_tumor = np.array(metric_enhancing_tumor)
             metric_tumor_core = np.array(metric_tumor_core)
 
+
+            #write intermediate Dice scores for tumor sub-regions to Tensorboard
             writer.add_scalar(f'info/dice_whole_tumor_{dataset}', np.mean(metric_whole_tumor, axis = 0)[0] , iter_num)
             writer.add_scalar(f'info/dice_enhancing_tumor_{dataset}', np.mean(metric_enhancing_tumor, axis = 0)[0] , iter_num)
             writer.add_scalar(f'info/dice_tumor_core_{dataset}', np.mean(metric_tumor_core, axis = 0)[0] , iter_num)
 
+
+            # ============================
+            # Visualise normalised images in tensorboard for all 4 modalities
+            # ============================ 
 
             norm_out_t1 = norm_out_t1.cpu().detach().numpy() 
             norm_out_t1ce = norm_out_t1ce.cpu().detach().numpy() 
@@ -1557,43 +1122,18 @@ def test_single_volume_FETS(image, label, net, i2n_module_t1, i2n_module_t1ce, i
             norm_out_flair = norm_out_flair.swapaxes(2, 1)
             norm_out_flair = np.rot90(norm_out_flair, 3)
 
-
-            utils.save_nii(img_path = '/scratch_net/biwidl217_second/arismu/Data_MT/' + f'TTA_norm_out_t1_iter{iter_num}.nii.gz', data = norm_out_t1[:, :, :], affine = np.eye(4))
-            utils.save_nii(img_path = '/scratch_net/biwidl217_second/arismu/Data_MT/' + f'TTA_norm_out_t1ce_iter{iter_num}.nii.gz', data = norm_out_t1ce[:, :, :], affine = np.eye(4))
-            utils.save_nii(img_path = '/scratch_net/biwidl217_second/arismu/Data_MT/' + f'TTA_norm_out_t2_iter{iter_num}.nii.gz', data = norm_out_t2[:, :, :], affine = np.eye(4))
-            utils.save_nii(img_path = '/scratch_net/biwidl217_second/arismu/Data_MT/' + f'TTA_norm_out_flair_iter{iter_num}.nii.gz', data = norm_out_flair[:, :, :], affine = np.eye(4))
-
-            
-
             writer.add_image(f'norm_output_t1_{dataset}/Image', norm_out_t1[:, :, 99], iter_num)
             writer.add_image(f'norm_output_t1ce_{dataset}/Image', norm_out_t1ce[:, :, 99], iter_num)
             writer.add_image(f'norm_output_t2_{dataset}/Image', norm_out_t2[:, :, 99], iter_num)
             writer.add_image(f'norm_output_flair_{dataset}/Image', norm_out_flair[:, :, 99], iter_num)
 
-            #breakpoint()
-
-            optim_i2n_t1.step()
-            optim_i2n_t1ce.step()
-            optim_i2n_t2.step()
-            optim_i2n_flair.step()
-
-            optim_i2n_t1.zero_grad()
-            optim_i2n_t1ce.zero_grad()
-            optim_i2n_t2.zero_grad()
-            optim_i2n_flair.zero_grad()
-
-
-            logging.info(f"TTA FoE loss: {epoch_loss}")
 
         logging.info(f"TTA loop done for subject {case}")
 
 
     # ============================
-    # Inference with updated parameters
+    # After TTA loop is done and parameters of the normalisation modules are updated, we perform predictions for the patient slice-by-slice
     # ============================  
-
-    
-
 
     prediction = np.zeros_like(label[:, :, :, 0])
 
@@ -1603,52 +1143,57 @@ def test_single_volume_FETS(image, label, net, i2n_module_t1, i2n_module_t1ce, i
         if x != patch_size[0] or y != patch_size[1]:
             slice = zoom(slice, (patch_size[0] / x, patch_size[1] / y), order=3)  # previous using 0
         
-        #utils.save_nii(img_path = '/scratch_net/biwidl217_second/arismu/Data_MT/' + '4_test.nii.gz', data = slice, affine = np.eye(4))
-        #utils.save_nii(img_path = '/scratch_net/biwidl217_second/arismu/Data_MT/' + '4_label.nii.gz', data = label[:, :, ind], affine = np.eye(4))
-
         input = torch.from_numpy(slice).unsqueeze(0).float().cuda()
         input = input.permute(0, 3, 1, 2)
-        i2n_module_t1.eval()
-        i2n_module_t1ce.eval()
-        i2n_module_t2.eval()
-        i2n_module_flair.eval()
         net.eval()
-
-        for param in i2n_module_t1.parameters():
-                param.requires_grad = False
-
-        for param in i2n_module_t1ce.parameters():
-            param.requires_grad = False
-
-        for param in i2n_module_t2.parameters():
-            param.requires_grad = False
-
-        for param in i2n_module_flair.parameters():
-            param.requires_grad = False    
-
         for param in net.parameters():
             param.requires_grad = False
+
+        if use_tta:
+            i2n_module_t1.eval()
+            i2n_module_t1ce.eval()
+            i2n_module_t2.eval()
+            i2n_module_flair.eval()
+        
+            for param in i2n_module_t1.parameters():
+                    param.requires_grad = False
+
+            for param in i2n_module_t1ce.parameters():
+                param.requires_grad = False
+
+            for param in i2n_module_t2.parameters():
+                param.requires_grad = False
+
+            for param in i2n_module_flair.parameters():
+                param.requires_grad = False    
+
+        
         
         with torch.no_grad():
+            if use_tta:
+                norm_output_t1 = i2n_module_t1(input[:, 0, :, :].unsqueeze(1))
+                norm_output_t1ce = i2n_module_t1ce(input[:, 1, :, :].unsqueeze(1))
+                norm_output_t2 = i2n_module_t2(input[:, 2, :, :].unsqueeze(1))
+                norm_output_flair = i2n_module_flair(input[:, 3, :, :].unsqueeze(1))
 
-            norm_output_t1 = i2n_module_t1(input[:, 0, :, :].unsqueeze(1))
-            norm_output_t1ce = i2n_module_t1ce(input[:, 1, :, :].unsqueeze(1))
-            norm_output_t2 = i2n_module_t2(input[:, 2, :, :].unsqueeze(1))
-            norm_output_flair = i2n_module_flair(input[:, 3, :, :].unsqueeze(1))
+                norm_output = torch.cat((norm_output_t1, norm_output_t1ce, norm_output_t2, norm_output_flair), 1)
 
-            norm_output = torch.cat((norm_output_t1, norm_output_t1ce, norm_output_t2, norm_output_flair), 1)
+                outputs = net(norm_output)
+            else:
+                outputs = net(input)
 
-            outputs = net(norm_output)
+
+            # ============================
+            # Extract probabilities of foreground pixels for calibration curves
+            # ============================ 
+
             out_soft = torch.softmax(outputs, dim=1)
             out_hard = (out_soft>0.5).float()
             out_hard_argmax = torch.argmax(out_hard, dim=1).squeeze(0) 
             out = torch.argmax(torch.softmax(outputs, dim=1), dim=1).squeeze(0)
-            #color_map = torch.tensor([[255, 0, 0], [0, 255, 0], [0, 0, 255]])
-            rgb = np.zeros((256, 256, 3))
-            #io.imshow(color.label2rgb(out, slice))
 
             out_soft_sq = out_soft.squeeze(0)
-            out_soft_foreground = out_soft_sq[1, :, : ] + out_soft_sq[2, :, : ]
+            out_soft_foreground = out_soft_sq[1, :, : ] + out_soft_sq[2, :, : ] + out_soft_sq[3, :, : ]
             out_soft_foreground = out_soft_foreground.flatten()
             out_soft_foreground = out_soft_foreground.cpu().detach().numpy()
             foreground_list.append(out_soft_foreground)
@@ -1673,6 +1218,10 @@ def test_single_volume_FETS(image, label, net, i2n_module_t1, i2n_module_t1ce, i
     foreground_list_arr = np.array(foreground_list)
     foreground_list_arr = foreground_list_arr.flatten()
 
+    # ============================
+    # Save the predictions, labels and images in .nii format
+    # ============================ 
+
     if test_save_path is not None:
         img_itk = sitk.GetImageFromArray(image.astype(np.float32))
         prd_itk = sitk.GetImageFromArray(prediction.astype(np.float32))
@@ -1691,11 +1240,8 @@ def test_single_volume_FETS(image, label, net, i2n_module_t1, i2n_module_t1ce, i
     metric_list_whole_tumor = []
     metric_list_enhancing_tumor = []
     metric_list_tumor_core = []
-    
 
-    #whole tumor 
     print("WHOLE TUMOR (ALL LABELS)")
-    #for i in range(0, classes):
     metric_list_whole_tumor.append(calculate_metric_percase(prediction > 0, label[:, :, :, 0] > 0))
 
 
@@ -1707,31 +1253,17 @@ def test_single_volume_FETS(image, label, net, i2n_module_t1, i2n_module_t1ce, i
 
     metric_list_tumor_core.append(calculate_metric_percase(prediction > 0, label[:, :, :, 0] > 0))
 
+
     print("ENHANCING TUMOR (ONLY LABEL 4")
     prediction = np.array(prediction)
     label = np.array(label)
     prediction[np.where(prediction < 3)] = 0
     label[np.where(label < 3)] = 0
 
-    
-
     metric_list_enhancing_tumor.append(calculate_metric_percase(prediction > 0, label[:, :, :, 0] > 0))
 
-
-    
-        
-        
-         
-
-    # ============================
-    # Save images, predictions and ground truths
-    # ============================
-    
-    
-
-
     for name in layer_names_for_stats:
-        del activations[name]
+        del activations[name] #free up memory
 
     return metric_list_whole_tumor, metric_list_enhancing_tumor, metric_list_tumor_core, foreground_list_arr, label_list_arr
 
@@ -1781,5 +1313,4 @@ def load_pdfs(cache_name):
     with open(cache_name, 'rb') as f:
         cache = pickle.load(f)
         pdfs = cache
-        #num_experts = cache['num_experts']
     return pdfs

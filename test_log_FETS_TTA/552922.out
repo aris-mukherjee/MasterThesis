@@ -1,0 +1,2157 @@
+2022-04-08 11:17:10,423 Namespace(volume_path='/itet-stor/arismu/bmicdatasets-originals/Originals/Challenge_Datasets/FeTS/', test_dataset='FETS_TEST_SD', num_classes=4, max_iterations=6800, max_epochs=400, batch_size=16, img_size=240, is_savenii=True, n_skip=3, vit_name='R50-ViT-B_16', test_save_dir='../predictions', deterministic=1, base_lr=0.001, seed=1234, vit_patches_size=16, target_resolution=0.625, image_depth_tr=32, image_depth_ts=32, test_cv_fold_num=1, NORMALIZE=1, Dataset='FETS_TEST_SD', z_spacing=1, is_pretrain=True, exp='TU_FETS_TEST_SD240')
+Namespace(volume_path='/itet-stor/arismu/bmicdatasets-originals/Originals/Challenge_Datasets/FeTS/', test_dataset='FETS_TEST_SD', num_classes=4, max_iterations=6800, max_epochs=400, batch_size=16, img_size=240, is_savenii=True, n_skip=3, vit_name='R50-ViT-B_16', test_save_dir='../predictions', deterministic=1, base_lr=0.001, seed=1234, vit_patches_size=16, target_resolution=0.625, image_depth_tr=32, image_depth_ts=32, test_cv_fold_num=1, NORMALIZE=1, Dataset='FETS_TEST_SD', z_spacing=1, is_pretrain=True, exp='TU_FETS_TEST_SD240')
+2022-04-08 11:17:10,423 TU_pretrain_R50-ViT-B_16_skip3_bs16_240
+TU_pretrain_R50-ViT-B_16_skip3_bs16_240
+2022-04-08 11:17:10,485 Already preprocessed this configuration. Loading now...
+Already preprocessed this configuration. Loading now...
+2022-04-08 11:18:18,398 ============================================================
+============================================================
+2022-04-08 11:18:18,399 Subject 1 out of 20: FeTS21_Training_031
+Subject 1 out of 20: FeTS21_Training_031
+2022-04-08 11:18:33,175 TTA FoE loss: 0.195633792453342
+Predsum: 85002
+GtSum: 87609
+Predsum: 27460
+GtSum: 28727
+Predsum: 18283
+GtSum: 22108
+TTA FoE loss: 0.195633792453342
+2022-04-08 11:18:46,954 TTA FoE loss: 0.17974206315146551
+Predsum: 82928
+GtSum: 22108
+Predsum: 27453
+GtSum: 22108
+Predsum: 18271
+GtSum: 22108
+TTA FoE loss: 0.17974206315146551
+2022-04-08 11:19:00,843 TTA FoE loss: 0.17287035732799105
+Predsum: 82116
+GtSum: 22108
+Predsum: 27513
+GtSum: 22108
+Predsum: 18376
+GtSum: 22108
+TTA FoE loss: 0.17287035732799105
+2022-04-08 11:19:14,665 TTA FoE loss: 0.16837606027391222
+Predsum: 82079
+GtSum: 22108
+Predsum: 27707
+GtSum: 22108
+Predsum: 18600
+GtSum: 22108
+TTA FoE loss: 0.16837606027391222
+2022-04-08 11:19:28,530 TTA FoE loss: 0.16460952230294545
+Predsum: 82159
+GtSum: 22108
+Predsum: 27954
+GtSum: 22108
+Predsum: 18900
+GtSum: 22108
+TTA FoE loss: 0.16460952230294545
+2022-04-08 11:19:42,461 TTA FoE loss: 0.16144041946199206
+Predsum: 82286
+GtSum: 22108
+Predsum: 28207
+GtSum: 22108
+Predsum: 19196
+GtSum: 22108
+TTA FoE loss: 0.16144041946199206
+2022-04-08 11:19:56,358 TTA FoE loss: 0.15896841752529145
+Predsum: 82451
+GtSum: 22108
+Predsum: 28459
+GtSum: 22108
+Predsum: 19509
+GtSum: 22108
+TTA FoE loss: 0.15896841752529145
+2022-04-08 11:20:10,330 TTA FoE loss: 0.15716287022166783
+Predsum: 82605
+GtSum: 22108
+Predsum: 28683
+GtSum: 22108
+Predsum: 19784
+GtSum: 22108
+TTA FoE loss: 0.15716287022166783
+2022-04-08 11:20:24,426 TTA FoE loss: 0.15598265102174547
+Predsum: 82759
+GtSum: 22108
+Predsum: 28840
+GtSum: 22108
+Predsum: 19983
+GtSum: 22108
+TTA FoE loss: 0.15598265102174547
+2022-04-08 11:20:38,390 TTA FoE loss: 0.1553689275317722
+Predsum: 82841
+GtSum: 22108
+Predsum: 28918
+GtSum: 22108
+Predsum: 20077
+GtSum: 22108
+TTA FoE loss: 0.1553689275317722
+2022-04-08 11:20:38,391 TTA loop done for subject 0
+TTA loop done for subject 0
+2022-04-08 11:20:52,506 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 82847
+GtSum: 87609
+TUMOR CORE (LABELS 1 and 4
+Predsum: 28920
+GtSum: 28727
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 20082
+GtSum: 22108
+WHOLE TUMOR:
+2022-04-08 11:20:52,507 case 0 mean_dice 0.885237 mean_hd95 5.916080
+case 0 mean_dice 0.885237 mean_hd95 5.916080
+2022-04-08 11:20:52,507 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-08 11:20:52,507 case 0 mean_dice 0.864375 mean_hd95 1.414214
+case 0 mean_dice 0.864375 mean_hd95 1.414214
+2022-04-08 11:20:52,507 TUMOR CORE:
+TUMOR CORE:
+2022-04-08 11:20:52,507 case 0 mean_dice 0.901938 mean_hd95 2.828427
+case 0 mean_dice 0.901938 mean_hd95 2.828427
+2022-04-08 11:20:52,608 ============================================================
+============================================================
+2022-04-08 11:20:52,608 Subject 2 out of 20: FeTS21_Training_002
+Subject 2 out of 20: FeTS21_Training_002
+2022-04-08 11:21:06,333 TTA FoE loss: 0.18090045664045545
+Predsum: 65548
+GtSum: 67008
+Predsum: 18879
+GtSum: 15709
+Predsum: 7447
+GtSum: 6549
+TTA FoE loss: 0.18090045664045545
+2022-04-08 11:21:19,820 TTA FoE loss: 0.13690999227099948
+Predsum: 51363
+GtSum: 6549
+Predsum: 15571
+GtSum: 6549
+Predsum: 5399
+GtSum: 6549
+TTA FoE loss: 0.13690999227099948
+2022-04-08 11:21:33,302 TTA FoE loss: 0.12660840111308627
+Predsum: 46166
+GtSum: 6549
+Predsum: 13935
+GtSum: 6549
+Predsum: 4631
+GtSum: 6549
+TTA FoE loss: 0.12660840111308627
+2022-04-08 11:21:46,821 TTA FoE loss: 0.1202207133769989
+Predsum: 42302
+GtSum: 6549
+Predsum: 12324
+GtSum: 6549
+Predsum: 3974
+GtSum: 6549
+TTA FoE loss: 0.1202207133769989
+2022-04-08 11:22:00,375 TTA FoE loss: 0.11408172864384121
+Predsum: 37780
+GtSum: 6549
+Predsum: 9950
+GtSum: 6549
+Predsum: 3136
+GtSum: 6549
+TTA FoE loss: 0.11408172864384121
+2022-04-08 11:22:13,856 TTA FoE loss: 0.1068641185230679
+Predsum: 32103
+GtSum: 6549
+Predsum: 6392
+GtSum: 6549
+Predsum: 2056
+GtSum: 6549
+TTA FoE loss: 0.1068641185230679
+2022-04-08 11:22:27,336 TTA FoE loss: 0.09786362181769477
+Predsum: 27026
+GtSum: 6549
+Predsum: 3296
+GtSum: 6549
+Predsum: 1191
+GtSum: 6549
+TTA FoE loss: 0.09786362181769477
+2022-04-08 11:22:40,765 TTA FoE loss: 0.08885058795081245
+Predsum: 23295
+GtSum: 6549
+Predsum: 1189
+GtSum: 6549
+Predsum: 558
+GtSum: 6549
+TTA FoE loss: 0.08885058795081245
+2022-04-08 11:22:54,214 TTA FoE loss: 0.0824547647105323
+Predsum: 21260
+GtSum: 6549
+Predsum: 374
+GtSum: 6549
+Predsum: 233
+GtSum: 6549
+TTA FoE loss: 0.0824547647105323
+2022-04-08 11:23:07,737 TTA FoE loss: 0.0793578679031796
+Predsum: 20373
+GtSum: 6549
+Predsum: 135
+GtSum: 6549
+Predsum: 96
+GtSum: 6549
+TTA FoE loss: 0.0793578679031796
+2022-04-08 11:23:07,737 TTA loop done for subject 1
+TTA loop done for subject 1
+2022-04-08 11:23:21,029 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 20340
+GtSum: 67008
+TUMOR CORE (LABELS 1 and 4
+Predsum: 130
+GtSum: 15709
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 91
+GtSum: 6549
+WHOLE TUMOR:
+2022-04-08 11:23:21,029 case 1 mean_dice 0.465014 mean_hd95 17.748239
+case 1 mean_dice 0.465014 mean_hd95 17.748239
+2022-04-08 11:23:21,029 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-08 11:23:21,029 case 1 mean_dice 0.026807 mean_hd95 25.079872
+case 1 mean_dice 0.026807 mean_hd95 25.079872
+2022-04-08 11:23:21,029 TUMOR CORE:
+TUMOR CORE:
+2022-04-08 11:23:21,030 case 1 mean_dice 0.016415 mean_hd95 24.677925
+case 1 mean_dice 0.016415 mean_hd95 24.677925
+2022-04-08 11:23:21,374 ============================================================
+============================================================
+2022-04-08 11:23:21,374 Subject 3 out of 20: FeTS21_Training_059
+Subject 3 out of 20: FeTS21_Training_059
+2022-04-08 11:23:35,953 TTA FoE loss: 0.05608502213160197
+Predsum: 7080
+GtSum: 25918
+Predsum: 2651
+GtSum: 2073
+Predsum: 1504
+GtSum: 1172
+TTA FoE loss: 0.05608502213160197
+2022-04-08 11:23:50,214 TTA FoE loss: 0.040912970436943905
+Predsum: 5678
+GtSum: 1172
+Predsum: 2036
+GtSum: 1172
+Predsum: 1061
+GtSum: 1172
+TTA FoE loss: 0.040912970436943905
+2022-04-08 11:24:04,603 TTA FoE loss: 0.03324170099364387
+Predsum: 3979
+GtSum: 1172
+Predsum: 1241
+GtSum: 1172
+Predsum: 515
+GtSum: 1172
+TTA FoE loss: 0.03324170099364387
+2022-04-08 11:24:18,469 TTA FoE loss: 0.027053391469849482
+Predsum: 2361
+GtSum: 1172
+Predsum: 574
+GtSum: 1172
+Predsum: 167
+GtSum: 1172
+TTA FoE loss: 0.027053391469849482
+2022-04-08 11:24:32,502 TTA FoE loss: 0.021448078963491653
+Predsum: 903
+GtSum: 1172
+Predsum: 35
+GtSum: 1172
+Predsum: 7
+GtSum: 1172
+TTA FoE loss: 0.021448078963491653
+2022-04-08 11:24:43,073 TTA FoE loss: 0.017086508605215284
+Predsum: 248
+GtSum: 1172
+Predsum: 0
+GtSum: 1172
+Predsum: 0
+GtSum: 1172
+TTA FoE loss: 0.017086508605215284
+2022-04-08 11:24:53,661 TTA FoE loss: 0.014555573052830166
+Predsum: 7
+GtSum: 1172
+Predsum: 0
+GtSum: 1172
+Predsum: 0
+GtSum: 1172
+TTA FoE loss: 0.014555573052830166
+2022-04-08 11:25:02,531 TTA FoE loss: 0.012976733472612169
+Predsum: 0
+GtSum: 1172
+Predsum: 0
+GtSum: 1172
+Predsum: 0
+GtSum: 1172
+TTA FoE loss: 0.012976733472612169
+2022-04-08 11:25:11,302 TTA FoE loss: 0.012044267786873711
+Predsum: 0
+GtSum: 1172
+Predsum: 0
+GtSum: 1172
+Predsum: 0
+GtSum: 1172
+TTA FoE loss: 0.012044267786873711
+2022-04-08 11:25:19,913 TTA FoE loss: 0.01160032104121314
+Predsum: 0
+GtSum: 1172
+Predsum: 0
+GtSum: 1172
+Predsum: 0
+GtSum: 1172
+TTA FoE loss: 0.01160032104121314
+2022-04-08 11:25:19,913 TTA loop done for subject 2
+TTA loop done for subject 2
+2022-04-08 11:25:27,977 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 0
+GtSum: 25918
+TUMOR CORE (LABELS 1 and 4
+Predsum: 0
+GtSum: 2073
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 0
+GtSum: 1172
+WHOLE TUMOR:
+2022-04-08 11:25:27,977 case 2 mean_dice 0.000000 mean_hd95 0.000000
+case 2 mean_dice 0.000000 mean_hd95 0.000000
+2022-04-08 11:25:27,977 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-08 11:25:27,977 case 2 mean_dice 0.000000 mean_hd95 0.000000
+case 2 mean_dice 0.000000 mean_hd95 0.000000
+2022-04-08 11:25:27,977 TUMOR CORE:
+TUMOR CORE:
+2022-04-08 11:25:27,977 case 2 mean_dice 0.000000 mean_hd95 0.000000
+case 2 mean_dice 0.000000 mean_hd95 0.000000
+2022-04-08 11:25:28,227 ============================================================
+============================================================
+2022-04-08 11:25:28,228 Subject 4 out of 20: FeTS21_Training_022
+Subject 4 out of 20: FeTS21_Training_022
+2022-04-08 11:25:42,978 TTA FoE loss: 0.1315709113015069
+Predsum: 71102
+GtSum: 68118
+Predsum: 27682
+GtSum: 30637
+Predsum: 15302
+GtSum: 18221
+TTA FoE loss: 0.1315709113015069
+2022-04-08 11:25:57,907 TTA FoE loss: 0.11992135249243842
+Predsum: 70269
+GtSum: 18221
+Predsum: 27911
+GtSum: 18221
+Predsum: 15674
+GtSum: 18221
+TTA FoE loss: 0.11992135249243842
+2022-04-08 11:26:12,496 TTA FoE loss: 0.11377818927499983
+Predsum: 70063
+GtSum: 18221
+Predsum: 28355
+GtSum: 18221
+Predsum: 16275
+GtSum: 18221
+TTA FoE loss: 0.11377818927499983
+2022-04-08 11:26:26,900 TTA FoE loss: 0.10945234127839407
+Predsum: 70144
+GtSum: 18221
+Predsum: 28778
+GtSum: 18221
+Predsum: 16896
+GtSum: 18221
+TTA FoE loss: 0.10945234127839407
+2022-04-08 11:26:41,482 TTA FoE loss: 0.10648981475830079
+Predsum: 70333
+GtSum: 18221
+Predsum: 29144
+GtSum: 18221
+Predsum: 17419
+GtSum: 18221
+TTA FoE loss: 0.10648981475830079
+2022-04-08 11:26:56,161 TTA FoE loss: 0.10435891563362545
+Predsum: 70561
+GtSum: 18221
+Predsum: 29409
+GtSum: 18221
+Predsum: 17808
+GtSum: 18221
+TTA FoE loss: 0.10435891563362545
+2022-04-08 11:27:11,016 TTA FoE loss: 0.1028204556438658
+Predsum: 70776
+GtSum: 18221
+Predsum: 29569
+GtSum: 18221
+Predsum: 18091
+GtSum: 18221
+TTA FoE loss: 0.1028204556438658
+2022-04-08 11:27:25,572 TTA FoE loss: 0.10170702930291493
+Predsum: 70950
+GtSum: 18221
+Predsum: 29660
+GtSum: 18221
+Predsum: 18253
+GtSum: 18221
+TTA FoE loss: 0.10170702930291493
+2022-04-08 11:27:40,060 TTA FoE loss: 0.10094131893581815
+Predsum: 71086
+GtSum: 18221
+Predsum: 29700
+GtSum: 18221
+Predsum: 18332
+GtSum: 18221
+TTA FoE loss: 0.10094131893581815
+2022-04-08 11:27:54,882 TTA FoE loss: 0.10052179890208775
+Predsum: 71144
+GtSum: 18221
+Predsum: 29717
+GtSum: 18221
+Predsum: 18368
+GtSum: 18221
+TTA FoE loss: 0.10052179890208775
+2022-04-08 11:27:54,882 TTA loop done for subject 3
+TTA loop done for subject 3
+2022-04-08 11:28:08,864 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 71150
+GtSum: 68118
+TUMOR CORE (LABELS 1 and 4
+Predsum: 29718
+GtSum: 30637
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 18370
+GtSum: 18221
+WHOLE TUMOR:
+2022-04-08 11:28:08,864 case 3 mean_dice 0.939096 mean_hd95 2.236068
+case 3 mean_dice 0.939096 mean_hd95 2.236068
+2022-04-08 11:28:08,864 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-08 11:28:08,864 case 3 mean_dice 0.878631 mean_hd95 1.414214
+case 3 mean_dice 0.878631 mean_hd95 1.414214
+2022-04-08 11:28:08,864 TUMOR CORE:
+TUMOR CORE:
+2022-04-08 11:28:08,864 case 3 mean_dice 0.941662 mean_hd95 2.000000
+case 3 mean_dice 0.941662 mean_hd95 2.000000
+2022-04-08 11:28:09,171 ============================================================
+============================================================
+2022-04-08 11:28:09,171 Subject 5 out of 20: FeTS21_Training_063
+Subject 5 out of 20: FeTS21_Training_063
+2022-04-08 11:28:23,158 TTA FoE loss: 0.06882198209232754
+Predsum: 10435
+GtSum: 13459
+Predsum: 1160
+GtSum: 3069
+Predsum: 579
+GtSum: 2287
+TTA FoE loss: 0.06882198209232754
+2022-04-08 11:28:37,133 TTA FoE loss: 0.05579411951700847
+Predsum: 9803
+GtSum: 2287
+Predsum: 685
+GtSum: 2287
+Predsum: 361
+GtSum: 2287
+TTA FoE loss: 0.05579411951700847
+2022-04-08 11:28:51,100 TTA FoE loss: 0.04787914643022749
+Predsum: 8669
+GtSum: 2287
+Predsum: 322
+GtSum: 2287
+Predsum: 185
+GtSum: 2287
+TTA FoE loss: 0.04787914643022749
+2022-04-08 11:29:04,400 TTA FoE loss: 0.04205859633286794
+Predsum: 7600
+GtSum: 2287
+Predsum: 96
+GtSum: 2287
+Predsum: 47
+GtSum: 2287
+TTA FoE loss: 0.04205859633286794
+2022-04-08 11:29:17,522 TTA FoE loss: 0.037502429048220313
+Predsum: 6610
+GtSum: 2287
+Predsum: 11
+GtSum: 2287
+Predsum: 3
+GtSum: 2287
+TTA FoE loss: 0.037502429048220313
+2022-04-08 11:29:27,284 TTA FoE loss: 0.03408361585934957
+Predsum: 5812
+GtSum: 2287
+Predsum: 0
+GtSum: 2287
+Predsum: 0
+GtSum: 2287
+TTA FoE loss: 0.03408361585934957
+2022-04-08 11:29:37,071 TTA FoE loss: 0.03160593112309774
+Predsum: 5202
+GtSum: 2287
+Predsum: 0
+GtSum: 2287
+Predsum: 0
+GtSum: 2287
+TTA FoE loss: 0.03160593112309774
+2022-04-08 11:29:46,858 TTA FoE loss: 0.02984415074189504
+Predsum: 4745
+GtSum: 2287
+Predsum: 0
+GtSum: 2287
+Predsum: 0
+GtSum: 2287
+TTA FoE loss: 0.02984415074189504
+2022-04-08 11:29:56,696 TTA FoE loss: 0.028675974276330736
+Predsum: 4417
+GtSum: 2287
+Predsum: 0
+GtSum: 2287
+Predsum: 0
+GtSum: 2287
+TTA FoE loss: 0.028675974276330736
+2022-04-08 11:30:06,565 TTA FoE loss: 0.028052097863621183
+Predsum: 4260
+GtSum: 2287
+Predsum: 0
+GtSum: 2287
+Predsum: 0
+GtSum: 2287
+TTA FoE loss: 0.028052097863621183
+2022-04-08 11:30:06,565 TTA loop done for subject 4
+TTA loop done for subject 4
+2022-04-08 11:30:16,252 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 4253
+GtSum: 13459
+TUMOR CORE (LABELS 1 and 4
+Predsum: 0
+GtSum: 3069
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 0
+GtSum: 2287
+WHOLE TUMOR:
+2022-04-08 11:30:16,252 case 4 mean_dice 0.430217 mean_hd95 11.180340
+case 4 mean_dice 0.430217 mean_hd95 11.180340
+2022-04-08 11:30:16,252 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-08 11:30:16,252 case 4 mean_dice 0.000000 mean_hd95 0.000000
+case 4 mean_dice 0.000000 mean_hd95 0.000000
+2022-04-08 11:30:16,252 TUMOR CORE:
+TUMOR CORE:
+2022-04-08 11:30:16,252 case 4 mean_dice 0.000000 mean_hd95 0.000000
+case 4 mean_dice 0.000000 mean_hd95 0.000000
+2022-04-08 11:30:16,538 ============================================================
+============================================================
+2022-04-08 11:30:16,538 Subject 6 out of 20: FeTS21_Training_008
+Subject 6 out of 20: FeTS21_Training_008
+2022-04-08 11:30:30,536 TTA FoE loss: 0.1106064812872145
+Predsum: 24451
+GtSum: 33446
+Predsum: 1105
+GtSum: 1368
+Predsum: 926
+GtSum: 1211
+TTA FoE loss: 0.1106064812872145
+2022-04-08 11:30:44,174 TTA FoE loss: 0.0804027370876736
+Predsum: 7840
+GtSum: 1211
+Predsum: 207
+GtSum: 1211
+Predsum: 154
+GtSum: 1211
+TTA FoE loss: 0.0804027370876736
+2022-04-08 11:30:54,152 TTA FoE loss: 0.05928900914722019
+Predsum: 2932
+GtSum: 1211
+Predsum: 0
+GtSum: 1211
+Predsum: 0
+GtSum: 1211
+TTA FoE loss: 0.05928900914722019
+2022-04-08 11:31:03,963 TTA FoE loss: 0.04622845616605547
+Predsum: 1684
+GtSum: 1211
+Predsum: 0
+GtSum: 1211
+Predsum: 0
+GtSum: 1211
+TTA FoE loss: 0.04622845616605547
+2022-04-08 11:31:13,867 TTA FoE loss: 0.036270391556951734
+Predsum: 1068
+GtSum: 1211
+Predsum: 0
+GtSum: 1211
+Predsum: 0
+GtSum: 1211
+TTA FoE loss: 0.036270391556951734
+2022-04-08 11:31:23,712 TTA FoE loss: 0.03022223687171936
+Predsum: 598
+GtSum: 1211
+Predsum: 0
+GtSum: 1211
+Predsum: 0
+GtSum: 1211
+TTA FoE loss: 0.03022223687171936
+2022-04-08 11:31:33,516 TTA FoE loss: 0.026448939243952432
+Predsum: 349
+GtSum: 1211
+Predsum: 0
+GtSum: 1211
+Predsum: 0
+GtSum: 1211
+TTA FoE loss: 0.026448939243952432
+2022-04-08 11:31:43,364 TTA FoE loss: 0.023811954100926718
+Predsum: 200
+GtSum: 1211
+Predsum: 0
+GtSum: 1211
+Predsum: 0
+GtSum: 1211
+TTA FoE loss: 0.023811954100926718
+2022-04-08 11:31:53,177 TTA FoE loss: 0.022250561502244737
+Predsum: 94
+GtSum: 1211
+Predsum: 0
+GtSum: 1211
+Predsum: 0
+GtSum: 1211
+TTA FoE loss: 0.022250561502244737
+2022-04-08 11:32:03,080 TTA FoE loss: 0.021477387242847017
+Predsum: 45
+GtSum: 1211
+Predsum: 0
+GtSum: 1211
+Predsum: 0
+GtSum: 1211
+TTA FoE loss: 0.021477387242847017
+2022-04-08 11:32:03,080 TTA loop done for subject 5
+TTA loop done for subject 5
+2022-04-08 11:32:12,664 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 45
+GtSum: 33446
+TUMOR CORE (LABELS 1 and 4
+Predsum: 0
+GtSum: 1368
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 0
+GtSum: 1211
+WHOLE TUMOR:
+2022-04-08 11:32:12,665 case 5 mean_dice 0.002687 mean_hd95 32.797103
+case 5 mean_dice 0.002687 mean_hd95 32.797103
+2022-04-08 11:32:12,665 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-08 11:32:12,665 case 5 mean_dice 0.000000 mean_hd95 0.000000
+case 5 mean_dice 0.000000 mean_hd95 0.000000
+2022-04-08 11:32:12,665 TUMOR CORE:
+TUMOR CORE:
+2022-04-08 11:32:12,665 case 5 mean_dice 0.000000 mean_hd95 0.000000
+case 5 mean_dice 0.000000 mean_hd95 0.000000
+2022-04-08 11:32:12,933 ============================================================
+============================================================
+2022-04-08 11:32:12,933 Subject 7 out of 20: FeTS21_Training_006
+Subject 7 out of 20: FeTS21_Training_006
+2022-04-08 11:32:28,650 TTA FoE loss: 0.2624749723010593
+Predsum: 127494
+GtSum: 139230
+Predsum: 35063
+GtSum: 44774
+Predsum: 18684
+GtSum: 24947
+TTA FoE loss: 0.2624749723010593
+2022-04-08 11:32:43,929 TTA FoE loss: 0.22241481460465326
+Predsum: 117903
+GtSum: 24947
+Predsum: 30977
+GtSum: 24947
+Predsum: 16435
+GtSum: 24947
+TTA FoE loss: 0.22241481460465326
+2022-04-08 11:33:00,920 TTA FoE loss: 0.20848443794250487
+Predsum: 114430
+GtSum: 24947
+Predsum: 29444
+GtSum: 24947
+Predsum: 15983
+GtSum: 24947
+TTA FoE loss: 0.20848443794250487
+2022-04-08 11:33:17,251 TTA FoE loss: 0.1995541795094808
+Predsum: 112632
+GtSum: 24947
+Predsum: 28894
+GtSum: 24947
+Predsum: 16041
+GtSum: 24947
+TTA FoE loss: 0.1995541795094808
+2022-04-08 11:33:32,469 TTA FoE loss: 0.19260228888193767
+Predsum: 111521
+GtSum: 24947
+Predsum: 28760
+GtSum: 24947
+Predsum: 16376
+GtSum: 24947
+TTA FoE loss: 0.19260228888193767
+2022-04-08 11:33:48,437 TTA FoE loss: 0.1871550462245941
+Predsum: 110820
+GtSum: 24947
+Predsum: 28834
+GtSum: 24947
+Predsum: 16757
+GtSum: 24947
+TTA FoE loss: 0.1871550462245941
+2022-04-08 11:34:04,048 TTA FoE loss: 0.1831052163971795
+Predsum: 110507
+GtSum: 24947
+Predsum: 29058
+GtSum: 24947
+Predsum: 17160
+GtSum: 24947
+TTA FoE loss: 0.1831052163971795
+2022-04-08 11:34:19,153 TTA FoE loss: 0.1802874657313029
+Predsum: 110533
+GtSum: 24947
+Predsum: 29405
+GtSum: 24947
+Predsum: 17566
+GtSum: 24947
+TTA FoE loss: 0.1802874657313029
+2022-04-08 11:34:34,034 TTA FoE loss: 0.17841550805833606
+Predsum: 110594
+GtSum: 24947
+Predsum: 29639
+GtSum: 24947
+Predsum: 17844
+GtSum: 24947
+TTA FoE loss: 0.17841550805833606
+2022-04-08 11:34:48,848 TTA FoE loss: 0.17743398989571466
+Predsum: 110650
+GtSum: 24947
+Predsum: 29786
+GtSum: 24947
+Predsum: 18003
+GtSum: 24947
+TTA FoE loss: 0.17743398989571466
+2022-04-08 11:34:48,848 TTA loop done for subject 6
+TTA loop done for subject 6
+2022-04-08 11:35:03,569 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 110651
+GtSum: 139230
+TUMOR CORE (LABELS 1 and 4
+Predsum: 29789
+GtSum: 44774
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 18006
+GtSum: 24947
+WHOLE TUMOR:
+2022-04-08 11:35:03,569 case 6 mean_dice 0.874232 mean_hd95 6.403124
+case 6 mean_dice 0.874232 mean_hd95 6.403124
+2022-04-08 11:35:03,569 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-08 11:35:03,569 case 6 mean_dice 0.768188 mean_hd95 3.605551
+case 6 mean_dice 0.768188 mean_hd95 3.605551
+2022-04-08 11:35:03,569 TUMOR CORE:
+TUMOR CORE:
+2022-04-08 11:35:03,569 case 6 mean_dice 0.788997 mean_hd95 8.062258
+case 6 mean_dice 0.788997 mean_hd95 8.062258
+2022-04-08 11:35:03,868 ============================================================
+============================================================
+2022-04-08 11:35:03,868 Subject 8 out of 20: FeTS21_Training_032
+Subject 8 out of 20: FeTS21_Training_032
+2022-04-08 11:35:18,625 TTA FoE loss: 0.09792640919155544
+Predsum: 23594
+GtSum: 26500
+Predsum: 14282
+GtSum: 17430
+Predsum: 5565
+GtSum: 9563
+TTA FoE loss: 0.09792640919155544
+2022-04-08 11:35:33,535 TTA FoE loss: 0.08408394498295255
+Predsum: 21276
+GtSum: 9563
+Predsum: 12864
+GtSum: 9563
+Predsum: 4583
+GtSum: 9563
+TTA FoE loss: 0.08408394498295255
+2022-04-08 11:35:46,774 TTA FoE loss: 0.07944427001476288
+Predsum: 20187
+GtSum: 9563
+Predsum: 12607
+GtSum: 9563
+Predsum: 4418
+GtSum: 9563
+TTA FoE loss: 0.07944427001476288
+2022-04-08 11:36:00,282 TTA FoE loss: 0.07655028225315942
+Predsum: 19599
+GtSum: 9563
+Predsum: 12740
+GtSum: 9563
+Predsum: 4511
+GtSum: 9563
+TTA FoE loss: 0.07655028225315942
+2022-04-08 11:36:13,723 TTA FoE loss: 0.07404078658421834
+Predsum: 19142
+GtSum: 9563
+Predsum: 12924
+GtSum: 9563
+Predsum: 4681
+GtSum: 9563
+TTA FoE loss: 0.07404078658421834
+2022-04-08 11:36:27,072 TTA FoE loss: 0.07202009528213077
+Predsum: 18732
+GtSum: 9563
+Predsum: 13135
+GtSum: 9563
+Predsum: 4887
+GtSum: 9563
+TTA FoE loss: 0.07202009528213077
+2022-04-08 11:36:40,502 TTA FoE loss: 0.07067037040657467
+Predsum: 18492
+GtSum: 9563
+Predsum: 13338
+GtSum: 9563
+Predsum: 5067
+GtSum: 9563
+TTA FoE loss: 0.07067037040657467
+2022-04-08 11:36:53,950 TTA FoE loss: 0.06981484354866875
+Predsum: 18331
+GtSum: 9563
+Predsum: 13533
+GtSum: 9563
+Predsum: 5248
+GtSum: 9563
+TTA FoE loss: 0.06981484354866875
+2022-04-08 11:37:07,364 TTA FoE loss: 0.06917430586285062
+Predsum: 18208
+GtSum: 9563
+Predsum: 13674
+GtSum: 9563
+Predsum: 5386
+GtSum: 9563
+TTA FoE loss: 0.06917430586285062
+2022-04-08 11:37:20,763 TTA FoE loss: 0.068831441005071
+Predsum: 18179
+GtSum: 9563
+Predsum: 13756
+GtSum: 9563
+Predsum: 5464
+GtSum: 9563
+TTA FoE loss: 0.068831441005071
+2022-04-08 11:37:20,763 TTA loop done for subject 7
+TTA loop done for subject 7
+2022-04-08 11:37:33,879 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 18180
+GtSum: 26500
+TUMOR CORE (LABELS 1 and 4
+Predsum: 13757
+GtSum: 17430
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 5464
+GtSum: 9563
+WHOLE TUMOR:
+2022-04-08 11:37:33,879 case 7 mean_dice 0.769203 mean_hd95 6.403124
+case 7 mean_dice 0.769203 mean_hd95 6.403124
+2022-04-08 11:37:33,879 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-08 11:37:33,879 case 7 mean_dice 0.656285 mean_hd95 3.605551
+case 7 mean_dice 0.656285 mean_hd95 3.605551
+2022-04-08 11:37:33,879 TUMOR CORE:
+TUMOR CORE:
+2022-04-08 11:37:33,880 case 7 mean_dice 0.832206 mean_hd95 4.472136
+case 7 mean_dice 0.832206 mean_hd95 4.472136
+2022-04-08 11:37:33,977 ============================================================
+============================================================
+2022-04-08 11:37:33,977 Subject 9 out of 20: FeTS21_Training_062
+Subject 9 out of 20: FeTS21_Training_062
+2022-04-08 11:37:47,928 TTA FoE loss: 0.30602264404296875
+Predsum: 164469
+GtSum: 142132
+Predsum: 52847
+GtSum: 50151
+Predsum: 34081
+GtSum: 30143
+TTA FoE loss: 0.30602264404296875
+2022-04-08 11:38:02,830 TTA FoE loss: 0.23936009078555637
+Predsum: 143542
+GtSum: 30143
+Predsum: 53137
+GtSum: 30143
+Predsum: 34830
+GtSum: 30143
+TTA FoE loss: 0.23936009078555637
+2022-04-08 11:38:17,743 TTA FoE loss: 0.21367166656917996
+Predsum: 137502
+GtSum: 30143
+Predsum: 53911
+GtSum: 30143
+Predsum: 35978
+GtSum: 30143
+TTA FoE loss: 0.21367166656917996
+2022-04-08 11:38:32,760 TTA FoE loss: 0.19723004012637668
+Predsum: 133412
+GtSum: 30143
+Predsum: 54607
+GtSum: 30143
+Predsum: 36965
+GtSum: 30143
+TTA FoE loss: 0.19723004012637668
+2022-04-08 11:38:47,474 TTA FoE loss: 0.18834313599268596
+Predsum: 130481
+GtSum: 30143
+Predsum: 55150
+GtSum: 30143
+Predsum: 37724
+GtSum: 30143
+TTA FoE loss: 0.18834313599268596
+2022-04-08 11:39:02,329 TTA FoE loss: 0.18367596117655435
+Predsum: 128192
+GtSum: 30143
+Predsum: 55595
+GtSum: 30143
+Predsum: 38322
+GtSum: 30143
+TTA FoE loss: 0.18367596117655435
+2022-04-08 11:39:17,296 TTA FoE loss: 0.18089772764841716
+Predsum: 126399
+GtSum: 30143
+Predsum: 55888
+GtSum: 30143
+Predsum: 38738
+GtSum: 30143
+TTA FoE loss: 0.18089772764841716
+2022-04-08 11:39:32,135 TTA FoE loss: 0.17913597202301026
+Predsum: 125055
+GtSum: 30143
+Predsum: 56111
+GtSum: 30143
+Predsum: 39053
+GtSum: 30143
+TTA FoE loss: 0.17913597202301026
+2022-04-08 11:39:47,009 TTA FoE loss: 0.1779493088722229
+Predsum: 124045
+GtSum: 30143
+Predsum: 56229
+GtSum: 30143
+Predsum: 39207
+GtSum: 30143
+TTA FoE loss: 0.1779493088722229
+2022-04-08 11:40:01,624 TTA FoE loss: 0.17730099839634367
+Predsum: 123524
+GtSum: 30143
+Predsum: 56284
+GtSum: 30143
+Predsum: 39285
+GtSum: 30143
+TTA FoE loss: 0.17730099839634367
+2022-04-08 11:40:01,624 TTA loop done for subject 8
+TTA loop done for subject 8
+2022-04-08 11:40:16,038 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 123490
+GtSum: 142132
+TUMOR CORE (LABELS 1 and 4
+Predsum: 56288
+GtSum: 50151
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 39289
+GtSum: 30143
+WHOLE TUMOR:
+2022-04-08 11:40:16,039 case 8 mean_dice 0.906634 mean_hd95 3.605551
+case 8 mean_dice 0.906634 mean_hd95 3.605551
+2022-04-08 11:40:16,039 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-08 11:40:16,039 case 8 mean_dice 0.863320 mean_hd95 1.414214
+case 8 mean_dice 0.863320 mean_hd95 1.414214
+2022-04-08 11:40:16,039 TUMOR CORE:
+TUMOR CORE:
+2022-04-08 11:40:16,039 case 8 mean_dice 0.940990 mean_hd95 1.414214
+case 8 mean_dice 0.940990 mean_hd95 1.414214
+2022-04-08 11:40:16,452 ============================================================
+============================================================
+2022-04-08 11:40:16,452 Subject 10 out of 20: FeTS21_Training_060
+Subject 10 out of 20: FeTS21_Training_060
+2022-04-08 11:40:32,646 TTA FoE loss: 0.17523234187232123
+Predsum: 66426
+GtSum: 87324
+Predsum: 34299
+GtSum: 34530
+Predsum: 13564
+GtSum: 16172
+TTA FoE loss: 0.17523234187232123
+2022-04-08 11:40:47,800 TTA FoE loss: 0.15244549126095241
+Predsum: 58745
+GtSum: 16172
+Predsum: 33729
+GtSum: 16172
+Predsum: 13074
+GtSum: 16172
+TTA FoE loss: 0.15244549126095241
+2022-04-08 11:41:03,168 TTA FoE loss: 0.14340026773346795
+Predsum: 55785
+GtSum: 16172
+Predsum: 33797
+GtSum: 16172
+Predsum: 13222
+GtSum: 16172
+TTA FoE loss: 0.14340026773346795
+2022-04-08 11:41:19,087 TTA FoE loss: 0.13741506769922043
+Predsum: 54448
+GtSum: 16172
+Predsum: 34200
+GtSum: 16172
+Predsum: 13653
+GtSum: 16172
+TTA FoE loss: 0.13741506769922043
+2022-04-08 11:41:34,270 TTA FoE loss: 0.13242060501045652
+Predsum: 53457
+GtSum: 16172
+Predsum: 34627
+GtSum: 16172
+Predsum: 14155
+GtSum: 16172
+TTA FoE loss: 0.13242060501045652
+2022-04-08 11:41:49,463 TTA FoE loss: 0.12845616846614413
+Predsum: 52522
+GtSum: 16172
+Predsum: 34991
+GtSum: 16172
+Predsum: 14584
+GtSum: 16172
+TTA FoE loss: 0.12845616846614413
+2022-04-08 11:42:04,727 TTA FoE loss: 0.12565821464856466
+Predsum: 51807
+GtSum: 16172
+Predsum: 35328
+GtSum: 16172
+Predsum: 14962
+GtSum: 16172
+TTA FoE loss: 0.12565821464856466
+2022-04-08 11:42:19,809 TTA FoE loss: 0.1241357083717982
+Predsum: 51350
+GtSum: 16172
+Predsum: 35587
+GtSum: 16172
+Predsum: 15317
+GtSum: 16172
+TTA FoE loss: 0.1241357083717982
+2022-04-08 11:42:34,399 TTA FoE loss: 0.12320076553026835
+Predsum: 51026
+GtSum: 16172
+Predsum: 35775
+GtSum: 16172
+Predsum: 15526
+GtSum: 16172
+TTA FoE loss: 0.12320076553026835
+2022-04-08 11:42:49,572 TTA FoE loss: 0.12271408663855658
+Predsum: 50834
+GtSum: 16172
+Predsum: 35863
+GtSum: 16172
+Predsum: 15635
+GtSum: 16172
+TTA FoE loss: 0.12271408663855658
+2022-04-08 11:42:49,572 TTA loop done for subject 9
+TTA loop done for subject 9
+2022-04-08 11:43:03,826 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 50830
+GtSum: 87324
+TUMOR CORE (LABELS 1 and 4
+Predsum: 35872
+GtSum: 34530
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 15643
+GtSum: 16172
+WHOLE TUMOR:
+2022-04-08 11:43:03,827 case 9 mean_dice 0.726146 mean_hd95 7.681146
+case 9 mean_dice 0.726146 mean_hd95 7.681146
+2022-04-08 11:43:03,827 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-08 11:43:03,827 case 9 mean_dice 0.812384 mean_hd95 1.000000
+case 9 mean_dice 0.812384 mean_hd95 1.000000
+2022-04-08 11:43:03,827 TUMOR CORE:
+TUMOR CORE:
+2022-04-08 11:43:03,827 case 9 mean_dice 0.942189 mean_hd95 1.414214
+case 9 mean_dice 0.942189 mean_hd95 1.414214
+2022-04-08 11:43:04,111 ============================================================
+============================================================
+2022-04-08 11:43:04,111 Subject 11 out of 20: FeTS21_Training_061
+Subject 11 out of 20: FeTS21_Training_061
+2022-04-08 11:43:19,228 TTA FoE loss: 0.35100583839416505
+Predsum: 65559
+GtSum: 20876
+Predsum: 11146
+GtSum: 13410
+Predsum: 4675
+GtSum: 6532
+TTA FoE loss: 0.35100583839416505
+2022-04-08 11:43:33,336 TTA FoE loss: 0.10838507064183553
+Predsum: 17281
+GtSum: 6532
+Predsum: 4951
+GtSum: 6532
+Predsum: 397
+GtSum: 6532
+TTA FoE loss: 0.10838507064183553
+2022-04-08 11:43:43,440 TTA FoE loss: 0.07452974515491062
+Predsum: 15261
+GtSum: 6532
+Predsum: 0
+GtSum: 6532
+Predsum: 0
+GtSum: 6532
+TTA FoE loss: 0.07452974515491062
+2022-04-08 11:43:53,462 TTA FoE loss: 0.05963519011603462
+Predsum: 13465
+GtSum: 6532
+Predsum: 0
+GtSum: 6532
+Predsum: 0
+GtSum: 6532
+TTA FoE loss: 0.05963519011603462
+2022-04-08 11:44:03,524 TTA FoE loss: 0.05199817454814911
+Predsum: 11973
+GtSum: 6532
+Predsum: 0
+GtSum: 6532
+Predsum: 0
+GtSum: 6532
+TTA FoE loss: 0.05199817454814911
+2022-04-08 11:44:13,529 TTA FoE loss: 0.047495812204149036
+Predsum: 10930
+GtSum: 6532
+Predsum: 0
+GtSum: 6532
+Predsum: 0
+GtSum: 6532
+TTA FoE loss: 0.047495812204149036
+2022-04-08 11:44:23,424 TTA FoE loss: 0.04470930782953898
+Predsum: 10174
+GtSum: 6532
+Predsum: 0
+GtSum: 6532
+Predsum: 0
+GtSum: 6532
+TTA FoE loss: 0.04470930782953898
+2022-04-08 11:44:33,361 TTA FoE loss: 0.042886357254452175
+Predsum: 9627
+GtSum: 6532
+Predsum: 0
+GtSum: 6532
+Predsum: 0
+GtSum: 6532
+TTA FoE loss: 0.042886357254452175
+2022-04-08 11:44:43,182 TTA FoE loss: 0.04181086270014445
+Predsum: 9297
+GtSum: 6532
+Predsum: 0
+GtSum: 6532
+Predsum: 0
+GtSum: 6532
+TTA FoE loss: 0.04181086270014445
+2022-04-08 11:44:53,028 TTA FoE loss: 0.04129734943972693
+Predsum: 9120
+GtSum: 6532
+Predsum: 0
+GtSum: 6532
+Predsum: 0
+GtSum: 6532
+TTA FoE loss: 0.04129734943972693
+2022-04-08 11:44:53,029 TTA loop done for subject 10
+TTA loop done for subject 10
+2022-04-08 11:45:02,572 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 9113
+GtSum: 20876
+TUMOR CORE (LABELS 1 and 4
+Predsum: 0
+GtSum: 13410
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 0
+GtSum: 6532
+WHOLE TUMOR:
+2022-04-08 11:45:02,572 case 10 mean_dice 0.591950 mean_hd95 9.000000
+case 10 mean_dice 0.591950 mean_hd95 9.000000
+2022-04-08 11:45:02,572 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-08 11:45:02,572 case 10 mean_dice 0.000000 mean_hd95 0.000000
+case 10 mean_dice 0.000000 mean_hd95 0.000000
+2022-04-08 11:45:02,572 TUMOR CORE:
+TUMOR CORE:
+2022-04-08 11:45:02,572 case 10 mean_dice 0.000000 mean_hd95 0.000000
+case 10 mean_dice 0.000000 mean_hd95 0.000000
+2022-04-08 11:45:02,668 ============================================================
+============================================================
+2022-04-08 11:45:02,668 Subject 12 out of 20: FeTS21_Training_055
+Subject 12 out of 20: FeTS21_Training_055
+2022-04-08 11:45:16,763 TTA FoE loss: 0.2046561188167996
+Predsum: 109811
+GtSum: 118394
+Predsum: 15698
+GtSum: 15167
+Predsum: 10335
+GtSum: 8577
+TTA FoE loss: 0.2046561188167996
+2022-04-08 11:45:30,599 TTA FoE loss: 0.1763000006145901
+Predsum: 102286
+GtSum: 8577
+Predsum: 15064
+GtSum: 8577
+Predsum: 9905
+GtSum: 8577
+TTA FoE loss: 0.1763000006145901
+2022-04-08 11:45:44,371 TTA FoE loss: 0.16624867751863268
+Predsum: 98498
+GtSum: 8577
+Predsum: 14916
+GtSum: 8577
+Predsum: 9814
+GtSum: 8577
+TTA FoE loss: 0.16624867751863268
+2022-04-08 11:45:58,251 TTA FoE loss: 0.1609349057144589
+Predsum: 96620
+GtSum: 8577
+Predsum: 15010
+GtSum: 8577
+Predsum: 9902
+GtSum: 8577
+TTA FoE loss: 0.1609349057144589
+2022-04-08 11:46:12,080 TTA FoE loss: 0.15685696411132813
+Predsum: 95310
+GtSum: 8577
+Predsum: 15104
+GtSum: 8577
+Predsum: 9988
+GtSum: 8577
+TTA FoE loss: 0.15685696411132813
+2022-04-08 11:46:26,027 TTA FoE loss: 0.15369355040126376
+Predsum: 94555
+GtSum: 8577
+Predsum: 15226
+GtSum: 8577
+Predsum: 10111
+GtSum: 8577
+TTA FoE loss: 0.15369355040126376
+2022-04-08 11:46:39,915 TTA FoE loss: 0.15134247603681353
+Predsum: 94134
+GtSum: 8577
+Predsum: 15326
+GtSum: 8577
+Predsum: 10192
+GtSum: 8577
+TTA FoE loss: 0.15134247603681353
+2022-04-08 11:46:53,761 TTA FoE loss: 0.14969899627897473
+Predsum: 94006
+GtSum: 8577
+Predsum: 15430
+GtSum: 8577
+Predsum: 10297
+GtSum: 8577
+TTA FoE loss: 0.14969899627897473
+2022-04-08 11:47:07,708 TTA FoE loss: 0.14859656661086612
+Predsum: 93971
+GtSum: 8577
+Predsum: 15501
+GtSum: 8577
+Predsum: 10366
+GtSum: 8577
+TTA FoE loss: 0.14859656661086612
+2022-04-08 11:47:21,654 TTA FoE loss: 0.14799019485049777
+Predsum: 93969
+GtSum: 8577
+Predsum: 15544
+GtSum: 8577
+Predsum: 10412
+GtSum: 8577
+TTA FoE loss: 0.14799019485049777
+2022-04-08 11:47:21,654 TTA loop done for subject 11
+TTA loop done for subject 11
+2022-04-08 11:47:35,244 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 93972
+GtSum: 118394
+TUMOR CORE (LABELS 1 and 4
+Predsum: 15545
+GtSum: 15167
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 10414
+GtSum: 8577
+WHOLE TUMOR:
+2022-04-08 11:47:35,244 case 11 mean_dice 0.862483 mean_hd95 5.477226
+case 11 mean_dice 0.862483 mean_hd95 5.477226
+2022-04-08 11:47:35,244 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-08 11:47:35,244 case 11 mean_dice 0.817756 mean_hd95 2.236068
+case 11 mean_dice 0.817756 mean_hd95 2.236068
+2022-04-08 11:47:35,244 TUMOR CORE:
+TUMOR CORE:
+2022-04-08 11:47:35,244 case 11 mean_dice 0.896457 mean_hd95 4.488702
+case 11 mean_dice 0.896457 mean_hd95 4.488702
+2022-04-08 11:47:35,339 ============================================================
+============================================================
+2022-04-08 11:47:35,340 Subject 13 out of 20: FeTS21_Training_004
+Subject 13 out of 20: FeTS21_Training_004
+2022-04-08 11:47:49,198 TTA FoE loss: 0.184797078927358
+Predsum: 104204
+GtSum: 103496
+Predsum: 23312
+GtSum: 26400
+Predsum: 14312
+GtSum: 15498
+TTA FoE loss: 0.184797078927358
+2022-04-08 11:48:02,868 TTA FoE loss: 0.1621933026048872
+Predsum: 99628
+GtSum: 15498
+Predsum: 21014
+GtSum: 15498
+Predsum: 11266
+GtSum: 15498
+TTA FoE loss: 0.1621933026048872
+2022-04-08 11:48:16,631 TTA FoE loss: 0.1547235115369161
+Predsum: 96320
+GtSum: 15498
+Predsum: 19212
+GtSum: 15498
+Predsum: 8820
+GtSum: 15498
+TTA FoE loss: 0.1547235115369161
+2022-04-08 11:48:30,296 TTA FoE loss: 0.14952283346652984
+Predsum: 94234
+GtSum: 15498
+Predsum: 17790
+GtSum: 15498
+Predsum: 7031
+GtSum: 15498
+TTA FoE loss: 0.14952283346652984
+2022-04-08 11:48:43,933 TTA FoE loss: 0.14498581691582998
+Predsum: 92325
+GtSum: 15498
+Predsum: 16216
+GtSum: 15498
+Predsum: 5371
+GtSum: 15498
+TTA FoE loss: 0.14498581691582998
+2022-04-08 11:48:57,588 TTA FoE loss: 0.1402235238287184
+Predsum: 90059
+GtSum: 15498
+Predsum: 14332
+GtSum: 15498
+Predsum: 3937
+GtSum: 15498
+TTA FoE loss: 0.1402235238287184
+2022-04-08 11:49:11,259 TTA FoE loss: 0.1347639581097497
+Predsum: 87943
+GtSum: 15498
+Predsum: 12459
+GtSum: 15498
+Predsum: 2815
+GtSum: 15498
+TTA FoE loss: 0.1347639581097497
+2022-04-08 11:49:24,840 TTA FoE loss: 0.12961203196313645
+Predsum: 86124
+GtSum: 15498
+Predsum: 10788
+GtSum: 15498
+Predsum: 2065
+GtSum: 15498
+TTA FoE loss: 0.12961203196313645
+2022-04-08 11:49:38,403 TTA FoE loss: 0.12562102610535092
+Predsum: 84719
+GtSum: 15498
+Predsum: 9509
+GtSum: 15498
+Predsum: 1563
+GtSum: 15498
+TTA FoE loss: 0.12562102610535092
+2022-04-08 11:49:51,998 TTA FoE loss: 0.12346074177159204
+Predsum: 83980
+GtSum: 15498
+Predsum: 8864
+GtSum: 15498
+Predsum: 1306
+GtSum: 15498
+TTA FoE loss: 0.12346074177159204
+2022-04-08 11:49:51,998 TTA loop done for subject 12
+TTA loop done for subject 12
+2022-04-08 11:50:05,428 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 83950
+GtSum: 103496
+TUMOR CORE (LABELS 1 and 4
+Predsum: 8838
+GtSum: 26400
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 1294
+GtSum: 15498
+WHOLE TUMOR:
+2022-04-08 11:50:05,428 case 12 mean_dice 0.869776 mean_hd95 7.071068
+case 12 mean_dice 0.869776 mean_hd95 7.071068
+2022-04-08 11:50:05,428 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-08 11:50:05,428 case 12 mean_dice 0.148285 mean_hd95 10.954451
+case 12 mean_dice 0.148285 mean_hd95 10.954451
+2022-04-08 11:50:05,429 TUMOR CORE:
+TUMOR CORE:
+2022-04-08 11:50:05,429 case 12 mean_dice 0.500426 mean_hd95 11.916375
+case 12 mean_dice 0.500426 mean_hd95 11.916375
+2022-04-08 11:50:05,525 ============================================================
+============================================================
+2022-04-08 11:50:05,525 Subject 14 out of 20: FeTS21_Training_014
+Subject 14 out of 20: FeTS21_Training_014
+2022-04-08 11:50:19,532 TTA FoE loss: 0.20788100337982177
+Predsum: 82372
+GtSum: 80396
+Predsum: 31821
+GtSum: 27568
+Predsum: 20965
+GtSum: 18255
+TTA FoE loss: 0.20788100337982177
+2022-04-08 11:50:33,604 TTA FoE loss: 0.16197357858551872
+Predsum: 64883
+GtSum: 18255
+Predsum: 27101
+GtSum: 18255
+Predsum: 18526
+GtSum: 18255
+TTA FoE loss: 0.16197357858551872
+2022-04-08 11:50:47,585 TTA FoE loss: 0.14715088747607338
+Predsum: 61751
+GtSum: 18255
+Predsum: 26747
+GtSum: 18255
+Predsum: 18543
+GtSum: 18255
+TTA FoE loss: 0.14715088747607338
+2022-04-08 11:51:01,547 TTA FoE loss: 0.1379850115776062
+Predsum: 60103
+GtSum: 18255
+Predsum: 26991
+GtSum: 18255
+Predsum: 18907
+GtSum: 18255
+TTA FoE loss: 0.1379850115776062
+2022-04-08 11:51:15,427 TTA FoE loss: 0.13050187622176276
+Predsum: 58151
+GtSum: 18255
+Predsum: 26868
+GtSum: 18255
+Predsum: 18979
+GtSum: 18255
+TTA FoE loss: 0.13050187622176276
+2022-04-08 11:51:29,375 TTA FoE loss: 0.1252776572174496
+Predsum: 56203
+GtSum: 18255
+Predsum: 26585
+GtSum: 18255
+Predsum: 18972
+GtSum: 18255
+TTA FoE loss: 0.1252776572174496
+2022-04-08 11:51:43,279 TTA FoE loss: 0.12238391306665208
+Predsum: 54673
+GtSum: 18255
+Predsum: 26273
+GtSum: 18255
+Predsum: 18907
+GtSum: 18255
+TTA FoE loss: 0.12238391306665208
+2022-04-08 11:51:57,292 TTA FoE loss: 0.12085677112473382
+Predsum: 53530
+GtSum: 18255
+Predsum: 25987
+GtSum: 18255
+Predsum: 18810
+GtSum: 18255
+TTA FoE loss: 0.12085677112473382
+2022-04-08 11:52:11,299 TTA FoE loss: 0.12000612674819099
+Predsum: 52666
+GtSum: 18255
+Predsum: 25710
+GtSum: 18255
+Predsum: 18693
+GtSum: 18255
+TTA FoE loss: 0.12000612674819099
+2022-04-08 11:52:26,433 TTA FoE loss: 0.1195805807378557
+Predsum: 52211
+GtSum: 18255
+Predsum: 25564
+GtSum: 18255
+Predsum: 18625
+GtSum: 18255
+TTA FoE loss: 0.1195805807378557
+2022-04-08 11:52:26,433 TTA loop done for subject 13
+TTA loop done for subject 13
+2022-04-08 11:52:40,857 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 52189
+GtSum: 80396
+TUMOR CORE (LABELS 1 and 4
+Predsum: 25558
+GtSum: 27568
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 18621
+GtSum: 18255
+WHOLE TUMOR:
+2022-04-08 11:52:40,857 case 13 mean_dice 0.770494 mean_hd95 8.306624
+case 13 mean_dice 0.770494 mean_hd95 8.306624
+2022-04-08 11:52:40,858 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-08 11:52:40,858 case 13 mean_dice 0.748346 mean_hd95 4.242641
+case 13 mean_dice 0.748346 mean_hd95 4.242641
+2022-04-08 11:52:40,858 TUMOR CORE:
+TUMOR CORE:
+2022-04-08 11:52:40,858 case 13 mean_dice 0.784813 mean_hd95 5.385165
+case 13 mean_dice 0.784813 mean_hd95 5.385165
+2022-04-08 11:52:41,277 ============================================================
+============================================================
+2022-04-08 11:52:41,277 Subject 15 out of 20: FeTS21_Training_057
+Subject 15 out of 20: FeTS21_Training_057
+2022-04-08 11:52:55,843 TTA FoE loss: 0.15984014225006105
+Predsum: 86008
+GtSum: 91132
+Predsum: 11222
+GtSum: 11762
+Predsum: 6244
+GtSum: 8613
+TTA FoE loss: 0.15984014225006105
+2022-04-08 11:53:10,122 TTA FoE loss: 0.1373997353447808
+Predsum: 83373
+GtSum: 8613
+Predsum: 8182
+GtSum: 8613
+Predsum: 2540
+GtSum: 8613
+TTA FoE loss: 0.1373997353447808
+2022-04-08 11:53:24,259 TTA FoE loss: 0.12192277193069458
+Predsum: 81438
+GtSum: 8613
+Predsum: 3390
+GtSum: 8613
+Predsum: 523
+GtSum: 8613
+TTA FoE loss: 0.12192277193069458
+2022-04-08 11:53:38,472 TTA FoE loss: 0.10528613885243733
+Predsum: 80226
+GtSum: 8613
+Predsum: 509
+GtSum: 8613
+Predsum: 45
+GtSum: 8613
+TTA FoE loss: 0.10528613885243733
+2022-04-08 11:53:49,068 TTA FoE loss: 0.09406739012400309
+Predsum: 79304
+GtSum: 8613
+Predsum: 0
+GtSum: 8613
+Predsum: 0
+GtSum: 8613
+TTA FoE loss: 0.09406739012400309
+2022-04-08 11:53:59,830 TTA FoE loss: 0.0893486063612832
+Predsum: 78759
+GtSum: 8613
+Predsum: 0
+GtSum: 8613
+Predsum: 0
+GtSum: 8613
+TTA FoE loss: 0.0893486063612832
+2022-04-08 11:54:10,327 TTA FoE loss: 0.08675566858715482
+Predsum: 78614
+GtSum: 8613
+Predsum: 0
+GtSum: 8613
+Predsum: 0
+GtSum: 8613
+TTA FoE loss: 0.08675566858715482
+2022-04-08 11:54:20,846 TTA FoE loss: 0.08510629730754428
+Predsum: 78678
+GtSum: 8613
+Predsum: 0
+GtSum: 8613
+Predsum: 0
+GtSum: 8613
+TTA FoE loss: 0.08510629730754428
+2022-04-08 11:54:31,351 TTA FoE loss: 0.08407575541072422
+Predsum: 78808
+GtSum: 8613
+Predsum: 0
+GtSum: 8613
+Predsum: 0
+GtSum: 8613
+TTA FoE loss: 0.08407575541072422
+2022-04-08 11:54:41,847 TTA FoE loss: 0.08354677871863048
+Predsum: 78912
+GtSum: 8613
+Predsum: 0
+GtSum: 8613
+Predsum: 0
+GtSum: 8613
+TTA FoE loss: 0.08354677871863048
+2022-04-08 11:54:41,847 TTA loop done for subject 14
+TTA loop done for subject 14
+2022-04-08 11:54:51,988 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 78916
+GtSum: 91132
+TUMOR CORE (LABELS 1 and 4
+Predsum: 0
+GtSum: 11762
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 0
+GtSum: 8613
+WHOLE TUMOR:
+2022-04-08 11:54:51,988 case 14 mean_dice 0.905086 mean_hd95 3.605551
+case 14 mean_dice 0.905086 mean_hd95 3.605551
+2022-04-08 11:54:51,988 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-08 11:54:51,988 case 14 mean_dice 0.000000 mean_hd95 0.000000
+case 14 mean_dice 0.000000 mean_hd95 0.000000
+2022-04-08 11:54:51,988 TUMOR CORE:
+TUMOR CORE:
+2022-04-08 11:54:51,989 case 14 mean_dice 0.000000 mean_hd95 0.000000
+case 14 mean_dice 0.000000 mean_hd95 0.000000
+2022-04-08 11:54:52,316 ============================================================
+============================================================
+2022-04-08 11:54:52,316 Subject 16 out of 20: FeTS21_Training_058
+Subject 16 out of 20: FeTS21_Training_058
+2022-04-08 11:55:07,165 TTA FoE loss: 0.16163307579358419
+Predsum: 33282
+GtSum: 91646
+Predsum: 5847
+GtSum: 17190
+Predsum: 3178
+GtSum: 6708
+TTA FoE loss: 0.16163307579358419
+2022-04-08 11:55:21,959 TTA FoE loss: 0.12339949758847554
+Predsum: 28413
+GtSum: 6708
+Predsum: 2895
+GtSum: 6708
+Predsum: 1005
+GtSum: 6708
+TTA FoE loss: 0.12339949758847554
+2022-04-08 11:55:36,608 TTA FoE loss: 0.09922298667165969
+Predsum: 24283
+GtSum: 6708
+Predsum: 789
+GtSum: 6708
+Predsum: 111
+GtSum: 6708
+TTA FoE loss: 0.09922298667165969
+2022-04-08 11:55:51,029 TTA FoE loss: 0.0853900394572152
+Predsum: 21647
+GtSum: 6708
+Predsum: 126
+GtSum: 6708
+Predsum: 8
+GtSum: 6708
+TTA FoE loss: 0.0853900394572152
+2022-04-08 11:56:01,858 TTA FoE loss: 0.07753346321317885
+Predsum: 19719
+GtSum: 6708
+Predsum: 0
+GtSum: 6708
+Predsum: 0
+GtSum: 6708
+TTA FoE loss: 0.07753346321317885
+2022-04-08 11:56:12,762 TTA FoE loss: 0.07331515383720398
+Predsum: 18481
+GtSum: 6708
+Predsum: 0
+GtSum: 6708
+Predsum: 0
+GtSum: 6708
+TTA FoE loss: 0.07331515383720398
+2022-04-08 11:56:23,541 TTA FoE loss: 0.07075276641050975
+Predsum: 17653
+GtSum: 6708
+Predsum: 0
+GtSum: 6708
+Predsum: 0
+GtSum: 6708
+TTA FoE loss: 0.07075276641050975
+2022-04-08 11:56:34,439 TTA FoE loss: 0.06914429385132259
+Predsum: 17098
+GtSum: 6708
+Predsum: 0
+GtSum: 6708
+Predsum: 0
+GtSum: 6708
+TTA FoE loss: 0.06914429385132259
+2022-04-08 11:56:45,149 TTA FoE loss: 0.06813178245226542
+Predsum: 16752
+GtSum: 6708
+Predsum: 0
+GtSum: 6708
+Predsum: 0
+GtSum: 6708
+TTA FoE loss: 0.06813178245226542
+2022-04-08 11:56:55,996 TTA FoE loss: 0.0675826288064321
+Predsum: 16551
+GtSum: 6708
+Predsum: 0
+GtSum: 6708
+Predsum: 0
+GtSum: 6708
+TTA FoE loss: 0.0675826288064321
+2022-04-08 11:56:55,997 TTA loop done for subject 15
+TTA loop done for subject 15
+2022-04-08 11:57:05,991 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 16539
+GtSum: 91646
+TUMOR CORE (LABELS 1 and 4
+Predsum: 0
+GtSum: 17190
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 0
+GtSum: 6708
+WHOLE TUMOR:
+2022-04-08 11:57:05,992 case 15 mean_dice 0.304294 mean_hd95 23.323808
+case 15 mean_dice 0.304294 mean_hd95 23.323808
+2022-04-08 11:57:05,992 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-08 11:57:05,992 case 15 mean_dice 0.000000 mean_hd95 0.000000
+case 15 mean_dice 0.000000 mean_hd95 0.000000
+2022-04-08 11:57:05,992 TUMOR CORE:
+TUMOR CORE:
+2022-04-08 11:57:05,992 case 15 mean_dice 0.000000 mean_hd95 0.000000
+case 15 mean_dice 0.000000 mean_hd95 0.000000
+2022-04-08 11:57:06,366 ============================================================
+============================================================
+2022-04-08 11:57:06,366 Subject 17 out of 20: FeTS21_Training_003
+Subject 17 out of 20: FeTS21_Training_003
+2022-04-08 11:57:20,664 TTA FoE loss: 0.09526954539616903
+Predsum: 8579
+GtSum: 29807
+Predsum: 2603
+GtSum: 3731
+Predsum: 1940
+GtSum: 2998
+TTA FoE loss: 0.09526954539616903
+2022-04-08 11:57:34,684 TTA FoE loss: 0.06497114645110236
+Predsum: 5494
+GtSum: 2998
+Predsum: 1693
+GtSum: 2998
+Predsum: 1242
+GtSum: 2998
+TTA FoE loss: 0.06497114645110236
+2022-04-08 11:57:48,672 TTA FoE loss: 0.05080063401328193
+Predsum: 3059
+GtSum: 2998
+Predsum: 924
+GtSum: 2998
+Predsum: 686
+GtSum: 2998
+TTA FoE loss: 0.05080063401328193
+2022-04-08 11:58:02,869 TTA FoE loss: 0.04241701609558529
+Predsum: 1606
+GtSum: 2998
+Predsum: 430
+GtSum: 2998
+Predsum: 361
+GtSum: 2998
+TTA FoE loss: 0.04241701609558529
+2022-04-08 11:58:22,991 TTA FoE loss: 0.035520548078748916
+Predsum: 630
+GtSum: 2998
+Predsum: 89
+GtSum: 2998
+Predsum: 89
+GtSum: 2998
+TTA FoE loss: 0.035520548078748916
+2022-04-08 11:58:42,647 TTA FoE loss: 0.0289605893029107
+Predsum: 211
+GtSum: 2998
+Predsum: 0
+GtSum: 2998
+Predsum: 0
+GtSum: 2998
+TTA FoE loss: 0.0289605893029107
+2022-04-08 11:59:03,953 TTA FoE loss: 0.024244752062691582
+Predsum: 66
+GtSum: 2998
+Predsum: 0
+GtSum: 2998
+Predsum: 0
+GtSum: 2998
+TTA FoE loss: 0.024244752062691582
+2022-04-08 11:59:23,509 TTA FoE loss: 0.02108185174730089
+Predsum: 8
+GtSum: 2998
+Predsum: 0
+GtSum: 2998
+Predsum: 0
+GtSum: 2998
+TTA FoE loss: 0.02108185174730089
+2022-04-08 11:59:37,422 TTA FoE loss: 0.019294121437602573
+Predsum: 0
+GtSum: 2998
+Predsum: 0
+GtSum: 2998
+Predsum: 0
+GtSum: 2998
+TTA FoE loss: 0.019294121437602573
+2022-04-08 11:59:55,016 TTA FoE loss: 0.018451764663060505
+Predsum: 0
+GtSum: 2998
+Predsum: 0
+GtSum: 2998
+Predsum: 0
+GtSum: 2998
+TTA FoE loss: 0.018451764663060505
+2022-04-08 11:59:55,016 TTA loop done for subject 16
+TTA loop done for subject 16
+2022-04-08 12:00:03,016 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 0
+GtSum: 29807
+TUMOR CORE (LABELS 1 and 4
+Predsum: 0
+GtSum: 3731
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 0
+GtSum: 2998
+WHOLE TUMOR:
+2022-04-08 12:00:03,016 case 16 mean_dice 0.000000 mean_hd95 0.000000
+case 16 mean_dice 0.000000 mean_hd95 0.000000
+2022-04-08 12:00:03,016 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-08 12:00:03,016 case 16 mean_dice 0.000000 mean_hd95 0.000000
+case 16 mean_dice 0.000000 mean_hd95 0.000000
+2022-04-08 12:00:03,016 TUMOR CORE:
+TUMOR CORE:
+2022-04-08 12:00:03,017 case 16 mean_dice 0.000000 mean_hd95 0.000000
+case 16 mean_dice 0.000000 mean_hd95 0.000000
+2022-04-08 12:00:03,209 ============================================================
+============================================================
+2022-04-08 12:00:03,209 Subject 18 out of 20: FeTS21_Training_056
+Subject 18 out of 20: FeTS21_Training_056
+2022-04-08 12:00:17,424 TTA FoE loss: 0.25219323603312177
+Predsum: 47780
+GtSum: 55364
+Predsum: 26206
+GtSum: 34000
+Predsum: 16313
+GtSum: 25128
+TTA FoE loss: 0.25219323603312177
+2022-04-08 12:00:33,681 TTA FoE loss: 0.1835186624262068
+Predsum: 34684
+GtSum: 25128
+Predsum: 21442
+GtSum: 25128
+Predsum: 11138
+GtSum: 25128
+TTA FoE loss: 0.1835186624262068
+2022-04-08 12:00:49,812 TTA FoE loss: 0.158995744254854
+Predsum: 28657
+GtSum: 25128
+Predsum: 18250
+GtSum: 25128
+Predsum: 7546
+GtSum: 25128
+TTA FoE loss: 0.158995744254854
+2022-04-08 12:01:05,817 TTA FoE loss: 0.14227483155992296
+Predsum: 23973
+GtSum: 25128
+Predsum: 14888
+GtSum: 25128
+Predsum: 4364
+GtSum: 25128
+TTA FoE loss: 0.14227483155992296
+2022-04-08 12:01:21,432 TTA FoE loss: 0.12671530244085524
+Predsum: 19688
+GtSum: 25128
+Predsum: 11600
+GtSum: 25128
+Predsum: 2493
+GtSum: 25128
+TTA FoE loss: 0.12671530244085524
+2022-04-08 12:01:36,634 TTA FoE loss: 0.11307600527339512
+Predsum: 15932
+GtSum: 25128
+Predsum: 8539
+GtSum: 25128
+Predsum: 1471
+GtSum: 25128
+TTA FoE loss: 0.11307600527339512
+2022-04-08 12:01:52,699 TTA FoE loss: 0.10192776936954923
+Predsum: 13367
+GtSum: 25128
+Predsum: 5795
+GtSum: 25128
+Predsum: 827
+GtSum: 25128
+TTA FoE loss: 0.10192776936954923
+2022-04-08 12:02:06,969 TTA FoE loss: 0.09341055679321289
+Predsum: 11783
+GtSum: 25128
+Predsum: 3437
+GtSum: 25128
+Predsum: 442
+GtSum: 25128
+TTA FoE loss: 0.09341055679321289
+2022-04-08 12:02:20,785 TTA FoE loss: 0.08670056298043993
+Predsum: 10694
+GtSum: 25128
+Predsum: 2045
+GtSum: 25128
+Predsum: 219
+GtSum: 25128
+TTA FoE loss: 0.08670056298043993
+2022-04-08 12:02:34,435 TTA FoE loss: 0.08292195693651835
+Predsum: 10142
+GtSum: 25128
+Predsum: 1471
+GtSum: 25128
+Predsum: 149
+GtSum: 25128
+TTA FoE loss: 0.08292195693651835
+2022-04-08 12:02:34,435 TTA loop done for subject 17
+TTA loop done for subject 17
+2022-04-08 12:02:47,748 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 10114
+GtSum: 55364
+TUMOR CORE (LABELS 1 and 4
+Predsum: 1448
+GtSum: 34000
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 146
+GtSum: 25128
+WHOLE TUMOR:
+2022-04-08 12:02:47,748 case 17 mean_dice 0.308928 mean_hd95 42.272923
+case 17 mean_dice 0.308928 mean_hd95 42.272923
+2022-04-08 12:02:47,748 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-08 12:02:47,748 case 17 mean_dice 0.010920 mean_hd95 50.873371
+case 17 mean_dice 0.010920 mean_hd95 50.873371
+2022-04-08 12:02:47,749 TUMOR CORE:
+TUMOR CORE:
+2022-04-08 12:02:47,749 case 17 mean_dice 0.081697 mean_hd95 50.179677
+case 17 mean_dice 0.081697 mean_hd95 50.179677
+2022-04-08 12:02:47,846 ============================================================
+============================================================
+2022-04-08 12:02:47,846 Subject 19 out of 20: FeTS21_Training_007
+Subject 19 out of 20: FeTS21_Training_007
+2022-04-08 12:03:01,680 TTA FoE loss: 0.10283005131615533
+Predsum: 33710
+GtSum: 39772
+Predsum: 9204
+GtSum: 9557
+Predsum: 5735
+GtSum: 6159
+TTA FoE loss: 0.10283005131615533
+2022-04-08 12:03:15,370 TTA FoE loss: 0.08591967397265964
+Predsum: 31190
+GtSum: 6159
+Predsum: 8902
+GtSum: 6159
+Predsum: 5476
+GtSum: 6159
+TTA FoE loss: 0.08591967397265964
+2022-04-08 12:03:29,156 TTA FoE loss: 0.08018752352396648
+Predsum: 29798
+GtSum: 6159
+Predsum: 8848
+GtSum: 6159
+Predsum: 5418
+GtSum: 6159
+TTA FoE loss: 0.08018752352396648
+2022-04-08 12:03:42,898 TTA FoE loss: 0.07711019065645006
+Predsum: 29002
+GtSum: 6159
+Predsum: 8885
+GtSum: 6159
+Predsum: 5460
+GtSum: 6159
+TTA FoE loss: 0.07711019065645006
+2022-04-08 12:03:56,534 TTA FoE loss: 0.07482480906115638
+Predsum: 28335
+GtSum: 6159
+Predsum: 8927
+GtSum: 6159
+Predsum: 5510
+GtSum: 6159
+TTA FoE loss: 0.07482480906115638
+2022-04-08 12:04:10,568 TTA FoE loss: 0.0732163540257348
+Predsum: 27753
+GtSum: 6159
+Predsum: 8981
+GtSum: 6159
+Predsum: 5584
+GtSum: 6159
+TTA FoE loss: 0.0732163540257348
+2022-04-08 12:04:24,193 TTA FoE loss: 0.07225105627377829
+Predsum: 27379
+GtSum: 6159
+Predsum: 9046
+GtSum: 6159
+Predsum: 5654
+GtSum: 6159
+TTA FoE loss: 0.07225105627377829
+2022-04-08 12:04:37,929 TTA FoE loss: 0.07175108080440097
+Predsum: 27151
+GtSum: 6159
+Predsum: 9088
+GtSum: 6159
+Predsum: 5703
+GtSum: 6159
+TTA FoE loss: 0.07175108080440097
+2022-04-08 12:04:51,782 TTA FoE loss: 0.0714644253651301
+Predsum: 27006
+GtSum: 6159
+Predsum: 9110
+GtSum: 6159
+Predsum: 5729
+GtSum: 6159
+TTA FoE loss: 0.0714644253651301
+2022-04-08 12:05:05,517 TTA FoE loss: 0.07130289177099863
+Predsum: 26931
+GtSum: 6159
+Predsum: 9117
+GtSum: 6159
+Predsum: 5741
+GtSum: 6159
+TTA FoE loss: 0.07130289177099863
+2022-04-08 12:05:05,517 TTA loop done for subject 18
+TTA loop done for subject 18
+2022-04-08 12:05:19,034 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 26928
+GtSum: 39772
+TUMOR CORE (LABELS 1 and 4
+Predsum: 9117
+GtSum: 9557
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 5741
+GtSum: 6159
+WHOLE TUMOR:
+2022-04-08 12:05:19,035 case 18 mean_dice 0.797211 mean_hd95 6.164414
+case 18 mean_dice 0.797211 mean_hd95 6.164414
+2022-04-08 12:05:19,035 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-08 12:05:19,035 case 18 mean_dice 0.861513 mean_hd95 1.000000
+case 18 mean_dice 0.861513 mean_hd95 1.000000
+2022-04-08 12:05:19,035 TUMOR CORE:
+TUMOR CORE:
+2022-04-08 12:05:19,035 case 18 mean_dice 0.915605 mean_hd95 13.247601
+case 18 mean_dice 0.915605 mean_hd95 13.247601
+2022-04-08 12:05:19,130 ============================================================
+============================================================
+2022-04-08 12:05:19,130 Subject 20 out of 20: FeTS21_Training_005
+Subject 20 out of 20: FeTS21_Training_005
+2022-04-08 12:05:33,202 TTA FoE loss: 0.06775054412417941
+Predsum: 12003
+GtSum: 21963
+Predsum: 8852
+GtSum: 14410
+Predsum: 6398
+GtSum: 10786
+TTA FoE loss: 0.06775054412417941
+2022-04-08 12:05:47,244 TTA FoE loss: 0.04762371301651001
+Predsum: 9767
+GtSum: 10786
+Predsum: 7015
+GtSum: 10786
+Predsum: 4210
+GtSum: 10786
+TTA FoE loss: 0.04762371301651001
+2022-04-08 12:06:01,010 TTA FoE loss: 0.04148806296454535
+Predsum: 8388
+GtSum: 10786
+Predsum: 5695
+GtSum: 10786
+Predsum: 2614
+GtSum: 10786
+TTA FoE loss: 0.04148806296454535
+2022-04-08 12:06:14,878 TTA FoE loss: 0.03737260451581743
+Predsum: 7027
+GtSum: 10786
+Predsum: 4474
+GtSum: 10786
+Predsum: 1457
+GtSum: 10786
+TTA FoE loss: 0.03737260451581743
+2022-04-08 12:06:28,696 TTA FoE loss: 0.03346854326460096
+Predsum: 5653
+GtSum: 10786
+Predsum: 3255
+GtSum: 10786
+Predsum: 726
+GtSum: 10786
+TTA FoE loss: 0.03346854326460096
+2022-04-08 12:06:42,930 TTA FoE loss: 0.02834822350078159
+Predsum: 4292
+GtSum: 10786
+Predsum: 1982
+GtSum: 10786
+Predsum: 326
+GtSum: 10786
+TTA FoE loss: 0.02834822350078159
+2022-04-08 12:06:57,165 TTA FoE loss: 0.02454580024878184
+Predsum: 3655
+GtSum: 10786
+Predsum: 1407
+GtSum: 10786
+Predsum: 213
+GtSum: 10786
+TTA FoE loss: 0.02454580024878184
+2022-04-08 12:07:11,842 TTA FoE loss: 0.022605751673380532
+Predsum: 3193
+GtSum: 10786
+Predsum: 1055
+GtSum: 10786
+Predsum: 139
+GtSum: 10786
+TTA FoE loss: 0.022605751673380532
+2022-04-08 12:07:25,960 TTA FoE loss: 0.021543936093648276
+Predsum: 2899
+GtSum: 10786
+Predsum: 825
+GtSum: 10786
+Predsum: 101
+GtSum: 10786
+TTA FoE loss: 0.021543936093648276
+2022-04-08 12:07:40,427 TTA FoE loss: 0.020997593402862547
+Predsum: 2716
+GtSum: 10786
+Predsum: 693
+GtSum: 10786
+Predsum: 81
+GtSum: 10786
+TTA FoE loss: 0.020997593402862547
+2022-04-08 12:07:40,427 TTA loop done for subject 19
+TTA loop done for subject 19
+2022-04-08 12:07:54,585 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 2705
+GtSum: 21963
+TUMOR CORE (LABELS 1 and 4
+Predsum: 690
+GtSum: 14410
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 81
+GtSum: 10786
+WHOLE TUMOR:
+2022-04-08 12:07:54,586 case 19 mean_dice 0.218988 mean_hd95 40.816661
+case 19 mean_dice 0.218988 mean_hd95 40.816661
+2022-04-08 12:07:54,586 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-08 12:07:54,586 case 19 mean_dice 0.012147 mean_hd95 39.560081
+case 19 mean_dice 0.012147 mean_hd95 39.560081
+2022-04-08 12:07:54,586 TUMOR CORE:
+TUMOR CORE:
+2022-04-08 12:07:54,586 case 19 mean_dice 0.091391 mean_hd95 38.327536
+case 19 mean_dice 0.091391 mean_hd95 38.327536
+2022-04-08 12:07:54,586 ---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+2022-04-08 12:07:54,586 Mean dice score on WHOLE TUMOR: 0.5813838359173283
+Mean dice score on WHOLE TUMOR: 0.5813838359173283
+2022-04-08 12:07:54,586 Mean dice score on ENHANCING TUMOR: 0.37344788702809434
+Mean dice score on ENHANCING TUMOR: 0.37344788702809434
+2022-04-08 12:07:54,586 Mean dice score on TUMOR CORE: 0.4317392715418906
+Mean dice score on TUMOR CORE: 0.4317392715418906
+2022-04-08 12:07:54,586 ---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+test.py successfully executed

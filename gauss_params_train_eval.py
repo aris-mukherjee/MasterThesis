@@ -49,9 +49,16 @@ def test_single_volume_FETS_train_eval(image, label, net, i2n_module_t1, i2n_mod
     
     
     batch_size = 5
-   
-
     activations = {}
+    gauss_param = {}
+    mu = {}
+    var = {}
+
+    batch_mean_list = []
+    batch_var_list = []
+    
+
+    iid_samples_seen = {}
            
     for name, m in net.named_modules():
         if name in layer_names_for_stats:
@@ -91,62 +98,88 @@ def test_single_volume_FETS_train_eval(image, label, net, i2n_module_t1, i2n_mod
 
         norm_output = torch.cat((norm_output_t1, norm_output_t1ce, norm_output_t2, norm_output_flair), 1)
 
-        outputs = net(norm_output)
+        
 
-        out = torch.argmax(torch.softmax(outputs, dim=1), dim=1).squeeze(0)
-        out = out.cpu().detach().numpy()
-        i=0
-        for s in slices:
-            prediction[s] = out[i]
-            i =i+1
 
-        gauss_param = {}
-        mu = {}
-        var = {}
+        if model_type == 'UNET':
 
-        iid_samples_seen = {}
+            outputs = net(norm_output)
 
-        for name in layer_names_for_stats:
-            C = activations[name].size(1)
-
-            mu[name] = torch.zeros(C).to(device)
-            var[name] = torch.zeros(C).to(device)
-
-            iid_samples_seen[name] = 0
-
-        #   Feature KDE computation
-        # ------------------------------
-        for name in layer_names_for_stats:
-
-            # Act: (N, C, H, W) - consider as iid along N, H & W
-            N, C, H, W = activations[name].size()
-            iids = activations[name].permute(1, 0, 2, 3).flatten(1)
-
-            N1 = iid_samples_seen[name]
-            N2 = iids.size(1)
-
-            batch_mean = torch.mean(iids, dim=1)
-            batch_sqr_mean = torch.mean(iids**2, dim=1)
-
-            mu[name] = (
-                N1 / (N1 + N2) * mu[name] +
-                N2 / (N1 + N2) * batch_mean
-            )
-            var[name] = (
-                N1 / (N1 + N2) * var[name] +
-                N2 / (N1 + N2) * batch_sqr_mean
-            )
-
-            iid_samples_seen[name] += N2
-
-            gauss_param[name] = torch.stack([mu[name], var[name]], dim=1)
+            out = torch.argmax(torch.softmax(outputs, dim=1), dim=1).squeeze(0)
+            out = out.cpu().detach().numpy()
+            i=0
+            for s in slices:
+                prediction[s] = out[i]
+                i =i+1
 
             
-        
-        
 
-    #num_experts = count_num_experts(layer_names_for_stats, activations)
-    save_pdfs(gauss_param, case) 
+            for name in layer_names_for_stats:
+                C = activations[name].size(1)
+
+                mu[name] = torch.zeros(C).to(device)
+                var[name] = torch.zeros(C).to(device)
+
+                iid_samples_seen[name] = 0
+
+            #   Feature KDE computation
+            # ------------------------------
+            for name in layer_names_for_stats:
+
+                # Act: (N, C, H, W) - consider as iid along N, H & W
+                N, C, H, W = activations[name].size()
+                iids = activations[name].permute(1, 0, 2, 3).flatten(1)
+
+                N1 = iid_samples_seen[name]
+                N2 = iids.size(1)
+
+                batch_mean = torch.mean(iids, dim=1)
+                batch_sqr_mean = torch.mean(iids**2, dim=1)
+
+                mu[name] = (
+                    N1 / (N1 + N2) * mu[name] +
+                    N2 / (N1 + N2) * batch_mean
+                )
+                var[name] = (
+                    N1 / (N1 + N2) * var[name] +
+                    N2 / (N1 + N2) * batch_sqr_mean
+                )
+
+                iid_samples_seen[name] += N2
+
+
+                batch_mean_list.append(mu[name])
+                batch_var_list.append(var[name])
+
+                #gauss_param[name] = torch.stack([mu[name], var[name]], dim=1)
+
+         #num_experts = count_num_experts(layer_names_for_stats, activations)
+    
+        elif model_type == 'UNWT':   
+
+
+            outputs, batch_mean, batch_sqr_mean, batch_var, batch_sqr_var = net(norm_output)
+
+            batch_mean_list.append(batch_mean)
+            batch_var_list.append(batch_var)
+
+            out = torch.argmax(torch.softmax(outputs, dim=1), dim=1).squeeze(0)
+            out = out.cpu().detach().numpy()
+            i=0
+            for s in slices:
+                prediction[s] = out[i]
+                i =i+1
+
+
+              
+    case_mean = sum(batch_mean_list)/len(batch_mean_list)
+    case_var = sum(batch_var_list)/len(batch_var_list)
+
+    gauss_param[case] = torch.stack([case_mean, case_var], dim=1)
+            
+            
+    save_pdfs(gauss_param, case, model_type) 
+       
     
 
     # ============================
@@ -202,8 +235,8 @@ def load_pdfs(cache_name):
         pdfs = cache['pdfs']
         num_experts = cache['num_experts']
 
-def save_pdfs(gauss_param, case):
-    cache_name = f'/scratch_net/biwidl217_second/arismu/Data_MT/data_FoE/SD_data_{case}.pkl'
+def save_pdfs(gauss_param, case, model_type):
+    cache_name = f'/scratch_net/biwidl217_second/arismu/Data_MT/data_FoE/{model_type}/SD_data_{case}_{model_type}.pkl'
     with open(cache_name, 'wb') as f:
         pickle.dump(gauss_param, f)
 

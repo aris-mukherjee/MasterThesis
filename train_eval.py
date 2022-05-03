@@ -12,6 +12,7 @@ from tqdm import tqdm
 from gauss_params_train_eval import test_single_volume_FETS_train_eval
 from utils import test_single_volume, test_single_volume_FETS
 from networks.vit_seg_modeling import VisionTransformer as ViT_seg
+from networks.TTA_vit_seg_modeling import VisionTransformer as TTA_ViT_seg
 from networks.vit_seg_modeling import CONFIGS as CONFIGS_ViT_seg
 import config.system_paths as sys_config
 import utils_data
@@ -26,7 +27,7 @@ from tensorboardX import SummaryWriter
 import SimpleITK as sitk
 
 
-seed = 1234
+seed = 77777
 model_type = 'UNET'
 data_aug = '0.25'
 use_tta = True
@@ -107,11 +108,11 @@ def inference(args, model, test_save_path=None):
     
     imtr_part2 = np.array(imtr_part2)
 
-    utils.save_nii(img_path = '/scratch_net/biwidl217_second/arismu/Data_MT/' + 'PART3_SUBJECT_30.nii.gz', data = imtr_part3[:, :, 17360:17980], affine = np.eye(4))
-    utils.save_nii(img_path = '/scratch_net/biwidl217_second/arismu/Data_MT/' + 'PART3_LABEL_30.nii.gz', data = gttr_part3[:, :, 17360:17980], affine = np.eye(4))
+    #utils.save_nii(img_path = '/scratch_net/biwidl217_second/arismu/Data_MT/' + 'PART3_SUBJECT_30.nii.gz', data = imtr_part3[:, :, 17360:17980], affine = np.eye(4))
+    #utils.save_nii(img_path = '/scratch_net/biwidl217_second/arismu/Data_MT/' + 'PART3_LABEL_30.nii.gz', data = gttr_part3[:, :, 17360:17980], affine = np.eye(4))
 
-    utils.save_nii(img_path = '/scratch_net/biwidl217_second/arismu/Data_MT/' + 'PART2_SUBJECT_30.nii.gz', data = imtr_part2[:, :, 17360:17980], affine = np.eye(4))
-    utils.save_nii(img_path = '/scratch_net/biwidl217_second/arismu/Data_MT/' + 'PART2_LABEL_30.nii.gz', data = gttr_part2[:, :, 17360:17980], affine = np.eye(4))
+    #utils.save_nii(img_path = '/scratch_net/biwidl217_second/arismu/Data_MT/' + 'PART2_SUBJECT_30.nii.gz', data = imtr_part2[:, :, 17360:17980], affine = np.eye(4))
+    #utils.save_nii(img_path = '/scratch_net/biwidl217_second/arismu/Data_MT/' + 'PART2_LABEL_30.nii.gz', data = gttr_part2[:, :, 17360:17980], affine = np.eye(4))
 
 
 
@@ -367,8 +368,15 @@ if __name__ == "__main__":
     config_vit.patches.size = (args.vit_patches_size, args.vit_patches_size)
     if args.vit_name.find('R50') !=-1:
         config_vit.patches.grid = (int(args.img_size/args.vit_patches_size), int(args.img_size/args.vit_patches_size))
-    #net = ViT_seg(config_vit, img_size=args.img_size, num_classes=config_vit.n_classes).cuda()
-    net = UNET(in_channels = 4, out_channels = 4, features = [32, 64, 128, 256]).cuda()
+    
+
+    if model_type == 'UNET':
+        net = UNET(in_channels = 4, out_channels = 4, features = [32, 64, 128, 256]).cuda()
+
+    if model_type == 'UNWT':
+        net = TTA_ViT_seg(config_vit, img_size=args.img_size, num_classes=config_vit.n_classes).cuda()
+
+
 
     snapshot = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_best_val_loss_seed{seed}_da{data_aug}_TTA.pth')
     #if not os.path.exists(snapshot): snapshot = snapshot.replace('best_model', 'no_data_aug_' + 'epoch_' + str(args.max_epochs-1))

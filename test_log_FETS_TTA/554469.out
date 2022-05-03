@@ -1,0 +1,44 @@
+/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/TTA/TTA/utils.py:965: SyntaxWarning: "is" with a literal. Did you mean "=="?
+  if mask_type is 'squares_jigsaw':
+/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/TTA/TTA/utils.py:972: SyntaxWarning: "is" with a literal. Did you mean "=="?
+  elif mask_type is 'squares_zeros':
+2022-04-12 11:35:45,423 Namespace(volume_path='/itet-stor/arismu/bmicdatasets-originals/Originals/Challenge_Datasets/FeTS/', test_dataset='FETS_TEST_SD', num_classes=4, max_iterations=6800, max_epochs=400, batch_size=16, img_size=240, is_savenii=True, n_skip=3, vit_name='R50-ViT-B_16', test_save_dir='../predictions', deterministic=1, base_lr=0.001, seed=1234, vit_patches_size=16, target_resolution=0.625, image_depth_tr=32, image_depth_ts=32, test_cv_fold_num=1, NORMALIZE=1, Dataset='FETS_TEST_SD', z_spacing=1, is_pretrain=True, exp='TU_FETS_TEST_SD240')
+Namespace(volume_path='/itet-stor/arismu/bmicdatasets-originals/Originals/Challenge_Datasets/FeTS/', test_dataset='FETS_TEST_SD', num_classes=4, max_iterations=6800, max_epochs=400, batch_size=16, img_size=240, is_savenii=True, n_skip=3, vit_name='R50-ViT-B_16', test_save_dir='../predictions', deterministic=1, base_lr=0.001, seed=1234, vit_patches_size=16, target_resolution=0.625, image_depth_tr=32, image_depth_ts=32, test_cv_fold_num=1, NORMALIZE=1, Dataset='FETS_TEST_SD', z_spacing=1, is_pretrain=True, exp='TU_FETS_TEST_SD240')
+2022-04-12 11:35:45,424 TU_pretrain_R50-ViT-B_16_skip3_bs16_240
+TU_pretrain_R50-ViT-B_16_skip3_bs16_240
+2022-04-12 11:35:45,456 Already preprocessed this configuration. Loading now...
+Already preprocessed this configuration. Loading now...
+2022-04-12 11:37:00,749 ============================================================
+============================================================
+2022-04-12 11:37:00,750 Subject 1 out of 20: FeTS21_Training_031
+Subject 1 out of 20: FeTS21_Training_031
+Traceback (most recent call last):
+  File "/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/TTA/TTA/test_FETS_SD.py", line 427, in <module>
+    inference(args, net, test_save_path)
+  File "/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/TTA/TTA/test_FETS_SD.py", line 246, in inference
+    metric_whole, metric_enhancing, metric_core, pred_l, label_l = test_single_volume_FETS(image, label, model, i2n_module_t1, i2n_module_t1ce, i2n_module_t2, i2n_module_flair, use_tta, tta_epochs, writer, layer_names_for_stats, tta_type, classes=args.num_classes, dataset = 'FETS_SD', optim = 'ADAM', model_type = f'{model_type}', seed = '{seed}', patch_size=[args.img_size, args.img_size],
+  File "/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/TTA/TTA/utils.py", line 1459, in test_single_volume_FETS
+    outputs, batch_mean, batch_sqr_mean, batch_var, batch_sqr_var = net(norm_output)
+  File "/scratch_net/biwidl217_second/arismu/conda_envs/pytorch_env/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1051, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/TTA/TTA/networks/TTA_vit_seg_modeling.py", line 392, in forward
+    x, attn_weights, features = self.transformer(x)  # (B, n_patch, hidden)
+  File "/scratch_net/biwidl217_second/arismu/conda_envs/pytorch_env/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1051, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/TTA/TTA/networks/TTA_vit_seg_modeling.py", line 258, in forward
+    encoded, attn_weights = self.encoder(embedding_output)  # (B, n_patch, hidden)
+  File "/scratch_net/biwidl217_second/arismu/conda_envs/pytorch_env/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1051, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/TTA/TTA/networks/TTA_vit_seg_modeling.py", line 242, in forward
+    hidden_states, weights = layer_block(hidden_states)
+  File "/scratch_net/biwidl217_second/arismu/conda_envs/pytorch_env/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1051, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/TTA/TTA/networks/TTA_vit_seg_modeling.py", line 187, in forward
+    x = self.ffn(x)
+  File "/scratch_net/biwidl217_second/arismu/conda_envs/pytorch_env/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1051, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/TTA/TTA/networks/TTA_vit_seg_modeling.py", line 116, in forward
+    x = self.act_fn(x)
+  File "/scratch_net/biwidl217_second/arismu/conda_envs/pytorch_env/lib/python3.9/site-packages/torch/nn/functional.py", line 1555, in gelu
+    return torch._C._nn.gelu(input)
+RuntimeError: CUDA out of memory. Tried to allocate 14.00 MiB (GPU 0; 11.93 GiB total capacity; 11.23 GiB already allocated; 13.50 MiB free; 11.28 GiB reserved in total by PyTorch)

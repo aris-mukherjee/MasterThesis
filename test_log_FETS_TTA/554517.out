@@ -1,0 +1,186 @@
+/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/TTA/TTA/utils.py:965: SyntaxWarning: "is" with a literal. Did you mean "=="?
+  if mask_type is 'squares_jigsaw':
+/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/TTA/TTA/utils.py:972: SyntaxWarning: "is" with a literal. Did you mean "=="?
+  elif mask_type is 'squares_zeros':
+2022-04-12 13:03:45,136 Namespace(volume_path='/itet-stor/arismu/bmicdatasets-originals/Originals/Challenge_Datasets/FeTS/', test_dataset='FETS_TEST_SD', num_classes=4, max_iterations=6800, max_epochs=400, batch_size=16, img_size=240, is_savenii=True, n_skip=3, vit_name='R50-ViT-B_16', test_save_dir='../predictions', deterministic=1, base_lr=0.001, seed=1234, vit_patches_size=16, target_resolution=0.625, image_depth_tr=32, image_depth_ts=32, test_cv_fold_num=1, NORMALIZE=1, Dataset='FETS_TEST_SD', z_spacing=1, is_pretrain=True, exp='TU_FETS_TEST_SD240')
+Namespace(volume_path='/itet-stor/arismu/bmicdatasets-originals/Originals/Challenge_Datasets/FeTS/', test_dataset='FETS_TEST_SD', num_classes=4, max_iterations=6800, max_epochs=400, batch_size=16, img_size=240, is_savenii=True, n_skip=3, vit_name='R50-ViT-B_16', test_save_dir='../predictions', deterministic=1, base_lr=0.001, seed=1234, vit_patches_size=16, target_resolution=0.625, image_depth_tr=32, image_depth_ts=32, test_cv_fold_num=1, NORMALIZE=1, Dataset='FETS_TEST_SD', z_spacing=1, is_pretrain=True, exp='TU_FETS_TEST_SD240')
+2022-04-12 13:03:45,137 TU_pretrain_R50-ViT-B_16_skip3_bs16_240
+TU_pretrain_R50-ViT-B_16_skip3_bs16_240
+2022-04-12 13:03:45,258 Already preprocessed this configuration. Loading now...
+Already preprocessed this configuration. Loading now...
+2022-04-12 13:04:53,496 ============================================================
+============================================================
+2022-04-12 13:04:53,496 Subject 1 out of 20: FeTS21_Training_031
+Subject 1 out of 20: FeTS21_Training_031
+2022-04-12 13:05:08,293 TTA FoE loss: 0.5070389217800564
+Predsum: 85002
+GtSum: 87609
+Predsum: 27460
+GtSum: 28727
+Predsum: 18283
+GtSum: 22108
+TTA FoE loss: 0.5070389217800564
+2022-04-12 13:05:21,973 TTA FoE loss: 0.4741665547688802
+Predsum: 86270
+GtSum: 22108
+Predsum: 29366
+GtSum: 22108
+Predsum: 20410
+GtSum: 22108
+TTA FoE loss: 0.4741665547688802
+2022-04-12 13:05:35,559 TTA FoE loss: 0.46156755998399523
+Predsum: 86183
+GtSum: 22108
+Predsum: 30465
+GtSum: 22108
+Predsum: 21266
+GtSum: 22108
+TTA FoE loss: 0.46156755998399523
+2022-04-12 13:05:49,172 TTA FoE loss: 0.43442106035020617
+Predsum: 85945
+GtSum: 22108
+Predsum: 31421
+GtSum: 22108
+Predsum: 21774
+GtSum: 22108
+TTA FoE loss: 0.43442106035020617
+2022-04-12 13:06:02,771 TTA FoE loss: 0.40895548078748917
+Predsum: 85579
+GtSum: 22108
+Predsum: 32480
+GtSum: 22108
+Predsum: 22157
+GtSum: 22108
+TTA FoE loss: 0.40895548078748917
+2022-04-12 13:06:16,366 TTA FoE loss: 0.4123479741414388
+Predsum: 85349
+GtSum: 22108
+Predsum: 32641
+GtSum: 22108
+Predsum: 21974
+GtSum: 22108
+TTA FoE loss: 0.4123479741414388
+2022-04-12 13:06:29,959 TTA FoE loss: 0.3654978086683485
+Predsum: 85162
+GtSum: 22108
+Predsum: 32313
+GtSum: 22108
+Predsum: 21566
+GtSum: 22108
+TTA FoE loss: 0.3654978086683485
+2022-04-12 13:06:43,497 TTA FoE loss: 0.29207546912299265
+Predsum: 84692
+GtSum: 22108
+Predsum: 31849
+GtSum: 22108
+Predsum: 21057
+GtSum: 22108
+TTA FoE loss: 0.29207546912299265
+2022-04-12 13:06:57,068 TTA FoE loss: 0.2836190380520291
+Predsum: 83731
+GtSum: 22108
+Predsum: 31491
+GtSum: 22108
+Predsum: 20563
+GtSum: 22108
+TTA FoE loss: 0.2836190380520291
+2022-04-12 13:07:10,655 TTA FoE loss: 0.29225072394477
+Predsum: 82297
+GtSum: 22108
+Predsum: 31155
+GtSum: 22108
+Predsum: 20014
+GtSum: 22108
+TTA FoE loss: 0.29225072394477
+2022-04-12 13:07:10,655 TTA loop done for subject 0
+TTA loop done for subject 0
+2022-04-12 13:07:25,832 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 80549
+GtSum: 87609
+TUMOR CORE (LABELS 1 and 4
+Predsum: 30674
+GtSum: 28727
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 19451
+GtSum: 22108
+WHOLE TUMOR:
+2022-04-12 13:07:25,833 case 0 mean_dice 0.890734 mean_hd95 5.099020
+case 0 mean_dice 0.890734 mean_hd95 5.099020
+2022-04-12 13:07:25,833 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-12 13:07:25,833 case 0 mean_dice 0.842465 mean_hd95 1.732051
+case 0 mean_dice 0.842465 mean_hd95 1.732051
+2022-04-12 13:07:25,833 TUMOR CORE:
+TUMOR CORE:
+2022-04-12 13:07:25,833 case 0 mean_dice 0.863858 mean_hd95 4.123106
+case 0 mean_dice 0.863858 mean_hd95 4.123106
+2022-04-12 13:07:25,933 ============================================================
+============================================================
+2022-04-12 13:07:25,933 Subject 2 out of 20: FeTS21_Training_002
+Subject 2 out of 20: FeTS21_Training_002
+2022-04-12 13:07:39,446 TTA FoE loss: 1.0682805557250976
+Predsum: 65548
+GtSum: 67008
+Predsum: 18879
+GtSum: 15709
+Predsum: 7447
+GtSum: 6549
+TTA FoE loss: 1.0682805557250976
+2022-04-12 13:07:52,791 TTA FoE loss: 1.0274212858412002
+Predsum: 70229
+GtSum: 6549
+Predsum: 19993
+GtSum: 6549
+Predsum: 7825
+GtSum: 6549
+TTA FoE loss: 1.0274212858412002
+2022-04-12 13:08:06,152 TTA FoE loss: 1.024542104932997
+Predsum: 70963
+GtSum: 6549
+Predsum: 20482
+GtSum: 6549
+Predsum: 8010
+GtSum: 6549
+TTA FoE loss: 1.024542104932997
+2022-04-12 13:08:19,524 TTA FoE loss: 0.9718336859809028
+Predsum: 70436
+GtSum: 6549
+Predsum: 21450
+GtSum: 6549
+Predsum: 8217
+GtSum: 6549
+TTA FoE loss: 0.9718336859809028
+2022-04-12 13:08:32,892 TTA FoE loss: 1.014886923895942
+Predsum: 68282
+GtSum: 6549
+Predsum: 23781
+GtSum: 6549
+Predsum: 8485
+GtSum: 6549
+TTA FoE loss: 1.014886923895942
+2022-04-12 13:08:46,355 TTA FoE loss: 0.9298612331814237
+Predsum: 67185
+GtSum: 6549
+Predsum: 24125
+GtSum: 6549
+Predsum: 8436
+GtSum: 6549
+TTA FoE loss: 0.9298612331814237
+2022-04-12 13:08:59,693 TTA FoE loss: 0.8474541897243923
+Predsum: 67385
+GtSum: 6549
+Predsum: 23887
+GtSum: 6549
+Predsum: 8374
+GtSum: 6549
+TTA FoE loss: 0.8474541897243923
+2022-04-12 13:09:13,076 TTA FoE loss: 0.7122721438937717
+Predsum: 68171
+GtSum: 6549
+Predsum: 24117
+GtSum: 6549
+Predsum: 8419
+GtSum: 6549
+TTA FoE loss: 0.7122721438937717
+slurmstepd: error: *** JOB 554517 ON biwirender10 CANCELLED AT 2022-04-12T13:09:23 ***

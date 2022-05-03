@@ -1,0 +1,37 @@
+2022-04-08 00:51:20,807 ============================================================
+2022-04-08 00:51:20,832 Loading data...
+2022-04-08 00:51:20,884 Already preprocessed Training Data Part 1. Loading now...
+2022-04-08 00:51:21,320 Already preprocessed Training Data Part2. Loading now...
+2022-04-08 00:51:21,809 Already preprocessed Training Data Part3. Loading now...
+2022-04-08 00:51:22,247 Already preprocessed this configuration. Loading now...
+2022-04-08 00:57:53,018 Training Images: torch.Size([240, 240, 54560])
+2022-04-08 00:57:53,019 Training Labels: torch.Size([240, 240, 54560])
+2022-04-08 00:57:53,019 Validation Images: torch.Size([240, 240, 12400])
+2022-04-08 00:57:53,019 Validation Labels: torch.Size([240, 240, 12400])
+2022-04-08 00:57:53,019 ============================================================
+2022-04-08 00:57:53,047 17 iterations per epoch. 119351 max iterations 
+  0%|                                         | 0/140 [00:00<?, ?it/s]EPOCH: 0
+MAX T1 diff: 2.3703765869140625
+MIN T1 diff: -44.318931579589844
+MAX T1CE diff: 3.96343994140625
+MIN T1CE diff: -44.09139633178711
+MAX T2 diff: 2.9130096435546875
+MIN T2 diff: -44.25049591064453
+MAX FLAIR diff: 3.49017333984375
+MIN FLAIR diff: -44.16912078857422
+> /scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/TTA/TTA/trainer_FETS.py(395)trainer_fets()
+-> norm_output_t1 = i2n_module_t1(image_batch[:, 0, :, :].unsqueeze(1))
+(Pdb) 
+  0%|                                         | 0/140 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/TTA/TTA/train_FETS.py", line 111, in <module>
+    trainer[dataset_name](args, net)
+  File "/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/TTA/TTA/trainer_FETS.py", line 395, in trainer_fets
+    norm_output_t1 = i2n_module_t1(image_batch[:, 0, :, :].unsqueeze(1))
+  File "/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/TTA/TTA/trainer_FETS.py", line 395, in trainer_fets
+    norm_output_t1 = i2n_module_t1(image_batch[:, 0, :, :].unsqueeze(1))
+  File "/scratch_net/biwidl217_second/arismu/conda_envs/pytorch_env/lib/python3.9/bdb.py", line 88, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "/scratch_net/biwidl217_second/arismu/conda_envs/pytorch_env/lib/python3.9/bdb.py", line 113, in dispatch_line
+    if self.quitting: raise BdbQuit
+bdb.BdbQuit

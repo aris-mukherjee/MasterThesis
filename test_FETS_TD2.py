@@ -11,6 +11,7 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 from utils import test_single_volume, test_single_volume_FETS
 from networks.vit_seg_modeling import VisionTransformer as ViT_seg
+from networks.TTA_vit_seg_modeling import VisionTransformer as TTA_ViT_seg
 from networks.vit_seg_modeling import CONFIGS as CONFIGS_ViT_seg
 import config.system_paths as sys_config
 import utils_data
@@ -53,17 +54,22 @@ parser.add_argument('--test_cv_fold_num', type = int, default = 1) # 1 / 2 / 3 /
 parser.add_argument('--NORMALIZE', type = int, default = 1) # 1 / 0
 args = parser.parse_args()
 
-seed = 1234
-model_type = 'UNET'
-data_aug = '0.25'
+seed = 5555
+model_type = 'UNWT'
+data_aug = '0.25_TTA'
 use_tta = True
 tta_epochs = 10
+tta_type = 'Entropy'
+measure_calibration = False
 
 
 def inference(args, model, test_save_path=None):
     
+    # ============================
+    # Tensorboard
+    # ============================ 
 
-    writer = SummaryWriter(f'/scratch_net/biwidl217_second/arismu/Tensorboard/2022/FETS/{model_type}/TTA/TEST/FoE/' + f'TD2_FETS_{model_type}_log_seed{seed}_da{data_aug}')
+    writer = SummaryWriter(f'/scratch_net/biwidl217_second/arismu/Tensorboard/2022/FETS/{model_type}/TTA/TEST/Entropy/' + f'TD2_FETS_{model_type}_log_seed{seed}_da{data_aug}_REPORT')
 
     # ============================
     # Load test data
@@ -76,7 +82,7 @@ def inference(args, model, test_save_path=None):
                                                     args.image_depth_ts)
 
 
-    imts = loaded_test_data[0]   #shape (194, 256, 256)
+    imts = loaded_test_data[0]   
     gtts = loaded_test_data[1]
     orig_data_res_x = loaded_test_data[2]
     orig_data_res_y = loaded_test_data[3]
@@ -90,10 +96,8 @@ def inference(args, model, test_save_path=None):
 
     imts = np.array(imts)
     gtts = np.array(gtts)
-
-    #print(f"Unique1: {np.unique(gtts)}")
     gtts[np.where(gtts == 4)] = 3
-    #print(f"Unique2: {np.unique(gtts)}")
+
 
 
     model.eval()
@@ -184,21 +188,21 @@ def inference(args, model, test_save_path=None):
 
     for sub_num in range(num_test_subjects):
 
+        if use_tta:
+            i2n_module_t1 = Normalisation_Module_t1(in_channels = 1)
+            i2n_module_t1ce = Normalisation_Module_t1ce(in_channels = 1)
+            i2n_module_t2 = Normalisation_Module_t2(in_channels = 1)
+            i2n_module_flair = Normalisation_Module_flair(in_channels = 1)
 
-        i2n_module_t1 = Normalisation_Module_t1(in_channels = 1)
-        i2n_module_t1ce = Normalisation_Module_t1ce(in_channels = 1)
-        i2n_module_t2 = Normalisation_Module_t2(in_channels = 1)
-        i2n_module_flair = Normalisation_Module_flair(in_channels = 1)
+            save_t1_path = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_{seed}_da{data_aug}_NORM_T1' + '.pth')
+            save_t1ce_path = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_{seed}_da{data_aug}_NORM_T1CE' + '.pth')
+            save_t2_path = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_{seed}_da{data_aug}_NORM_T2' + '.pth')
+            save_flair_path = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_{seed}_da{data_aug}_NORM_FLAIR' + '.pth')
 
-        save_t1_path = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_{seed}_da{data_aug}_TTA_NORM_T1' + '.pth')
-        save_t1ce_path = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_{seed}_da{data_aug}_TTA_NORM_T1CE' + '.pth')
-        save_t2_path = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_{seed}_da{data_aug}_TTA_NORM_T2' + '.pth')
-        save_flair_path = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_{seed}_da{data_aug}_TTA_NORM_FLAIR' + '.pth')
-
-        i2n_module_t1.load_state_dict(torch.load(save_t1_path))
-        i2n_module_t1ce.load_state_dict(torch.load(save_t1ce_path))
-        i2n_module_t2.load_state_dict(torch.load(save_t2_path)) 
-        i2n_module_flair.load_state_dict(torch.load(save_flair_path))
+            i2n_module_t1.load_state_dict(torch.load(save_t1_path))
+            i2n_module_t1ce.load_state_dict(torch.load(save_t1ce_path))
+            i2n_module_t2.load_state_dict(torch.load(save_t2_path)) 
+            i2n_module_flair.load_state_dict(torch.load(save_flair_path))
     
 
 
@@ -214,14 +218,6 @@ def inference(args, model, test_save_path=None):
 
         image = torch.stack(image)
         label = torch.stack(label)
-
-        """ subject_id_start_slice = np.sum(orig_data_siz_z[:sub_num])   #194 at the end of the loop
-        subject_id_end_slice = np.sum(orig_data_siz_z[:sub_num+1])   #174 at the end of the loop
-        image = imts[:,:, subject_id_start_slice:subject_id_end_slice] 
-        label = gtts[:,:, subject_id_start_slice:subject_id_end_slice] 
- """
-        #utils.save_nii(img_path = '/scratch_net/biwidl217_second/arismu/Data_MT/' + 'FETS_TEST_TD2_test.nii.gz', data = image, affine = np.eye(4))
-
         image, label = image.cuda(), label.cuda()      
      
        
@@ -234,10 +230,11 @@ def inference(args, model, test_save_path=None):
         logging.info('Subject ' + str(sub_num+1) + ' out of ' + str(num_test_subjects) + ': ' + subject_name)
 
         # ============================
-        # Perform the prediction for each test patient individually & calculate dice score and Hausdorff distance
+        # Perform the prediction for each test patient individually & calculate Dice score 
         # ============================ 
         
-        metric_whole, metric_enhancing, metric_core, pred_l, label_l = test_single_volume_FETS(image, label, model, i2n_module_t1, i2n_module_t1ce, i2n_module_t2, i2n_module_flair, use_tta, tta_epochs, writer, layer_names_for_stats, classes=args.num_classes, dataset = 'FETS_TD2', optim = 'ADAM', model_type = f'{model_type}', seed = '{seed}', patch_size=[args.img_size, args.img_size],
+
+        metric_whole, metric_enhancing, metric_core, pred_l, label_l = test_single_volume_FETS(image, label, model, i2n_module_t1, i2n_module_t1ce, i2n_module_t2, i2n_module_flair, use_tta, tta_epochs, writer, layer_names_for_stats, tta_type, classes=args.num_classes, dataset = 'FETS_TD2', optim = 'ADAM', model_type = f'{model_type}', seed = '{seed}', patch_size=[args.img_size, args.img_size],
                                       test_save_path=test_save_path, case=sub_num, z_spacing=args.z_spacing)
 
 
@@ -254,14 +251,18 @@ def inference(args, model, test_save_path=None):
         metric_list_core += np.mean(metric_core, axis=0)[0]
         logging.info('case %s mean_dice %f mean_hd95 %f' % (sub_num, np.mean(metric_core, axis=0)[0], np.mean(metric_core, axis=0)[1]))
 
-        
-        """ if sub_num < 10:
-            first_bin_frac_pos, second_bin_frac_pos, third_bin_frac_pos, fourth_bin_frac_pos, fifth_bin_frac_pos = find_bin_values_FETS(pred_l, label_l)
-            first_bin.append(first_bin_frac_pos)
-            second_bin.append(second_bin_frac_pos)
-            third_bin.append(third_bin_frac_pos)
-            fourth_bin.append(fourth_bin_frac_pos)
-            fifth_bin.append(fifth_bin_frac_pos) """
+        if measure_calibration:
+            if sub_num < 10:
+                first_bin_frac_pos, second_bin_frac_pos, third_bin_frac_pos, fourth_bin_frac_pos, fifth_bin_frac_pos = find_bin_values_FETS(pred_l, label_l)
+                first_bin.append(first_bin_frac_pos)
+                second_bin.append(second_bin_frac_pos)
+                third_bin.append(third_bin_frac_pos)
+                fourth_bin.append(fourth_bin_frac_pos)
+                fifth_bin.append(fifth_bin_frac_pos)
+
+    # ============================
+    # Log the mean performance achieved for each sub-tumor
+    # ============================ 
 
     logging.info('---------------------------------------------------------------------------------')
     logging.info(f'Mean dice score on WHOLE TUMOR: {metric_list_whole/num_test_subjects}')
@@ -270,50 +271,40 @@ def inference(args, model, test_save_path=None):
     logging.info('---------------------------------------------------------------------------------')
     
 
+    if measure_calibration:
+        avg_first_bin_frac_pos = float(sum(first_bin)/len(first_bin))
+        avg_second_bin_frac_pos = float(sum(second_bin)/len(second_bin))
+        avg_third_bin_frac_pos = float(sum(third_bin)/len(third_bin))
+        avg_fourth_bin_frac_pos = float(sum(fourth_bin)/len(fourth_bin))
+        avg_fifth_bin_frac_pos = float(sum(fifth_bin)/len(fifth_bin))
 
-    """ avg_first_bin_frac_pos = float(sum(first_bin)/len(first_bin))
-    avg_second_bin_frac_pos = float(sum(second_bin)/len(second_bin))
-    avg_third_bin_frac_pos = float(sum(third_bin)/len(third_bin))
-    avg_fourth_bin_frac_pos = float(sum(fourth_bin)/len(fourth_bin))
-    avg_fifth_bin_frac_pos = float(sum(fifth_bin)/len(fifth_bin))
+        print("Fraction of positives:")
+        print(f"First bin: {avg_first_bin_frac_pos}")
+        print(f"Second bin: {avg_second_bin_frac_pos}")
+        print(f"Third bin: {avg_third_bin_frac_pos}")
+        print(f"Fourth bin: {avg_fourth_bin_frac_pos}")
+        print(f"Fifth bin: {avg_fifth_bin_frac_pos}")
 
-    print("Fraction of positives:")
-    print(f"First bin: {avg_first_bin_frac_pos}")
-    print(f"Second bin: {avg_second_bin_frac_pos}")
-    print(f"Third bin: {avg_third_bin_frac_pos}")
-    print(f"Fourth bin: {avg_fourth_bin_frac_pos}")
-    print(f"Fifth bin: {avg_fifth_bin_frac_pos}")
-
-    find_area(avg_first_bin_frac_pos, avg_second_bin_frac_pos, avg_third_bin_frac_pos, avg_fourth_bin_frac_pos, avg_fifth_bin_frac_pos)
+        find_area(avg_first_bin_frac_pos, avg_second_bin_frac_pos, avg_third_bin_frac_pos, avg_fourth_bin_frac_pos, avg_fifth_bin_frac_pos)
 
 
-    y = [avg_first_bin_frac_pos, avg_second_bin_frac_pos, avg_third_bin_frac_pos, avg_fourth_bin_frac_pos, avg_fifth_bin_frac_pos]
-    x = [0, 0.3, 0.5, 0.7, 1]
+        y = [avg_first_bin_frac_pos, avg_second_bin_frac_pos, avg_third_bin_frac_pos, avg_fourth_bin_frac_pos, avg_fifth_bin_frac_pos]
+        x = [0, 0.3, 0.5, 0.7, 1]
+            
+
+        fig, ax = plt.subplots()
+        ref_line_label = "Perfectly calibrated"
+        ax.plot([0, 1], [0, 1], "k:", label=ref_line_label)
+        
+        ax.set(xlabel="Mean predicted probability", ylabel="Fraction of positives")
+
+        ax.plot(x, y, "s-", label = 'Classifier')[0]
+        ax.legend(loc="lower right")
         
 
-    fig, ax = plt.subplots()
-    ref_line_label = "Perfectly calibrated"
-    ax.plot([0, 1], [0, 1], "k:", label=ref_line_label)
-    
-    ax.set(xlabel="Mean predicted probability", ylabel="Fraction of positives")
-
-    ax.plot(x, y, "s-", label = 'Classifier')[0]
-    ax.legend(loc="lower right")
-    
-
-    fig.savefig(f'/scratch_net/biwidl217_second/arismu/Data_MT/plots/FETS_TD2_calibration_{model_type}_da{data_aug}.png') """
-        
-
-
-        # ============================
-        # Log the mean performance achieved for each class
-        # ============================ 
-
+        fig.savefig(f'/scratch_net/biwidl217_second/arismu/Data_MT/plots/FETS_TD2_calibration_{model_type}_da{data_aug}_seed{seed}.png')
 
     return "Testing Finished!"
-
-    
-    
 
 
 if __name__ == "__main__":
@@ -343,71 +334,46 @@ if __name__ == "__main__":
     args.z_spacing = dataset_config[dataset_name]['z_spacing']
     args.is_pretrain = True
 
-    # ============================
-    # Same snapshot path as defined in the train script to access the trained model
-    # ============================  
-
-    args.exp = 'TU_' + dataset_name + str(args.img_size) 
-    snapshot_path = "../model/{}/{}".format(args.exp, 'TU')
-    snapshot_path = snapshot_path + '_pretrain' if args.is_pretrain else snapshot_path
-    snapshot_path += '_' + args.vit_name
-    snapshot_path = snapshot_path + '_skip' + str(args.n_skip)
-    snapshot_path = snapshot_path + '_vitpatch' + str(args.vit_patches_size) if args.vit_patches_size!=16 else snapshot_path
-    snapshot_path = snapshot_path+'_'+str(args.max_iterations)[0:2]+'k' if args.max_iterations != 6800 else snapshot_path
-    snapshot_path = snapshot_path + '_epo' +str(args.max_epochs) if args.max_epochs != 400 else snapshot_path
-    if dataset_name == 'ACDC':  # using max_epoch instead of iteration to control training duration
-        snapshot_path = snapshot_path + '_' + str(args.max_iterations)[0:2] + 'k' if args.max_iterations != 30000 else snapshot_path
-    snapshot_path = snapshot_path+'_bs'+str(args.batch_size)
-    snapshot_path = snapshot_path + '_lr' + str(args.base_lr) if args.base_lr != 1e-3 else snapshot_path
-    snapshot_path = snapshot_path + '_'+str(args.img_size)
-    snapshot_path = snapshot_path + '_s'+str(args.seed) if args.seed!=1234 else snapshot_path
-
     config_vit = CONFIGS_ViT_seg[args.vit_name]
     config_vit.n_classes = args.num_classes
     config_vit.n_skip = args.n_skip
     config_vit.patches.size = (args.vit_patches_size, args.vit_patches_size)
     if args.vit_name.find('R50') !=-1:
         config_vit.patches.grid = (int(args.img_size/args.vit_patches_size), int(args.img_size/args.vit_patches_size))
-    #net = ViT_seg(config_vit, img_size=args.img_size, num_classes=config_vit.n_classes).cuda()
-    net = UNET(in_channels = 4, out_channels = 4, features = [32, 64, 128, 256]).cuda()
 
-    snapshot = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_best_val_loss_seed{seed}_da{data_aug}_TTA.pth')
-    #if not os.path.exists(snapshot): snapshot = snapshot.replace('best_model', 'no_data_aug_' + 'epoch_' + str(args.max_epochs-1))
+    if model_type == 'UNWT':
+        net = ViT_seg(config_vit, img_size=args.img_size, num_classes=config_vit.n_classes).cuda()
+    elif model_type == 'UNET':
+        net = UNET(in_channels = 4, out_channels = 4, features = [32, 64, 128, 256]).cuda()
+    else:
+        print("Model type error")
 
     # ============================
     # Load the trained parameters into the model
-    # ============================  
+    # ============================ 
 
+    snapshot = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_best_val_loss_seed{seed}_da{data_aug}.pth')
     net.load_state_dict(torch.load(snapshot))
 
-
-    #size = sum(p.numel() for p in net.parameters())
-    #print(f'Number of parameters: {size}')
-
-    # ============================
-    # Logging
-    # ============================ 
-
-    snapshot_name = snapshot_path.split('/')[-1]
-    log_folder = './test_log/test_log_' + args.exp
-    os.makedirs(log_folder, exist_ok=True)
-    logging.basicConfig(filename=log_folder + '/'+snapshot_name+".txt", level=logging.INFO, format='[%(asctime)s.%(msecs)03d] %(message)s', datefmt='%H:%M:%S')
-    logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
-    logging.info(str(args))
-    logging.info(snapshot_name)
-
     layer_names_for_stats = []
-    for name, m in net.named_modules():
-        if isinstance(m, torch.nn.modules.conv.Conv2d):
-            layer_names_for_stats.append(name)
+    
+    if use_tta == True and model_type == 'UNET' and tta_type == 'FoE':   
+        for name, m in net.named_modules():
+            if isinstance(m, torch.nn.modules.conv.Conv2d):
+                layer_names_for_stats.append(name)
+
+    elif use_tta == True and model_type == 'UNWT' and tta_type == 'FoE': 
+        for name, m in net.named_modules():
+            if name == 'transformer.encoder.encoder_norm':
+               layer_names_for_stats.append(name)
 
     # ============================
-    # Save the predictions as nii files
+    # Save the predictions
     # ============================ 
-
+    
     if args.is_savenii:
-        args.test_save_dir = f'../predictions_2022/FETS/{model_type}/TTA/FoE/'
-        test_save_path = os.path.join(args.test_save_dir, f'TD2_FETS_{model_type}_test_seed{seed}_da{data_aug}_TTA')
+        args.test_save_dir = f'../predictions_2022/FETS/{model_type}/TTA/Entropy/'
+        test_save_path = os.path.join(args.test_save_dir, f'TD2_FETS_{model_type}_test_seed{seed}_da{data_aug}')
         os.makedirs(test_save_path, exist_ok=True)
     else:
         test_save_path = None

@@ -1,0 +1,3655 @@
+2022-04-10 12:51:27,998 Namespace(volume_path='/itet-stor/arismu/bmicdatasets-originals/Originals/Challenge_Datasets/FeTS/', test_dataset='FETS_TEST_TD1', num_classes=4, max_iterations=6800, max_epochs=400, batch_size=16, img_size=240, is_savenii=True, n_skip=3, vit_name='R50-ViT-B_16', test_save_dir='../predictions', deterministic=1, base_lr=0.001, seed=1234, vit_patches_size=16, target_resolution=0.625, image_depth_tr=32, image_depth_ts=32, test_cv_fold_num=1, NORMALIZE=1, Dataset='FETS_TEST_TD1', z_spacing=1, is_pretrain=True, exp='TU_FETS_TEST_TD1240')
+Namespace(volume_path='/itet-stor/arismu/bmicdatasets-originals/Originals/Challenge_Datasets/FeTS/', test_dataset='FETS_TEST_TD1', num_classes=4, max_iterations=6800, max_epochs=400, batch_size=16, img_size=240, is_savenii=True, n_skip=3, vit_name='R50-ViT-B_16', test_save_dir='../predictions', deterministic=1, base_lr=0.001, seed=1234, vit_patches_size=16, target_resolution=0.625, image_depth_tr=32, image_depth_ts=32, test_cv_fold_num=1, NORMALIZE=1, Dataset='FETS_TEST_TD1', z_spacing=1, is_pretrain=True, exp='TU_FETS_TEST_TD1240')
+2022-04-10 12:51:27,999 TU_pretrain_R50-ViT-B_16_skip3_bs16_240
+TU_pretrain_R50-ViT-B_16_skip3_bs16_240
+2022-04-10 12:51:28,025 Already preprocessed this configuration. Loading now...
+Already preprocessed this configuration. Loading now...
+2022-04-10 12:54:27,631 ============================================================
+============================================================
+2022-04-10 12:54:27,631 Subject 1 out of 34: FeTS21_Training_366
+Subject 1 out of 34: FeTS21_Training_366
+2022-04-10 12:54:46,798 TTA Entropy loss: 0.16991196531719632
+Predsum: 37047
+GtSum: 46230
+Predsum: 17418
+GtSum: 23663
+Predsum: 11573
+GtSum: 19747
+TTA Entropy loss: 0.16991196531719632
+2022-04-10 12:55:06,120 TTA Entropy loss: 0.12140636618932088
+Predsum: 31059
+GtSum: 19747
+Predsum: 2415
+GtSum: 19747
+Predsum: 170
+GtSum: 19747
+TTA Entropy loss: 0.12140636618932088
+2022-04-10 12:55:22,285 TTA Entropy loss: 0.08303124412231976
+Predsum: 27520
+GtSum: 19747
+Predsum: 0
+GtSum: 19747
+Predsum: 0
+GtSum: 19747
+TTA Entropy loss: 0.08303124412231976
+2022-04-10 12:55:38,576 TTA Entropy loss: 0.0703012380666203
+Predsum: 26328
+GtSum: 19747
+Predsum: 0
+GtSum: 19747
+Predsum: 0
+GtSum: 19747
+TTA Entropy loss: 0.0703012380666203
+2022-04-10 12:55:55,124 TTA Entropy loss: 0.06544434962007735
+Predsum: 25811
+GtSum: 19747
+Predsum: 0
+GtSum: 19747
+Predsum: 0
+GtSum: 19747
+TTA Entropy loss: 0.06544434962007735
+2022-04-10 12:56:11,555 TTA Entropy loss: 0.06640699161423577
+Predsum: 25459
+GtSum: 19747
+Predsum: 0
+GtSum: 19747
+Predsum: 0
+GtSum: 19747
+TTA Entropy loss: 0.06640699161423577
+2022-04-10 12:56:28,562 TTA Entropy loss: 0.06790613010194567
+Predsum: 25267
+GtSum: 19747
+Predsum: 0
+GtSum: 19747
+Predsum: 0
+GtSum: 19747
+TTA Entropy loss: 0.06790613010194567
+2022-04-10 12:56:46,212 TTA Entropy loss: 0.06576193435986837
+Predsum: 25219
+GtSum: 19747
+Predsum: 0
+GtSum: 19747
+Predsum: 0
+GtSum: 19747
+TTA Entropy loss: 0.06576193435986837
+2022-04-10 12:57:05,402 TTA Entropy loss: 0.06360793034235636
+Predsum: 25222
+GtSum: 19747
+Predsum: 0
+GtSum: 19747
+Predsum: 0
+GtSum: 19747
+TTA Entropy loss: 0.06360793034235636
+2022-04-10 12:57:25,643 TTA Entropy loss: 0.0624688581360711
+Predsum: 25229
+GtSum: 19747
+Predsum: 0
+GtSum: 19747
+Predsum: 0
+GtSum: 19747
+TTA Entropy loss: 0.0624688581360711
+2022-04-10 12:57:25,644 TTA loop done for subject 0
+TTA loop done for subject 0
+2022-04-10 12:57:40,085 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 25225
+GtSum: 46230
+TUMOR CORE (LABELS 1 and 4
+Predsum: 0
+GtSum: 23663
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 0
+GtSum: 19747
+WHOLE TUMOR:
+2022-04-10 12:57:40,086 case 0 mean_dice 0.705927 mean_hd95 8.648668
+case 0 mean_dice 0.705927 mean_hd95 8.648668
+2022-04-10 12:57:40,086 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-10 12:57:40,086 case 0 mean_dice 0.000000 mean_hd95 0.000000
+case 0 mean_dice 0.000000 mean_hd95 0.000000
+2022-04-10 12:57:40,086 TUMOR CORE:
+TUMOR CORE:
+2022-04-10 12:57:40,086 case 0 mean_dice 0.000000 mean_hd95 0.000000
+case 0 mean_dice 0.000000 mean_hd95 0.000000
+2022-04-10 12:57:40,188 ============================================================
+============================================================
+2022-04-10 12:57:40,188 Subject 2 out of 34: FeTS21_Training_345
+Subject 2 out of 34: FeTS21_Training_345
+2022-04-10 12:58:05,501 TTA Entropy loss: 0.23919063128365411
+Predsum: 62219
+GtSum: 95788
+Predsum: 3445
+GtSum: 6152
+Predsum: 3411
+GtSum: 5942
+TTA Entropy loss: 0.23919063128365411
+2022-04-10 12:58:30,310 TTA Entropy loss: 0.18724336030748157
+Predsum: 50221
+GtSum: 5942
+Predsum: 9
+GtSum: 5942
+Predsum: 9
+GtSum: 5942
+TTA Entropy loss: 0.18724336030748157
+2022-04-10 12:58:52,609 TTA Entropy loss: 0.1590478457344903
+Predsum: 43376
+GtSum: 5942
+Predsum: 0
+GtSum: 5942
+Predsum: 0
+GtSum: 5942
+TTA Entropy loss: 0.1590478457344903
+2022-04-10 12:59:15,917 TTA Entropy loss: 0.14828507222069634
+Predsum: 40631
+GtSum: 5942
+Predsum: 0
+GtSum: 5942
+Predsum: 0
+GtSum: 5942
+TTA Entropy loss: 0.14828507222069634
+2022-04-10 12:59:39,585 TTA Entropy loss: 0.13785350304841995
+Predsum: 37368
+GtSum: 5942
+Predsum: 0
+GtSum: 5942
+Predsum: 0
+GtSum: 5942
+TTA Entropy loss: 0.13785350304841995
+2022-04-10 13:00:03,118 TTA Entropy loss: 0.13436041736602783
+Predsum: 34530
+GtSum: 5942
+Predsum: 0
+GtSum: 5942
+Predsum: 0
+GtSum: 5942
+TTA Entropy loss: 0.13436041736602783
+2022-04-10 13:00:26,953 TTA Entropy loss: 0.12981650715404086
+Predsum: 32609
+GtSum: 5942
+Predsum: 0
+GtSum: 5942
+Predsum: 0
+GtSum: 5942
+TTA Entropy loss: 0.12981650715404086
+2022-04-10 13:00:51,195 TTA Entropy loss: 0.12306447241041396
+Predsum: 31438
+GtSum: 5942
+Predsum: 0
+GtSum: 5942
+Predsum: 0
+GtSum: 5942
+TTA Entropy loss: 0.12306447241041396
+2022-04-10 13:01:15,177 TTA Entropy loss: 0.11867552510897318
+Predsum: 30623
+GtSum: 5942
+Predsum: 0
+GtSum: 5942
+Predsum: 0
+GtSum: 5942
+TTA Entropy loss: 0.11867552510897318
+2022-04-10 13:01:39,388 TTA Entropy loss: 0.11667908361223009
+Predsum: 30235
+GtSum: 5942
+Predsum: 0
+GtSum: 5942
+Predsum: 0
+GtSum: 5942
+TTA Entropy loss: 0.11667908361223009
+2022-04-10 13:01:39,389 TTA loop done for subject 1
+TTA loop done for subject 1
+2022-04-10 13:01:55,475 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 30225
+GtSum: 95788
+TUMOR CORE (LABELS 1 and 4
+Predsum: 0
+GtSum: 6152
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 0
+GtSum: 5942
+WHOLE TUMOR:
+2022-04-10 13:01:55,475 case 1 mean_dice 0.475427 mean_hd95 20.832667
+case 1 mean_dice 0.475427 mean_hd95 20.832667
+2022-04-10 13:01:55,475 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-10 13:01:55,476 case 1 mean_dice 0.000000 mean_hd95 0.000000
+case 1 mean_dice 0.000000 mean_hd95 0.000000
+2022-04-10 13:01:55,476 TUMOR CORE:
+TUMOR CORE:
+2022-04-10 13:01:55,476 case 1 mean_dice 0.000000 mean_hd95 0.000000
+case 1 mean_dice 0.000000 mean_hd95 0.000000
+2022-04-10 13:01:55,582 ============================================================
+============================================================
+2022-04-10 13:01:55,582 Subject 3 out of 34: FeTS21_Training_340
+Subject 3 out of 34: FeTS21_Training_340
+2022-04-10 13:02:23,516 TTA Entropy loss: 1.7584562250773113
+Predsum: 671019
+GtSum: 77740
+Predsum: 47060
+GtSum: 47325
+Predsum: 27218
+GtSum: 30930
+TTA Entropy loss: 1.7584562250773113
+2022-04-10 13:02:50,573 TTA Entropy loss: 1.4646797264946831
+Predsum: 516188
+GtSum: 30930
+Predsum: 30239
+GtSum: 30930
+Predsum: 9062
+GtSum: 30930
+TTA Entropy loss: 1.4646797264946831
+2022-04-10 13:03:17,544 TTA Entropy loss: 1.234831001414193
+Predsum: 360489
+GtSum: 30930
+Predsum: 21391
+GtSum: 30930
+Predsum: 4525
+GtSum: 30930
+TTA Entropy loss: 1.234831001414193
+2022-04-10 13:03:44,849 TTA Entropy loss: 0.7568959569931031
+Predsum: 167559
+GtSum: 30930
+Predsum: 22805
+GtSum: 30930
+Predsum: 5075
+GtSum: 30930
+TTA Entropy loss: 0.7568959569931031
+2022-04-10 13:04:11,782 TTA Entropy loss: 0.4601886413693428
+Predsum: 101929
+GtSum: 30930
+Predsum: 26360
+GtSum: 30930
+Predsum: 6896
+GtSum: 30930
+TTA Entropy loss: 0.4601886413693428
+2022-04-10 13:04:38,950 TTA Entropy loss: 0.34596938771009444
+Predsum: 84525
+GtSum: 30930
+Predsum: 29928
+GtSum: 30930
+Predsum: 9558
+GtSum: 30930
+TTA Entropy loss: 0.34596938771009444
+2022-04-10 13:05:06,093 TTA Entropy loss: 0.3047777445051405
+Predsum: 79340
+GtSum: 30930
+Predsum: 32110
+GtSum: 30930
+Predsum: 12479
+GtSum: 30930
+TTA Entropy loss: 0.3047777445051405
+2022-04-10 13:05:33,153 TTA Entropy loss: 0.2881855612860786
+Predsum: 77510
+GtSum: 30930
+Predsum: 33320
+GtSum: 30930
+Predsum: 14480
+GtSum: 30930
+TTA Entropy loss: 0.2881855612860786
+2022-04-10 13:06:00,256 TTA Entropy loss: 0.2805799949566523
+Predsum: 76549
+GtSum: 30930
+Predsum: 34030
+GtSum: 30930
+Predsum: 15708
+GtSum: 30930
+TTA Entropy loss: 0.2805799949566523
+2022-04-10 13:06:27,173 TTA Entropy loss: 0.2770737829473284
+Predsum: 76076
+GtSum: 30930
+Predsum: 34289
+GtSum: 30930
+Predsum: 16211
+GtSum: 30930
+TTA Entropy loss: 0.2770737829473284
+2022-04-10 13:06:27,174 TTA loop done for subject 2
+TTA loop done for subject 2
+2022-04-10 13:06:46,459 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 76047
+GtSum: 77740
+TUMOR CORE (LABELS 1 and 4
+Predsum: 34305
+GtSum: 47325
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 16232
+GtSum: 30930
+WHOLE TUMOR:
+2022-04-10 13:06:46,460 case 2 mean_dice 0.825844 mean_hd95 23.674879
+case 2 mean_dice 0.825844 mean_hd95 23.674879
+2022-04-10 13:06:46,460 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-10 13:06:46,460 case 2 mean_dice 0.687121 mean_hd95 5.196152
+case 2 mean_dice 0.687121 mean_hd95 5.196152
+2022-04-10 13:06:46,460 TUMOR CORE:
+TUMOR CORE:
+2022-04-10 13:06:46,460 case 2 mean_dice 0.838197 mean_hd95 6.000000
+case 2 mean_dice 0.838197 mean_hd95 6.000000
+2022-04-10 13:06:46,576 ============================================================
+============================================================
+2022-04-10 13:06:46,576 Subject 4 out of 34: FeTS21_Training_363
+Subject 4 out of 34: FeTS21_Training_363
+2022-04-10 13:07:12,831 TTA Entropy loss: 0.24229443359375
+Predsum: 104140
+GtSum: 120394
+Predsum: 62427
+GtSum: 70428
+Predsum: 32013
+GtSum: 46541
+TTA Entropy loss: 0.24229443359375
+2022-04-10 13:07:39,425 TTA Entropy loss: 0.23695440398322212
+Predsum: 105064
+GtSum: 46541
+Predsum: 67792
+GtSum: 46541
+Predsum: 39207
+GtSum: 46541
+TTA Entropy loss: 0.23695440398322212
+2022-04-10 13:08:06,551 TTA Entropy loss: 0.2054031359354655
+Predsum: 100748
+GtSum: 46541
+Predsum: 63884
+GtSum: 46541
+Predsum: 34551
+GtSum: 46541
+TTA Entropy loss: 0.2054031359354655
+2022-04-10 13:08:33,421 TTA Entropy loss: 0.2027570322751999
+Predsum: 96801
+GtSum: 46541
+Predsum: 59799
+GtSum: 46541
+Predsum: 29850
+GtSum: 46541
+TTA Entropy loss: 0.2027570322751999
+2022-04-10 13:09:00,246 TTA Entropy loss: 0.19955090362495848
+Predsum: 94926
+GtSum: 46541
+Predsum: 58789
+GtSum: 46541
+Predsum: 29014
+GtSum: 46541
+TTA Entropy loss: 0.19955090362495848
+2022-04-10 13:09:27,399 TTA Entropy loss: 0.19477669594022962
+Predsum: 94552
+GtSum: 46541
+Predsum: 59857
+GtSum: 46541
+Predsum: 30675
+GtSum: 46541
+TTA Entropy loss: 0.19477669594022962
+2022-04-10 13:09:54,319 TTA Entropy loss: 0.19056935020287832
+Predsum: 94771
+GtSum: 46541
+Predsum: 61364
+GtSum: 46541
+Predsum: 32646
+GtSum: 46541
+TTA Entropy loss: 0.19056935020287832
+2022-04-10 13:10:21,213 TTA Entropy loss: 0.1881580999692281
+Predsum: 95163
+GtSum: 46541
+Predsum: 62592
+GtSum: 46541
+Predsum: 34103
+GtSum: 46541
+TTA Entropy loss: 0.1881580999692281
+2022-04-10 13:10:48,298 TTA Entropy loss: 0.18672825633154974
+Predsum: 95557
+GtSum: 46541
+Predsum: 63420
+GtSum: 46541
+Predsum: 35043
+GtSum: 46541
+TTA Entropy loss: 0.18672825633154974
+2022-04-10 13:11:15,231 TTA Entropy loss: 0.1861702479124069
+Predsum: 95767
+GtSum: 46541
+Predsum: 63789
+GtSum: 46541
+Predsum: 35479
+GtSum: 46541
+TTA Entropy loss: 0.1861702479124069
+2022-04-10 13:11:15,231 TTA loop done for subject 3
+TTA loop done for subject 3
+2022-04-10 13:11:34,192 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 95781
+GtSum: 120394
+TUMOR CORE (LABELS 1 and 4
+Predsum: 63806
+GtSum: 70428
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 35495
+GtSum: 46541
+WHOLE TUMOR:
+2022-04-10 13:11:34,193 case 3 mean_dice 0.884570 mean_hd95 4.358899
+case 3 mean_dice 0.884570 mean_hd95 4.358899
+2022-04-10 13:11:34,193 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-10 13:11:34,193 case 3 mean_dice 0.849432 mean_hd95 2.000000
+case 3 mean_dice 0.849432 mean_hd95 2.000000
+2022-04-10 13:11:34,193 TUMOR CORE:
+TUMOR CORE:
+2022-04-10 13:11:34,193 case 3 mean_dice 0.939911 mean_hd95 2.828427
+case 3 mean_dice 0.939911 mean_hd95 2.828427
+2022-04-10 13:11:34,296 ============================================================
+============================================================
+2022-04-10 13:11:34,296 Subject 5 out of 34: FeTS21_Training_368
+Subject 5 out of 34: FeTS21_Training_368
+2022-04-10 13:12:00,617 TTA Entropy loss: 0.5524070116678874
+Predsum: 107683
+GtSum: 83463
+Predsum: 15905
+GtSum: 17989
+Predsum: 12203
+GtSum: 16658
+TTA Entropy loss: 0.5524070116678874
+2022-04-10 13:12:27,209 TTA Entropy loss: 0.24188452932569715
+Predsum: 49670
+GtSum: 16658
+Predsum: 16381
+GtSum: 16658
+Predsum: 12860
+GtSum: 16658
+TTA Entropy loss: 0.24188452932569715
+2022-04-10 13:12:53,901 TTA Entropy loss: 0.1882948989570141
+Predsum: 35246
+GtSum: 16658
+Predsum: 14661
+GtSum: 16658
+Predsum: 11441
+GtSum: 16658
+TTA Entropy loss: 0.1882948989570141
+2022-04-10 13:13:20,646 TTA Entropy loss: 0.17316833391454484
+Predsum: 27802
+GtSum: 16658
+Predsum: 12036
+GtSum: 16658
+Predsum: 9516
+GtSum: 16658
+TTA Entropy loss: 0.17316833391454484
+2022-04-10 13:13:47,297 TTA Entropy loss: 0.16003599435753293
+Predsum: 23043
+GtSum: 16658
+Predsum: 9347
+GtSum: 16658
+Predsum: 7436
+GtSum: 16658
+TTA Entropy loss: 0.16003599435753293
+2022-04-10 13:14:13,757 TTA Entropy loss: 0.1496244854264789
+Predsum: 19191
+GtSum: 16658
+Predsum: 6738
+GtSum: 16658
+Predsum: 5461
+GtSum: 16658
+TTA Entropy loss: 0.1496244854264789
+2022-04-10 13:14:40,458 TTA Entropy loss: 0.1395687760313352
+Predsum: 16371
+GtSum: 16658
+Predsum: 4760
+GtSum: 16658
+Predsum: 3817
+GtSum: 16658
+TTA Entropy loss: 0.1395687760313352
+2022-04-10 13:15:07,376 TTA Entropy loss: 0.12953163765536413
+Predsum: 13992
+GtSum: 16658
+Predsum: 3192
+GtSum: 16658
+Predsum: 2495
+GtSum: 16658
+TTA Entropy loss: 0.12953163765536413
+2022-04-10 13:15:33,837 TTA Entropy loss: 0.1221023939980401
+Predsum: 12355
+GtSum: 16658
+Predsum: 2142
+GtSum: 16658
+Predsum: 1617
+GtSum: 16658
+TTA Entropy loss: 0.1221023939980401
+2022-04-10 13:16:00,296 TTA Entropy loss: 0.11778032868438297
+Predsum: 11548
+GtSum: 16658
+Predsum: 1633
+GtSum: 16658
+Predsum: 1212
+GtSum: 16658
+TTA Entropy loss: 0.11778032868438297
+2022-04-10 13:16:00,297 TTA loop done for subject 4
+TTA loop done for subject 4
+2022-04-10 13:16:19,012 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 11521
+GtSum: 83463
+TUMOR CORE (LABELS 1 and 4
+Predsum: 1611
+GtSum: 17989
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 1195
+GtSum: 16658
+WHOLE TUMOR:
+2022-04-10 13:16:19,013 case 4 mean_dice 0.242588 mean_hd95 12.884099
+case 4 mean_dice 0.242588 mean_hd95 12.884099
+2022-04-10 13:16:19,013 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-10 13:16:19,013 case 4 mean_dice 0.133647 mean_hd95 17.549929
+case 4 mean_dice 0.133647 mean_hd95 17.549929
+2022-04-10 13:16:19,013 TUMOR CORE:
+TUMOR CORE:
+2022-04-10 13:16:19,013 case 4 mean_dice 0.164184 mean_hd95 18.449927
+case 4 mean_dice 0.164184 mean_hd95 18.449927
+2022-04-10 13:16:19,118 ============================================================
+============================================================
+2022-04-10 13:16:19,118 Subject 6 out of 34: FeTS21_Training_341
+Subject 6 out of 34: FeTS21_Training_341
+2022-04-10 13:16:44,990 TTA Entropy loss: 0.2336463139851888
+Predsum: 13549
+GtSum: 12470
+Predsum: 5846
+GtSum: 7624
+Predsum: 5188
+GtSum: 7220
+TTA Entropy loss: 0.2336463139851888
+2022-04-10 13:17:08,223 TTA Entropy loss: 0.10686916542053222
+Predsum: 1732
+GtSum: 7220
+Predsum: 0
+GtSum: 7220
+Predsum: 0
+GtSum: 7220
+TTA Entropy loss: 0.10686916542053222
+2022-04-10 13:17:32,334 TTA Entropy loss: 0.052962867617607115
+Predsum: 491
+GtSum: 7220
+Predsum: 0
+GtSum: 7220
+Predsum: 0
+GtSum: 7220
+TTA Entropy loss: 0.052962867617607115
+2022-04-10 13:17:56,201 TTA Entropy loss: 0.03645563962724474
+Predsum: 141
+GtSum: 7220
+Predsum: 0
+GtSum: 7220
+Predsum: 0
+GtSum: 7220
+TTA Entropy loss: 0.03645563962724474
+2022-04-10 13:18:20,274 TTA Entropy loss: 0.0317070852915446
+Predsum: 14
+GtSum: 7220
+Predsum: 0
+GtSum: 7220
+Predsum: 0
+GtSum: 7220
+TTA Entropy loss: 0.0317070852915446
+2022-04-10 13:18:42,817 TTA Entropy loss: 0.03176972807778253
+Predsum: 0
+GtSum: 7220
+Predsum: 0
+GtSum: 7220
+Predsum: 0
+GtSum: 7220
+TTA Entropy loss: 0.03176972807778253
+2022-04-10 13:19:05,960 TTA Entropy loss: 0.032301829550001354
+Predsum: 0
+GtSum: 7220
+Predsum: 0
+GtSum: 7220
+Predsum: 0
+GtSum: 7220
+TTA Entropy loss: 0.032301829550001354
+2022-04-10 13:19:28,812 TTA Entropy loss: 0.029300379700130885
+Predsum: 0
+GtSum: 7220
+Predsum: 0
+GtSum: 7220
+Predsum: 0
+GtSum: 7220
+TTA Entropy loss: 0.029300379700130885
+2022-04-10 13:19:51,661 TTA Entropy loss: 0.026672539234161376
+Predsum: 0
+GtSum: 7220
+Predsum: 0
+GtSum: 7220
+Predsum: 0
+GtSum: 7220
+TTA Entropy loss: 0.026672539234161376
+2022-04-10 13:20:14,668 TTA Entropy loss: 0.02529877381854587
+Predsum: 0
+GtSum: 7220
+Predsum: 0
+GtSum: 7220
+Predsum: 0
+GtSum: 7220
+TTA Entropy loss: 0.02529877381854587
+2022-04-10 13:20:14,669 TTA loop done for subject 5
+TTA loop done for subject 5
+2022-04-10 13:20:29,165 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 0
+GtSum: 12470
+TUMOR CORE (LABELS 1 and 4
+Predsum: 0
+GtSum: 7624
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 0
+GtSum: 7220
+WHOLE TUMOR:
+2022-04-10 13:20:29,165 case 5 mean_dice 0.000000 mean_hd95 0.000000
+case 5 mean_dice 0.000000 mean_hd95 0.000000
+2022-04-10 13:20:29,165 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-10 13:20:29,165 case 5 mean_dice 0.000000 mean_hd95 0.000000
+case 5 mean_dice 0.000000 mean_hd95 0.000000
+2022-04-10 13:20:29,165 TUMOR CORE:
+TUMOR CORE:
+2022-04-10 13:20:29,165 case 5 mean_dice 0.000000 mean_hd95 0.000000
+case 5 mean_dice 0.000000 mean_hd95 0.000000
+2022-04-10 13:20:29,272 ============================================================
+============================================================
+2022-04-10 13:20:29,272 Subject 7 out of 34: FeTS21_Training_349
+Subject 7 out of 34: FeTS21_Training_349
+2022-04-10 13:20:57,208 TTA Entropy loss: 0.5823595445421007
+Predsum: 210004
+GtSum: 173793
+Predsum: 92515
+GtSum: 107080
+Predsum: 38257
+GtSum: 58809
+TTA Entropy loss: 0.5823595445421007
+2022-04-10 13:21:24,288 TTA Entropy loss: 0.48285554268625047
+Predsum: 177189
+GtSum: 58809
+Predsum: 54276
+GtSum: 58809
+Predsum: 10048
+GtSum: 58809
+TTA Entropy loss: 0.48285554268625047
+2022-04-10 13:21:51,123 TTA Entropy loss: 0.4185429080327352
+Predsum: 150221
+GtSum: 58809
+Predsum: 14633
+GtSum: 58809
+Predsum: 1568
+GtSum: 58809
+TTA Entropy loss: 0.4185429080327352
+2022-04-10 13:22:17,675 TTA Entropy loss: 0.34625228389104207
+Predsum: 130239
+GtSum: 58809
+Predsum: 1282
+GtSum: 58809
+Predsum: 13
+GtSum: 58809
+TTA Entropy loss: 0.34625228389104207
+2022-04-10 13:22:42,735 TTA Entropy loss: 0.3131526303026411
+Predsum: 120424
+GtSum: 58809
+Predsum: 176
+GtSum: 58809
+Predsum: 0
+GtSum: 58809
+TTA Entropy loss: 0.3131526303026411
+2022-04-10 13:23:09,987 TTA Entropy loss: 0.3056479637093014
+Predsum: 115258
+GtSum: 58809
+Predsum: 119
+GtSum: 58809
+Predsum: 20
+GtSum: 58809
+TTA Entropy loss: 0.3056479637093014
+2022-04-10 13:23:36,629 TTA Entropy loss: 0.3105220065116882
+Predsum: 111867
+GtSum: 58809
+Predsum: 177
+GtSum: 58809
+Predsum: 84
+GtSum: 58809
+TTA Entropy loss: 0.3105220065116882
+2022-04-10 13:24:03,190 TTA Entropy loss: 0.3134361774656508
+Predsum: 109844
+GtSum: 58809
+Predsum: 231
+GtSum: 58809
+Predsum: 133
+GtSum: 58809
+TTA Entropy loss: 0.3134361774656508
+2022-04-10 13:24:29,900 TTA Entropy loss: 0.3108216191397773
+Predsum: 108816
+GtSum: 58809
+Predsum: 241
+GtSum: 58809
+Predsum: 141
+GtSum: 58809
+TTA Entropy loss: 0.3108216191397773
+2022-04-10 13:24:56,653 TTA Entropy loss: 0.3074244641727871
+Predsum: 108532
+GtSum: 58809
+Predsum: 224
+GtSum: 58809
+Predsum: 130
+GtSum: 58809
+TTA Entropy loss: 0.3074244641727871
+2022-04-10 13:24:56,653 TTA loop done for subject 6
+TTA loop done for subject 6
+2022-04-10 13:25:15,564 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 108535
+GtSum: 173793
+TUMOR CORE (LABELS 1 and 4
+Predsum: 224
+GtSum: 107080
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 130
+GtSum: 58809
+WHOLE TUMOR:
+2022-04-10 13:25:15,564 case 6 mean_dice 0.761986 mean_hd95 10.049876
+case 6 mean_dice 0.761986 mean_hd95 10.049876
+2022-04-10 13:25:15,564 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-10 13:25:15,564 case 6 mean_dice 0.000000 mean_hd95 49.889879
+case 6 mean_dice 0.000000 mean_hd95 49.889879
+2022-04-10 13:25:15,564 TUMOR CORE:
+TUMOR CORE:
+2022-04-10 13:25:15,564 case 6 mean_dice 0.004175 mean_hd95 39.849716
+case 6 mean_dice 0.004175 mean_hd95 39.849716
+2022-04-10 13:25:15,666 ============================================================
+============================================================
+2022-04-10 13:25:15,666 Subject 8 out of 34: FeTS21_Training_351
+Subject 8 out of 34: FeTS21_Training_351
+2022-04-10 13:25:41,870 TTA Entropy loss: 0.16497006420294444
+Predsum: 83316
+GtSum: 98996
+Predsum: 18565
+GtSum: 19414
+Predsum: 15325
+GtSum: 16124
+TTA Entropy loss: 0.16497006420294444
+2022-04-10 13:26:08,794 TTA Entropy loss: 0.1560557896428638
+Predsum: 78383
+GtSum: 16124
+Predsum: 19650
+GtSum: 16124
+Predsum: 16552
+GtSum: 16124
+TTA Entropy loss: 0.1560557896428638
+2022-04-10 13:26:35,446 TTA Entropy loss: 0.15023980214860705
+Predsum: 75823
+GtSum: 16124
+Predsum: 19663
+GtSum: 16124
+Predsum: 16562
+GtSum: 16124
+TTA Entropy loss: 0.15023980214860705
+2022-04-10 13:27:02,124 TTA Entropy loss: 0.1458545561366611
+Predsum: 73681
+GtSum: 16124
+Predsum: 19445
+GtSum: 16124
+Predsum: 16308
+GtSum: 16124
+TTA Entropy loss: 0.1458545561366611
+2022-04-10 13:27:29,218 TTA Entropy loss: 0.14453272208240298
+Predsum: 71757
+GtSum: 16124
+Predsum: 19256
+GtSum: 16124
+Predsum: 16086
+GtSum: 16124
+TTA Entropy loss: 0.14453272208240298
+2022-04-10 13:27:56,033 TTA Entropy loss: 0.14386064333385892
+Predsum: 70601
+GtSum: 16124
+Predsum: 19247
+GtSum: 16124
+Predsum: 16085
+GtSum: 16124
+TTA Entropy loss: 0.14386064333385892
+2022-04-10 13:28:22,820 TTA Entropy loss: 0.1429154636396302
+Predsum: 70069
+GtSum: 16124
+Predsum: 19317
+GtSum: 16124
+Predsum: 16174
+GtSum: 16124
+TTA Entropy loss: 0.1429154636396302
+2022-04-10 13:28:49,779 TTA Entropy loss: 0.14181905422939195
+Predsum: 69854
+GtSum: 16124
+Predsum: 19429
+GtSum: 16124
+Predsum: 16312
+GtSum: 16124
+TTA Entropy loss: 0.14181905422939195
+2022-04-10 13:29:17,175 TTA Entropy loss: 0.14061537523070972
+Predsum: 69703
+GtSum: 16124
+Predsum: 19495
+GtSum: 16124
+Predsum: 16405
+GtSum: 16124
+TTA Entropy loss: 0.14061537523070972
+2022-04-10 13:29:43,816 TTA Entropy loss: 0.1401213245458073
+Predsum: 69840
+GtSum: 16124
+Predsum: 19517
+GtSum: 16124
+Predsum: 16435
+GtSum: 16124
+TTA Entropy loss: 0.1401213245458073
+2022-04-10 13:29:43,817 TTA loop done for subject 7
+TTA loop done for subject 7
+2022-04-10 13:30:02,783 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 69853
+GtSum: 98996
+TUMOR CORE (LABELS 1 and 4
+Predsum: 19519
+GtSum: 19414
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 16438
+GtSum: 16124
+WHOLE TUMOR:
+2022-04-10 13:30:02,783 case 7 mean_dice 0.819655 mean_hd95 5.385165
+case 7 mean_dice 0.819655 mean_hd95 5.385165
+2022-04-10 13:30:02,783 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-10 13:30:02,783 case 7 mean_dice 0.931270 mean_hd95 1.000000
+case 7 mean_dice 0.931270 mean_hd95 1.000000
+2022-04-10 13:30:02,784 TUMOR CORE:
+TUMOR CORE:
+2022-04-10 13:30:02,784 case 7 mean_dice 0.951275 mean_hd95 1.414214
+case 7 mean_dice 0.951275 mean_hd95 1.414214
+2022-04-10 13:30:02,892 ============================================================
+============================================================
+2022-04-10 13:30:02,893 Subject 9 out of 34: FeTS21_Training_354
+Subject 9 out of 34: FeTS21_Training_354
+2022-04-10 13:30:29,528 TTA Entropy loss: 0.7590504286024305
+Predsum: 287472
+GtSum: 170299
+Predsum: 89002
+GtSum: 98081
+Predsum: 39408
+GtSum: 60230
+TTA Entropy loss: 0.7590504286024305
+2022-04-10 13:30:56,630 TTA Entropy loss: 0.3757833633422852
+Predsum: 169822
+GtSum: 60230
+Predsum: 88704
+GtSum: 60230
+Predsum: 43970
+GtSum: 60230
+TTA Entropy loss: 0.3757833633422852
+2022-04-10 13:31:23,982 TTA Entropy loss: 0.3217682103845808
+Predsum: 147054
+GtSum: 60230
+Predsum: 84892
+GtSum: 60230
+Predsum: 45181
+GtSum: 60230
+TTA Entropy loss: 0.3217682103845808
+2022-04-10 13:31:51,034 TTA Entropy loss: 0.33175191831588746
+Predsum: 139389
+GtSum: 60230
+Predsum: 82641
+GtSum: 60230
+Predsum: 45994
+GtSum: 60230
+TTA Entropy loss: 0.33175191831588746
+2022-04-10 13:32:18,093 TTA Entropy loss: 0.34788840447531805
+Predsum: 134266
+GtSum: 60230
+Predsum: 79996
+GtSum: 60230
+Predsum: 45859
+GtSum: 60230
+TTA Entropy loss: 0.34788840447531805
+2022-04-10 13:32:45,522 TTA Entropy loss: 0.357614598095417
+Predsum: 130882
+GtSum: 60230
+Predsum: 77628
+GtSum: 60230
+Predsum: 45256
+GtSum: 60230
+TTA Entropy loss: 0.357614598095417
+2022-04-10 13:33:12,365 TTA Entropy loss: 0.3585465409987503
+Predsum: 128968
+GtSum: 60230
+Predsum: 75984
+GtSum: 60230
+Predsum: 44579
+GtSum: 60230
+TTA Entropy loss: 0.3585465409987503
+2022-04-10 13:33:39,467 TTA Entropy loss: 0.35417240162690483
+Predsum: 127846
+GtSum: 60230
+Predsum: 74841
+GtSum: 60230
+Predsum: 43840
+GtSum: 60230
+TTA Entropy loss: 0.35417240162690483
+2022-04-10 13:34:06,744 TTA Entropy loss: 0.34880206329954994
+Predsum: 127259
+GtSum: 60230
+Predsum: 74091
+GtSum: 60230
+Predsum: 43213
+GtSum: 60230
+TTA Entropy loss: 0.34880206329954994
+2022-04-10 13:34:33,778 TTA Entropy loss: 0.345070004483064
+Predsum: 127078
+GtSum: 60230
+Predsum: 73742
+GtSum: 60230
+Predsum: 42843
+GtSum: 60230
+TTA Entropy loss: 0.345070004483064
+2022-04-10 13:34:33,779 TTA loop done for subject 8
+TTA loop done for subject 8
+2022-04-10 13:34:52,828 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 127079
+GtSum: 170299
+TUMOR CORE (LABELS 1 and 4
+Predsum: 73726
+GtSum: 98081
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 42823
+GtSum: 60230
+WHOLE TUMOR:
+2022-04-10 13:34:52,828 case 8 mean_dice 0.839242 mean_hd95 8.124038
+case 8 mean_dice 0.839242 mean_hd95 8.124038
+2022-04-10 13:34:52,828 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-10 13:34:52,829 case 8 mean_dice 0.780530 mean_hd95 5.830952
+case 8 mean_dice 0.780530 mean_hd95 5.830952
+2022-04-10 13:34:52,829 TUMOR CORE:
+TUMOR CORE:
+2022-04-10 13:34:52,829 case 8 mean_dice 0.833261 mean_hd95 10.295630
+case 8 mean_dice 0.833261 mean_hd95 10.295630
+2022-04-10 13:34:52,936 ============================================================
+============================================================
+2022-04-10 13:34:52,936 Subject 10 out of 34: FeTS21_Training_352
+Subject 10 out of 34: FeTS21_Training_352
+2022-04-10 13:35:19,211 TTA Entropy loss: 0.5205732905069987
+Predsum: 72683
+GtSum: 51790
+Predsum: 4730
+GtSum: 9475
+Predsum: 4103
+GtSum: 9110
+TTA Entropy loss: 0.5205732905069987
+2022-04-10 13:35:45,661 TTA Entropy loss: 0.30633423614501953
+Predsum: 47726
+GtSum: 9110
+Predsum: 6869
+GtSum: 9110
+Predsum: 6359
+GtSum: 9110
+TTA Entropy loss: 0.30633423614501953
+2022-04-10 13:36:12,387 TTA Entropy loss: 0.26231622547573513
+Predsum: 39369
+GtSum: 9110
+Predsum: 5871
+GtSum: 9110
+Predsum: 5468
+GtSum: 9110
+TTA Entropy loss: 0.26231622547573513
+2022-04-10 13:36:39,274 TTA Entropy loss: 0.23657434124416776
+Predsum: 35716
+GtSum: 9110
+Predsum: 4459
+GtSum: 9110
+Predsum: 4213
+GtSum: 9110
+TTA Entropy loss: 0.23657434124416776
+2022-04-10 13:37:06,133 TTA Entropy loss: 0.2066163981490665
+Predsum: 32935
+GtSum: 9110
+Predsum: 3318
+GtSum: 9110
+Predsum: 3148
+GtSum: 9110
+TTA Entropy loss: 0.2066163981490665
+2022-04-10 13:37:32,709 TTA Entropy loss: 0.17611112774742974
+Predsum: 29721
+GtSum: 9110
+Predsum: 2184
+GtSum: 9110
+Predsum: 2114
+GtSum: 9110
+TTA Entropy loss: 0.17611112774742974
+2022-04-10 13:37:59,494 TTA Entropy loss: 0.15341211122936674
+Predsum: 26731
+GtSum: 9110
+Predsum: 1153
+GtSum: 9110
+Predsum: 1135
+GtSum: 9110
+TTA Entropy loss: 0.15341211122936674
+2022-04-10 13:38:26,379 TTA Entropy loss: 0.13827210611767238
+Predsum: 24678
+GtSum: 9110
+Predsum: 651
+GtSum: 9110
+Predsum: 647
+GtSum: 9110
+TTA Entropy loss: 0.13827210611767238
+2022-04-10 13:38:52,973 TTA Entropy loss: 0.12921310432751973
+Predsum: 23358
+GtSum: 9110
+Predsum: 420
+GtSum: 9110
+Predsum: 419
+GtSum: 9110
+TTA Entropy loss: 0.12921310432751973
+2022-04-10 13:39:19,582 TTA Entropy loss: 0.12485677279366388
+Predsum: 22701
+GtSum: 9110
+Predsum: 319
+GtSum: 9110
+Predsum: 317
+GtSum: 9110
+TTA Entropy loss: 0.12485677279366388
+2022-04-10 13:39:19,582 TTA loop done for subject 9
+TTA loop done for subject 9
+2022-04-10 13:39:38,594 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 22674
+GtSum: 51790
+TUMOR CORE (LABELS 1 and 4
+Predsum: 317
+GtSum: 9475
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 315
+GtSum: 9110
+WHOLE TUMOR:
+2022-04-10 13:39:38,595 case 9 mean_dice 0.589197 mean_hd95 12.688578
+case 9 mean_dice 0.589197 mean_hd95 12.688578
+2022-04-10 13:39:38,595 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-10 13:39:38,595 case 9 mean_dice 0.066844 mean_hd95 20.223748
+case 9 mean_dice 0.066844 mean_hd95 20.223748
+2022-04-10 13:39:38,595 TUMOR CORE:
+TUMOR CORE:
+2022-04-10 13:39:38,595 case 9 mean_dice 0.064747 mean_hd95 20.493902
+case 9 mean_dice 0.064747 mean_hd95 20.493902
+2022-04-10 13:39:38,699 ============================================================
+============================================================
+2022-04-10 13:39:38,699 Subject 11 out of 34: FeTS21_Training_343
+Subject 11 out of 34: FeTS21_Training_343
+2022-04-10 13:40:05,607 TTA Entropy loss: 1.5844575788709852
+Predsum: 621033
+GtSum: 157400
+Predsum: 57680
+GtSum: 61196
+Predsum: 29058
+GtSum: 33164
+TTA Entropy loss: 1.5844575788709852
+2022-04-10 13:40:32,540 TTA Entropy loss: 0.7045128962198893
+Predsum: 208596
+GtSum: 33164
+Predsum: 61243
+GtSum: 33164
+Predsum: 33969
+GtSum: 33164
+TTA Entropy loss: 0.7045128962198893
+2022-04-10 13:41:00,049 TTA Entropy loss: 0.4622384524875217
+Predsum: 159058
+GtSum: 33164
+Predsum: 64551
+GtSum: 33164
+Predsum: 38068
+GtSum: 33164
+TTA Entropy loss: 0.4622384524875217
+2022-04-10 13:41:27,077 TTA Entropy loss: 0.45514700486924914
+Predsum: 150144
+GtSum: 33164
+Predsum: 64803
+GtSum: 33164
+Predsum: 38894
+GtSum: 33164
+TTA Entropy loss: 0.45514700486924914
+2022-04-10 13:41:54,195 TTA Entropy loss: 0.45247031892670525
+Predsum: 144703
+GtSum: 33164
+Predsum: 63719
+GtSum: 33164
+Predsum: 38124
+GtSum: 33164
+TTA Entropy loss: 0.45247031892670525
+2022-04-10 13:42:21,522 TTA Entropy loss: 0.43768296178181965
+Predsum: 141471
+GtSum: 33164
+Predsum: 62385
+GtSum: 33164
+Predsum: 36936
+GtSum: 33164
+TTA Entropy loss: 0.43768296178181965
+2022-04-10 13:42:48,813 TTA Entropy loss: 0.4154615232679579
+Predsum: 139543
+GtSum: 33164
+Predsum: 61180
+GtSum: 33164
+Predsum: 35784
+GtSum: 33164
+TTA Entropy loss: 0.4154615232679579
+2022-04-10 13:43:15,757 TTA Entropy loss: 0.39352657233344185
+Predsum: 138373
+GtSum: 33164
+Predsum: 60219
+GtSum: 33164
+Predsum: 34763
+GtSum: 33164
+TTA Entropy loss: 0.39352657233344185
+2022-04-10 13:43:42,952 TTA Entropy loss: 0.37785502693388195
+Predsum: 137662
+GtSum: 33164
+Predsum: 59560
+GtSum: 33164
+Predsum: 34035
+GtSum: 33164
+TTA Entropy loss: 0.37785502693388195
+2022-04-10 13:44:09,986 TTA Entropy loss: 0.36923687669965954
+Predsum: 137282
+GtSum: 33164
+Predsum: 59193
+GtSum: 33164
+Predsum: 33631
+GtSum: 33164
+TTA Entropy loss: 0.36923687669965954
+2022-04-10 13:44:09,987 TTA loop done for subject 10
+TTA loop done for subject 10
+2022-04-10 13:44:29,284 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 137269
+GtSum: 157400
+TUMOR CORE (LABELS 1 and 4
+Predsum: 59178
+GtSum: 61196
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 33614
+GtSum: 33164
+WHOLE TUMOR:
+2022-04-10 13:44:29,284 case 10 mean_dice 0.882638 mean_hd95 6.756386
+case 10 mean_dice 0.882638 mean_hd95 6.756386
+2022-04-10 13:44:29,284 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-10 13:44:29,284 case 10 mean_dice 0.882177 mean_hd95 2.000000
+case 10 mean_dice 0.882177 mean_hd95 2.000000
+2022-04-10 13:44:29,284 TUMOR CORE:
+TUMOR CORE:
+2022-04-10 13:44:29,284 case 10 mean_dice 0.923339 mean_hd95 5.000000
+case 10 mean_dice 0.923339 mean_hd95 5.000000
+2022-04-10 13:44:29,390 ============================================================
+============================================================
+2022-04-10 13:44:29,390 Subject 12 out of 34: FeTS21_Training_359
+Subject 12 out of 34: FeTS21_Training_359
+2022-04-10 13:44:55,672 TTA Entropy loss: 0.4950609063042535
+Predsum: 126097
+GtSum: 84845
+Predsum: 51041
+GtSum: 51455
+Predsum: 27499
+GtSum: 31534
+TTA Entropy loss: 0.4950609063042535
+2022-04-10 13:45:21,996 TTA Entropy loss: 0.1651166450712416
+Predsum: 77232
+GtSum: 31534
+Predsum: 51322
+GtSum: 31534
+Predsum: 29626
+GtSum: 31534
+TTA Entropy loss: 0.1651166450712416
+2022-04-10 13:45:48,757 TTA Entropy loss: 0.13870534630616507
+Predsum: 70732
+GtSum: 31534
+Predsum: 50088
+GtSum: 31534
+Predsum: 29924
+GtSum: 31534
+TTA Entropy loss: 0.13870534630616507
+2022-04-10 13:46:15,615 TTA Entropy loss: 0.14389147929350535
+Predsum: 67968
+GtSum: 31534
+Predsum: 49142
+GtSum: 31534
+Predsum: 30018
+GtSum: 31534
+TTA Entropy loss: 0.14389147929350535
+2022-04-10 13:46:42,600 TTA Entropy loss: 0.15122716894745827
+Predsum: 64924
+GtSum: 31534
+Predsum: 47408
+GtSum: 31534
+Predsum: 29295
+GtSum: 31534
+TTA Entropy loss: 0.15122716894745827
+2022-04-10 13:47:09,224 TTA Entropy loss: 0.15494597842958238
+Predsum: 62052
+GtSum: 31534
+Predsum: 45521
+GtSum: 31534
+Predsum: 28430
+GtSum: 31534
+TTA Entropy loss: 0.15494597842958238
+2022-04-10 13:47:36,344 TTA Entropy loss: 0.15510331851906248
+Predsum: 59644
+GtSum: 31534
+Predsum: 43801
+GtSum: 31534
+Predsum: 27494
+GtSum: 31534
+TTA Entropy loss: 0.15510331851906248
+2022-04-10 13:48:02,989 TTA Entropy loss: 0.1539264010058509
+Predsum: 57908
+GtSum: 31534
+Predsum: 42502
+GtSum: 31534
+Predsum: 26706
+GtSum: 31534
+TTA Entropy loss: 0.1539264010058509
+2022-04-10 13:48:29,714 TTA Entropy loss: 0.15243418400155173
+Predsum: 56832
+GtSum: 31534
+Predsum: 41672
+GtSum: 31534
+Predsum: 26177
+GtSum: 31534
+TTA Entropy loss: 0.15243418400155173
+2022-04-10 13:48:56,724 TTA Entropy loss: 0.15140068043602836
+Predsum: 56245
+GtSum: 31534
+Predsum: 41197
+GtSum: 31534
+Predsum: 25860
+GtSum: 31534
+TTA Entropy loss: 0.15140068043602836
+2022-04-10 13:48:56,725 TTA loop done for subject 11
+TTA loop done for subject 11
+2022-04-10 13:49:15,594 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 56225
+GtSum: 84845
+TUMOR CORE (LABELS 1 and 4
+Predsum: 41181
+GtSum: 51455
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 25849
+GtSum: 31534
+WHOLE TUMOR:
+2022-04-10 13:49:15,594 case 11 mean_dice 0.784476 mean_hd95 8.000000
+case 11 mean_dice 0.784476 mean_hd95 8.000000
+2022-04-10 13:49:15,594 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-10 13:49:15,595 case 11 mean_dice 0.834045 mean_hd95 4.242641
+case 11 mean_dice 0.834045 mean_hd95 4.242641
+2022-04-10 13:49:15,595 TUMOR CORE:
+TUMOR CORE:
+2022-04-10 13:49:15,595 case 11 mean_dice 0.856924 mean_hd95 7.071068
+case 11 mean_dice 0.856924 mean_hd95 7.071068
+2022-04-10 13:49:15,696 ============================================================
+============================================================
+2022-04-10 13:49:15,696 Subject 13 out of 34: FeTS21_Training_369
+Subject 13 out of 34: FeTS21_Training_369
+2022-04-10 13:49:42,766 TTA Entropy loss: 1.755403120252821
+Predsum: 642516
+GtSum: 224832
+Predsum: 57328
+GtSum: 63310
+Predsum: 36431
+GtSum: 42721
+TTA Entropy loss: 1.755403120252821
+2022-04-10 13:50:10,017 TTA Entropy loss: 0.8941794295840794
+Predsum: 251441
+GtSum: 42721
+Predsum: 61990
+GtSum: 42721
+Predsum: 42260
+GtSum: 42721
+TTA Entropy loss: 0.8941794295840794
+2022-04-10 13:50:37,086 TTA Entropy loss: 0.6276854059431288
+Predsum: 192090
+GtSum: 42721
+Predsum: 63167
+GtSum: 42721
+Predsum: 43562
+GtSum: 42721
+TTA Entropy loss: 0.6276854059431288
+2022-04-10 13:51:04,453 TTA Entropy loss: 0.5777309352027046
+Predsum: 178040
+GtSum: 42721
+Predsum: 63235
+GtSum: 42721
+Predsum: 43420
+GtSum: 42721
+TTA Entropy loss: 0.5777309352027046
+2022-04-10 13:51:31,923 TTA Entropy loss: 0.5455470186008348
+Predsum: 172349
+GtSum: 42721
+Predsum: 61422
+GtSum: 42721
+Predsum: 41922
+GtSum: 42721
+TTA Entropy loss: 0.5455470186008348
+2022-04-10 13:51:59,583 TTA Entropy loss: 0.5172509642706977
+Predsum: 168183
+GtSum: 42721
+Predsum: 58897
+GtSum: 42721
+Predsum: 39798
+GtSum: 42721
+TTA Entropy loss: 0.5172509642706977
+2022-04-10 13:52:27,398 TTA Entropy loss: 0.5021808263990614
+Predsum: 163904
+GtSum: 42721
+Predsum: 55549
+GtSum: 42721
+Predsum: 36960
+GtSum: 42721
+TTA Entropy loss: 0.5021808263990614
+2022-04-10 13:52:55,394 TTA Entropy loss: 0.49680807622273765
+Predsum: 158566
+GtSum: 42721
+Predsum: 50588
+GtSum: 42721
+Predsum: 33151
+GtSum: 42721
+TTA Entropy loss: 0.49680807622273765
+2022-04-10 13:53:23,820 TTA Entropy loss: 0.492975004537238
+Predsum: 153887
+GtSum: 42721
+Predsum: 46204
+GtSum: 42721
+Predsum: 30201
+GtSum: 42721
+TTA Entropy loss: 0.492975004537238
+2022-04-10 13:53:51,780 TTA Entropy loss: 0.4904401308165656
+Predsum: 151726
+GtSum: 42721
+Predsum: 44038
+GtSum: 42721
+Predsum: 28802
+GtSum: 42721
+TTA Entropy loss: 0.4904401308165656
+2022-04-10 13:53:51,780 TTA loop done for subject 12
+TTA loop done for subject 12
+2022-04-10 13:54:11,033 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 151652
+GtSum: 224832
+TUMOR CORE (LABELS 1 and 4
+Predsum: 43962
+GtSum: 63310
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 28754
+GtSum: 42721
+WHOLE TUMOR:
+2022-04-10 13:54:11,033 case 12 mean_dice 0.786100 mean_hd95 11.045361
+case 12 mean_dice 0.786100 mean_hd95 11.045361
+2022-04-10 13:54:11,033 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-10 13:54:11,034 case 12 mean_dice 0.775964 mean_hd95 7.262858
+case 12 mean_dice 0.775964 mean_hd95 7.262858
+2022-04-10 13:54:11,034 TUMOR CORE:
+TUMOR CORE:
+2022-04-10 13:54:11,034 case 12 mean_dice 0.808207 mean_hd95 10.000000
+case 12 mean_dice 0.808207 mean_hd95 10.000000
+2022-04-10 13:54:11,138 ============================================================
+============================================================
+2022-04-10 13:54:11,138 Subject 14 out of 34: FeTS21_Training_339
+Subject 14 out of 34: FeTS21_Training_339
+2022-04-10 13:54:37,748 TTA Entropy loss: 0.6299200630187989
+Predsum: 253883
+GtSum: 147383
+Predsum: 65284
+GtSum: 64008
+Predsum: 33985
+GtSum: 38523
+TTA Entropy loss: 0.6299200630187989
+2022-04-10 13:55:04,978 TTA Entropy loss: 0.27300732405980427
+Predsum: 141340
+GtSum: 38523
+Predsum: 66280
+GtSum: 38523
+Predsum: 36696
+GtSum: 38523
+TTA Entropy loss: 0.27300732405980427
+2022-04-10 13:55:31,774 TTA Entropy loss: 0.240494816010197
+Predsum: 122163
+GtSum: 38523
+Predsum: 66806
+GtSum: 38523
+Predsum: 38248
+GtSum: 38523
+TTA Entropy loss: 0.240494816010197
+2022-04-10 13:55:58,536 TTA Entropy loss: 0.25061894712679916
+Predsum: 115599
+GtSum: 38523
+Predsum: 67302
+GtSum: 38523
+Predsum: 39340
+GtSum: 38523
+TTA Entropy loss: 0.25061894712679916
+2022-04-10 13:56:25,741 TTA Entropy loss: 0.26370112105872895
+Predsum: 111867
+GtSum: 38523
+Predsum: 67627
+GtSum: 38523
+Predsum: 39980
+GtSum: 38523
+TTA Entropy loss: 0.26370112105872895
+2022-04-10 13:56:53,130 TTA Entropy loss: 0.27170911169052125
+Predsum: 109160
+GtSum: 38523
+Predsum: 67627
+GtSum: 38523
+Predsum: 40106
+GtSum: 38523
+TTA Entropy loss: 0.27170911169052125
+2022-04-10 13:57:19,875 TTA Entropy loss: 0.274584184759193
+Predsum: 107368
+GtSum: 38523
+Predsum: 67362
+GtSum: 38523
+Predsum: 39914
+GtSum: 38523
+TTA Entropy loss: 0.274584184759193
+2022-04-10 13:57:47,070 TTA Entropy loss: 0.2742436237500774
+Predsum: 106459
+GtSum: 38523
+Predsum: 67073
+GtSum: 38523
+Predsum: 39703
+GtSum: 38523
+TTA Entropy loss: 0.2742436237500774
+2022-04-10 13:58:14,193 TTA Entropy loss: 0.2728373781235682
+Predsum: 106188
+GtSum: 38523
+Predsum: 66828
+GtSum: 38523
+Predsum: 39488
+GtSum: 38523
+TTA Entropy loss: 0.2728373781235682
+2022-04-10 13:58:41,047 TTA Entropy loss: 0.271418266720242
+Predsum: 106187
+GtSum: 38523
+Predsum: 66666
+GtSum: 38523
+Predsum: 39347
+GtSum: 38523
+TTA Entropy loss: 0.271418266720242
+2022-04-10 13:58:41,048 TTA loop done for subject 13
+TTA loop done for subject 13
+2022-04-10 13:59:00,297 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 106197
+GtSum: 147383
+TUMOR CORE (LABELS 1 and 4
+Predsum: 66661
+GtSum: 64008
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 39342
+GtSum: 38523
+WHOLE TUMOR:
+2022-04-10 13:59:00,297 case 13 mean_dice 0.819584 mean_hd95 8.062258
+case 13 mean_dice 0.819584 mean_hd95 8.062258
+2022-04-10 13:59:00,297 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-10 13:59:00,297 case 13 mean_dice 0.901458 mean_hd95 1.414214
+case 13 mean_dice 0.901458 mean_hd95 1.414214
+2022-04-10 13:59:00,297 TUMOR CORE:
+TUMOR CORE:
+2022-04-10 13:59:00,297 case 13 mean_dice 0.944432 mean_hd95 2.236068
+case 13 mean_dice 0.944432 mean_hd95 2.236068
+2022-04-10 13:59:00,403 ============================================================
+============================================================
+2022-04-10 13:59:00,403 Subject 15 out of 34: FeTS21_Training_347
+Subject 15 out of 34: FeTS21_Training_347
+2022-04-10 13:59:26,785 TTA Entropy loss: 0.38766169187757704
+Predsum: 138272
+GtSum: 111614
+Predsum: 31165
+GtSum: 32541
+Predsum: 23172
+GtSum: 24882
+TTA Entropy loss: 0.38766169187757704
+2022-04-10 13:59:53,551 TTA Entropy loss: 0.21497078386942545
+Predsum: 110363
+GtSum: 24882
+Predsum: 33335
+GtSum: 24882
+Predsum: 26142
+GtSum: 24882
+TTA Entropy loss: 0.21497078386942545
+2022-04-10 14:00:20,397 TTA Entropy loss: 0.19792891816298167
+Predsum: 100795
+GtSum: 24882
+Predsum: 32954
+GtSum: 24882
+Predsum: 26118
+GtSum: 24882
+TTA Entropy loss: 0.19792891816298167
+2022-04-10 14:00:47,420 TTA Entropy loss: 0.19785092633300358
+Predsum: 96816
+GtSum: 24882
+Predsum: 32245
+GtSum: 24882
+Predsum: 25526
+GtSum: 24882
+TTA Entropy loss: 0.19785092633300358
+2022-04-10 14:01:13,906 TTA Entropy loss: 0.19307689419057633
+Predsum: 95040
+GtSum: 24882
+Predsum: 31284
+GtSum: 24882
+Predsum: 24641
+GtSum: 24882
+TTA Entropy loss: 0.19307689419057633
+2022-04-10 14:01:40,535 TTA Entropy loss: 0.18509400835302142
+Predsum: 94559
+GtSum: 24882
+Predsum: 30405
+GtSum: 24882
+Predsum: 23791
+GtSum: 24882
+TTA Entropy loss: 0.18509400835302142
+2022-04-10 14:02:07,532 TTA Entropy loss: 0.17828396272659303
+Predsum: 94621
+GtSum: 24882
+Predsum: 29703
+GtSum: 24882
+Predsum: 23057
+GtSum: 24882
+TTA Entropy loss: 0.17828396272659303
+2022-04-10 14:02:34,138 TTA Entropy loss: 0.1731879565053516
+Predsum: 94330
+GtSum: 24882
+Predsum: 29065
+GtSum: 24882
+Predsum: 22399
+GtSum: 24882
+TTA Entropy loss: 0.1731879565053516
+2022-04-10 14:03:00,868 TTA Entropy loss: 0.17004950749874115
+Predsum: 94033
+GtSum: 24882
+Predsum: 28521
+GtSum: 24882
+Predsum: 21853
+GtSum: 24882
+TTA Entropy loss: 0.17004950749874115
+2022-04-10 14:03:27,661 TTA Entropy loss: 0.16851271259784698
+Predsum: 93790
+GtSum: 24882
+Predsum: 28209
+GtSum: 24882
+Predsum: 21532
+GtSum: 24882
+TTA Entropy loss: 0.16851271259784698
+2022-04-10 14:03:27,661 TTA loop done for subject 14
+TTA loop done for subject 14
+2022-04-10 14:03:46,547 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 93782
+GtSum: 111614
+TUMOR CORE (LABELS 1 and 4
+Predsum: 28198
+GtSum: 32541
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 21520
+GtSum: 24882
+WHOLE TUMOR:
+2022-04-10 14:03:46,547 case 14 mean_dice 0.900251 mean_hd95 4.898979
+case 14 mean_dice 0.900251 mean_hd95 4.898979
+2022-04-10 14:03:46,547 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-10 14:03:46,548 case 14 mean_dice 0.862377 mean_hd95 2.449490
+case 14 mean_dice 0.862377 mean_hd95 2.449490
+2022-04-10 14:03:46,548 TUMOR CORE:
+TUMOR CORE:
+2022-04-10 14:03:46,548 case 14 mean_dice 0.894022 mean_hd95 4.123106
+case 14 mean_dice 0.894022 mean_hd95 4.123106
+2022-04-10 14:03:46,656 ============================================================
+============================================================
+2022-04-10 14:03:46,656 Subject 16 out of 34: FeTS21_Training_346
+Subject 16 out of 34: FeTS21_Training_346
+2022-04-10 14:04:12,982 TTA Entropy loss: 0.14523763095008002
+Predsum: 74078
+GtSum: 78584
+Predsum: 64907
+GtSum: 67871
+Predsum: 22964
+GtSum: 28376
+TTA Entropy loss: 0.14523763095008002
+2022-04-10 14:04:39,888 TTA Entropy loss: 0.10977503998412026
+Predsum: 70228
+GtSum: 28376
+Predsum: 65477
+GtSum: 28376
+Predsum: 24109
+GtSum: 28376
+TTA Entropy loss: 0.10977503998412026
+2022-04-10 14:05:06,699 TTA Entropy loss: 0.10645087606377072
+Predsum: 68588
+GtSum: 28376
+Predsum: 64882
+GtSum: 28376
+Predsum: 23771
+GtSum: 28376
+TTA Entropy loss: 0.10645087606377072
+2022-04-10 14:05:33,793 TTA Entropy loss: 0.10531552967098023
+Predsum: 66300
+GtSum: 28376
+Predsum: 63102
+GtSum: 28376
+Predsum: 22153
+GtSum: 28376
+TTA Entropy loss: 0.10531552967098023
+2022-04-10 14:06:00,870 TTA Entropy loss: 0.10419025935067071
+Predsum: 63624
+GtSum: 28376
+Predsum: 60898
+GtSum: 28376
+Predsum: 20096
+GtSum: 28376
+TTA Entropy loss: 0.10419025935067071
+2022-04-10 14:06:27,740 TTA Entropy loss: 0.10355458352466425
+Predsum: 61379
+GtSum: 28376
+Predsum: 58945
+GtSum: 28376
+Predsum: 18303
+GtSum: 28376
+TTA Entropy loss: 0.10355458352466425
+2022-04-10 14:06:54,634 TTA Entropy loss: 0.10297558103667365
+Predsum: 59784
+GtSum: 28376
+Predsum: 57575
+GtSum: 28376
+Predsum: 17049
+GtSum: 28376
+TTA Entropy loss: 0.10297558103667365
+2022-04-10 14:07:21,696 TTA Entropy loss: 0.1022970750199424
+Predsum: 58761
+GtSum: 28376
+Predsum: 56766
+GtSum: 28376
+Predsum: 16263
+GtSum: 28376
+TTA Entropy loss: 0.1022970750199424
+2022-04-10 14:07:48,697 TTA Entropy loss: 0.10177691069245338
+Predsum: 58256
+GtSum: 28376
+Predsum: 56402
+GtSum: 28376
+Predsum: 15868
+GtSum: 28376
+TTA Entropy loss: 0.10177691069245338
+2022-04-10 14:08:15,365 TTA Entropy loss: 0.10147395961152182
+Predsum: 58046
+GtSum: 28376
+Predsum: 56271
+GtSum: 28376
+Predsum: 15731
+GtSum: 28376
+TTA Entropy loss: 0.10147395961152182
+2022-04-10 14:08:15,365 TTA loop done for subject 15
+TTA loop done for subject 15
+2022-04-10 14:08:34,297 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 58040
+GtSum: 78584
+TUMOR CORE (LABELS 1 and 4
+Predsum: 56267
+GtSum: 67871
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 15726
+GtSum: 28376
+WHOLE TUMOR:
+2022-04-10 14:08:34,297 case 15 mean_dice 0.844991 mean_hd95 6.403124
+case 15 mean_dice 0.844991 mean_hd95 6.403124
+2022-04-10 14:08:34,297 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-10 14:08:34,298 case 15 mean_dice 0.694345 mean_hd95 5.830952
+case 15 mean_dice 0.694345 mean_hd95 5.830952
+2022-04-10 14:08:34,298 TUMOR CORE:
+TUMOR CORE:
+2022-04-10 14:08:34,298 case 15 mean_dice 0.900321 mean_hd95 4.123106
+case 15 mean_dice 0.900321 mean_hd95 4.123106
+2022-04-10 14:08:34,404 ============================================================
+============================================================
+2022-04-10 14:08:34,404 Subject 17 out of 34: FeTS21_Training_360
+Subject 17 out of 34: FeTS21_Training_360
+2022-04-10 14:09:00,702 TTA Entropy loss: 0.9191352121035258
+Predsum: 225638
+GtSum: 98512
+Predsum: 55257
+GtSum: 56523
+Predsum: 36523
+GtSum: 43764
+TTA Entropy loss: 0.9191352121035258
+2022-04-10 14:09:27,820 TTA Entropy loss: 0.6936345265706381
+Predsum: 178248
+GtSum: 43764
+Predsum: 34828
+GtSum: 43764
+Predsum: 8448
+GtSum: 43764
+TTA Entropy loss: 0.6936345265706381
+2022-04-10 14:09:54,271 TTA Entropy loss: 0.37295268201828
+Predsum: 85476
+GtSum: 43764
+Predsum: 40033
+GtSum: 43764
+Predsum: 14323
+GtSum: 43764
+TTA Entropy loss: 0.37295268201828
+2022-04-10 14:10:21,050 TTA Entropy loss: 0.24435052475002078
+Predsum: 69192
+GtSum: 43764
+Predsum: 46931
+GtSum: 43764
+Predsum: 27602
+GtSum: 43764
+TTA Entropy loss: 0.24435052475002078
+2022-04-10 14:10:47,785 TTA Entropy loss: 0.221515852915744
+Predsum: 70239
+GtSum: 43764
+Predsum: 52061
+GtSum: 43764
+Predsum: 35098
+GtSum: 43764
+TTA Entropy loss: 0.221515852915744
+2022-04-10 14:11:14,512 TTA Entropy loss: 0.22384247494571738
+Predsum: 71521
+GtSum: 43764
+Predsum: 54886
+GtSum: 43764
+Predsum: 38594
+GtSum: 43764
+TTA Entropy loss: 0.22384247494571738
+2022-04-10 14:11:41,206 TTA Entropy loss: 0.23638146045472888
+Predsum: 72081
+GtSum: 43764
+Predsum: 56005
+GtSum: 43764
+Predsum: 39975
+GtSum: 43764
+TTA Entropy loss: 0.23638146045472888
+2022-04-10 14:12:08,059 TTA Entropy loss: 0.24216904822819763
+Predsum: 72007
+GtSum: 43764
+Predsum: 56125
+GtSum: 43764
+Predsum: 40202
+GtSum: 43764
+TTA Entropy loss: 0.24216904822819763
+2022-04-10 14:12:34,679 TTA Entropy loss: 0.2409023982087771
+Predsum: 71630
+GtSum: 43764
+Predsum: 55867
+GtSum: 43764
+Predsum: 39932
+GtSum: 43764
+TTA Entropy loss: 0.2409023982087771
+2022-04-10 14:13:01,464 TTA Entropy loss: 0.2381502691904704
+Predsum: 71258
+GtSum: 43764
+Predsum: 55545
+GtSum: 43764
+Predsum: 39586
+GtSum: 43764
+TTA Entropy loss: 0.2381502691904704
+2022-04-10 14:13:01,464 TTA loop done for subject 16
+TTA loop done for subject 16
+2022-04-10 14:13:20,240 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 71240
+GtSum: 98512
+TUMOR CORE (LABELS 1 and 4
+Predsum: 55530
+GtSum: 56523
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 39568
+GtSum: 43764
+WHOLE TUMOR:
+2022-04-10 14:13:20,240 case 16 mean_dice 0.824674 mean_hd95 13.000000
+case 16 mean_dice 0.824674 mean_hd95 13.000000
+2022-04-10 14:13:20,240 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-10 14:13:20,240 case 16 mean_dice 0.911943 mean_hd95 1.414214
+case 16 mean_dice 0.911943 mean_hd95 1.414214
+2022-04-10 14:13:20,240 TUMOR CORE:
+TUMOR CORE:
+2022-04-10 14:13:20,240 case 16 mean_dice 0.961723 mean_hd95 2.000000
+case 16 mean_dice 0.961723 mean_hd95 2.000000
+2022-04-10 14:13:20,347 ============================================================
+============================================================
+2022-04-10 14:13:20,347 Subject 18 out of 34: FeTS21_Training_357
+Subject 18 out of 34: FeTS21_Training_357
+2022-04-10 14:13:46,191 TTA Entropy loss: 0.5449537677764893
+Predsum: 116245
+GtSum: 59365
+Predsum: 21474
+GtSum: 24765
+Predsum: 10503
+GtSum: 14708
+TTA Entropy loss: 0.5449537677764893
+2022-04-10 14:14:13,041 TTA Entropy loss: 0.33676062454117667
+Predsum: 67757
+GtSum: 14708
+Predsum: 33116
+GtSum: 14708
+Predsum: 17235
+GtSum: 14708
+TTA Entropy loss: 0.33676062454117667
+2022-04-10 14:14:39,311 TTA Entropy loss: 0.20041730256875356
+Predsum: 41035
+GtSum: 14708
+Predsum: 17425
+GtSum: 14708
+Predsum: 9271
+GtSum: 14708
+TTA Entropy loss: 0.20041730256875356
+2022-04-10 14:15:05,796 TTA Entropy loss: 0.1500363870544566
+Predsum: 25478
+GtSum: 14708
+Predsum: 8852
+GtSum: 14708
+Predsum: 4037
+GtSum: 14708
+TTA Entropy loss: 0.1500363870544566
+2022-04-10 14:15:32,324 TTA Entropy loss: 0.12031420734855863
+Predsum: 18084
+GtSum: 14708
+Predsum: 5116
+GtSum: 14708
+Predsum: 1367
+GtSum: 14708
+TTA Entropy loss: 0.12031420734855863
+2022-04-10 14:15:58,759 TTA Entropy loss: 0.10109619125806624
+Predsum: 13600
+GtSum: 14708
+Predsum: 2714
+GtSum: 14708
+Predsum: 220
+GtSum: 14708
+TTA Entropy loss: 0.10109619125806624
+2022-04-10 14:16:25,193 TTA Entropy loss: 0.08858435135086377
+Predsum: 10614
+GtSum: 14708
+Predsum: 1434
+GtSum: 14708
+Predsum: 66
+GtSum: 14708
+TTA Entropy loss: 0.08858435135086377
+2022-04-10 14:16:51,489 TTA Entropy loss: 0.08002111212329732
+Predsum: 8549
+GtSum: 14708
+Predsum: 809
+GtSum: 14708
+Predsum: 28
+GtSum: 14708
+TTA Entropy loss: 0.08002111212329732
+2022-04-10 14:17:18,243 TTA Entropy loss: 0.07431006080077754
+Predsum: 7341
+GtSum: 14708
+Predsum: 508
+GtSum: 14708
+Predsum: 15
+GtSum: 14708
+TTA Entropy loss: 0.07431006080077754
+2022-04-10 14:17:44,694 TTA Entropy loss: 0.07170431149171458
+Predsum: 6797
+GtSum: 14708
+Predsum: 404
+GtSum: 14708
+Predsum: 12
+GtSum: 14708
+TTA Entropy loss: 0.07170431149171458
+2022-04-10 14:17:44,694 TTA loop done for subject 17
+TTA loop done for subject 17
+2022-04-10 14:18:03,167 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 6782
+GtSum: 59365
+TUMOR CORE (LABELS 1 and 4
+Predsum: 402
+GtSum: 24765
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 12
+GtSum: 14708
+WHOLE TUMOR:
+2022-04-10 14:18:03,167 case 17 mean_dice 0.204333 mean_hd95 18.027756
+case 17 mean_dice 0.204333 mean_hd95 18.027756
+2022-04-10 14:18:03,167 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-10 14:18:03,167 case 17 mean_dice 0.001630 mean_hd95 34.669872
+case 17 mean_dice 0.001630 mean_hd95 34.669872
+2022-04-10 14:18:03,167 TUMOR CORE:
+TUMOR CORE:
+2022-04-10 14:18:03,167 case 17 mean_dice 0.031947 mean_hd95 34.722470
+case 17 mean_dice 0.031947 mean_hd95 34.722470
+2022-04-10 14:18:03,275 ============================================================
+============================================================
+2022-04-10 14:18:03,276 Subject 19 out of 34: FeTS21_Training_355
+Subject 19 out of 34: FeTS21_Training_355
+2022-04-10 14:18:29,978 TTA Entropy loss: 0.9441161253187391
+Predsum: 350517
+GtSum: 138024
+Predsum: 88014
+GtSum: 92541
+Predsum: 49945
+GtSum: 60306
+TTA Entropy loss: 0.9441161253187391
+2022-04-10 14:18:57,080 TTA Entropy loss: 0.38791295549604626
+Predsum: 156068
+GtSum: 60306
+Predsum: 90735
+GtSum: 60306
+Predsum: 55414
+GtSum: 60306
+TTA Entropy loss: 0.38791295549604626
+2022-04-10 14:19:23,921 TTA Entropy loss: 0.24852655220031739
+Predsum: 137542
+GtSum: 60306
+Predsum: 91081
+GtSum: 60306
+Predsum: 57453
+GtSum: 60306
+TTA Entropy loss: 0.24852655220031739
+2022-04-10 14:19:50,906 TTA Entropy loss: 0.2392535996966892
+Predsum: 132654
+GtSum: 60306
+Predsum: 91675
+GtSum: 60306
+Predsum: 58982
+GtSum: 60306
+TTA Entropy loss: 0.2392535996966892
+2022-04-10 14:20:17,717 TTA Entropy loss: 0.24750322712792291
+Predsum: 130079
+GtSum: 60306
+Predsum: 92015
+GtSum: 60306
+Predsum: 59904
+GtSum: 60306
+TTA Entropy loss: 0.24750322712792291
+2022-04-10 14:20:44,684 TTA Entropy loss: 0.25636940744188097
+Predsum: 128194
+GtSum: 60306
+Predsum: 91973
+GtSum: 60306
+Predsum: 60155
+GtSum: 60306
+TTA Entropy loss: 0.25636940744188097
+2022-04-10 14:21:11,735 TTA Entropy loss: 0.2594043460422092
+Predsum: 126909
+GtSum: 60306
+Predsum: 91679
+GtSum: 60306
+Predsum: 60028
+GtSum: 60306
+TTA Entropy loss: 0.2594043460422092
+2022-04-10 14:21:38,537 TTA Entropy loss: 0.25686661063300237
+Predsum: 125945
+GtSum: 60306
+Predsum: 91264
+GtSum: 60306
+Predsum: 59668
+GtSum: 60306
+TTA Entropy loss: 0.25686661063300237
+2022-04-10 14:22:05,120 TTA Entropy loss: 0.2527802098525895
+Predsum: 125239
+GtSum: 60306
+Predsum: 90875
+GtSum: 60306
+Predsum: 59296
+GtSum: 60306
+TTA Entropy loss: 0.2527802098525895
+2022-04-10 14:22:32,257 TTA Entropy loss: 0.24973250113593207
+Predsum: 124893
+GtSum: 60306
+Predsum: 90625
+GtSum: 60306
+Predsum: 59038
+GtSum: 60306
+TTA Entropy loss: 0.24973250113593207
+2022-04-10 14:22:32,257 TTA loop done for subject 18
+TTA loop done for subject 18
+2022-04-10 14:22:50,997 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 124879
+GtSum: 138024
+TUMOR CORE (LABELS 1 and 4
+Predsum: 90616
+GtSum: 92541
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 59027
+GtSum: 60306
+WHOLE TUMOR:
+2022-04-10 14:22:50,998 case 18 mean_dice 0.930678 mean_hd95 3.162278
+case 18 mean_dice 0.930678 mean_hd95 3.162278
+2022-04-10 14:22:50,998 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-10 14:22:50,998 case 18 mean_dice 0.898880 mean_hd95 2.000000
+case 18 mean_dice 0.898880 mean_hd95 2.000000
+2022-04-10 14:22:50,998 TUMOR CORE:
+TUMOR CORE:
+2022-04-10 14:22:50,998 case 18 mean_dice 0.942645 mean_hd95 3.000000
+case 18 mean_dice 0.942645 mean_hd95 3.000000
+2022-04-10 14:22:51,104 ============================================================
+============================================================
+2022-04-10 14:22:51,104 Subject 20 out of 34: FeTS21_Training_336
+Subject 20 out of 34: FeTS21_Training_336
+2022-04-10 14:23:17,810 TTA Entropy loss: 0.307707249323527
+Predsum: 103531
+GtSum: 105016
+Predsum: 62927
+GtSum: 67964
+Predsum: 24021
+GtSum: 32177
+TTA Entropy loss: 0.307707249323527
+2022-04-10 14:23:44,410 TTA Entropy loss: 0.19438945163620844
+Predsum: 94888
+GtSum: 32177
+Predsum: 64534
+GtSum: 32177
+Predsum: 26424
+GtSum: 32177
+TTA Entropy loss: 0.19438945163620844
+2022-04-10 14:24:10,570 TTA Entropy loss: 0.18873266083664364
+Predsum: 91025
+GtSum: 32177
+Predsum: 63276
+GtSum: 32177
+Predsum: 26615
+GtSum: 32177
+TTA Entropy loss: 0.18873266083664364
+2022-04-10 14:24:37,472 TTA Entropy loss: 0.19313637818230522
+Predsum: 87451
+GtSum: 32177
+Predsum: 61217
+GtSum: 32177
+Predsum: 26019
+GtSum: 32177
+TTA Entropy loss: 0.19313637818230522
+2022-04-10 14:25:04,591 TTA Entropy loss: 0.19370641411675346
+Predsum: 84075
+GtSum: 32177
+Predsum: 59099
+GtSum: 32177
+Predsum: 25091
+GtSum: 32177
+TTA Entropy loss: 0.19370641411675346
+2022-04-10 14:25:31,192 TTA Entropy loss: 0.19148206414116753
+Predsum: 81472
+GtSum: 32177
+Predsum: 57182
+GtSum: 32177
+Predsum: 23980
+GtSum: 32177
+TTA Entropy loss: 0.19148206414116753
+2022-04-10 14:25:58,236 TTA Entropy loss: 0.18800114706158638
+Predsum: 79757
+GtSum: 32177
+Predsum: 55815
+GtSum: 32177
+Predsum: 23035
+GtSum: 32177
+TTA Entropy loss: 0.18800114706158638
+2022-04-10 14:26:25,256 TTA Entropy loss: 0.18525372524062791
+Predsum: 78646
+GtSum: 32177
+Predsum: 54885
+GtSum: 32177
+Predsum: 22297
+GtSum: 32177
+TTA Entropy loss: 0.18525372524062791
+2022-04-10 14:26:51,964 TTA Entropy loss: 0.18357756657070584
+Predsum: 78004
+GtSum: 32177
+Predsum: 54265
+GtSum: 32177
+Predsum: 21764
+GtSum: 32177
+TTA Entropy loss: 0.18357756657070584
+2022-04-10 14:27:19,190 TTA Entropy loss: 0.1827911720077197
+Predsum: 77722
+GtSum: 32177
+Predsum: 53978
+GtSum: 32177
+Predsum: 21481
+GtSum: 32177
+TTA Entropy loss: 0.1827911720077197
+2022-04-10 14:27:19,191 TTA loop done for subject 19
+TTA loop done for subject 19
+2022-04-10 14:27:38,058 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 77714
+GtSum: 105016
+TUMOR CORE (LABELS 1 and 4
+Predsum: 53965
+GtSum: 67964
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 21466
+GtSum: 32177
+WHOLE TUMOR:
+2022-04-10 14:27:38,059 case 19 mean_dice 0.845586 mean_hd95 7.071068
+case 19 mean_dice 0.845586 mean_hd95 7.071068
+2022-04-10 14:27:38,059 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-10 14:27:38,059 case 19 mean_dice 0.787614 mean_hd95 4.582576
+case 19 mean_dice 0.787614 mean_hd95 4.582576
+2022-04-10 14:27:38,059 TUMOR CORE:
+TUMOR CORE:
+2022-04-10 14:27:38,059 case 19 mean_dice 0.877150 mean_hd95 7.141428
+case 19 mean_dice 0.877150 mean_hd95 7.141428
+2022-04-10 14:27:38,170 ============================================================
+============================================================
+2022-04-10 14:27:38,171 Subject 21 out of 34: FeTS21_Training_365
+Subject 21 out of 34: FeTS21_Training_365
+2022-04-10 14:28:04,965 TTA Entropy loss: 1.4991873524983723
+Predsum: 754231
+GtSum: 147861
+Predsum: 63441
+GtSum: 63842
+Predsum: 27139
+GtSum: 31532
+TTA Entropy loss: 1.4991873524983723
+2022-04-10 14:28:31,991 TTA Entropy loss: 1.035551250881619
+Predsum: 984893
+GtSum: 31532
+Predsum: 33814
+GtSum: 31532
+Predsum: 8930
+GtSum: 31532
+TTA Entropy loss: 1.035551250881619
+2022-04-10 14:28:58,986 TTA Entropy loss: 0.6848842459784614
+Predsum: 1073616
+GtSum: 31532
+Predsum: 1507
+GtSum: 31532
+Predsum: 1012
+GtSum: 31532
+TTA Entropy loss: 0.6848842459784614
+2022-04-10 14:29:26,261 TTA Entropy loss: 0.5245310719807943
+Predsum: 1116818
+GtSum: 31532
+Predsum: 67
+GtSum: 31532
+Predsum: 67
+GtSum: 31532
+TTA Entropy loss: 0.5245310719807943
+2022-04-10 14:29:53,154 TTA Entropy loss: 0.4570991032918294
+Predsum: 1140819
+GtSum: 31532
+Predsum: 36
+GtSum: 31532
+Predsum: 36
+GtSum: 31532
+TTA Entropy loss: 0.4570991032918294
+2022-04-10 14:30:20,215 TTA Entropy loss: 0.42068194410536025
+Predsum: 1158307
+GtSum: 31532
+Predsum: 22
+GtSum: 31532
+Predsum: 22
+GtSum: 31532
+TTA Entropy loss: 0.42068194410536025
+2022-04-10 14:30:47,593 TTA Entropy loss: 0.3980326877170139
+Predsum: 1171633
+GtSum: 31532
+Predsum: 12
+GtSum: 31532
+Predsum: 12
+GtSum: 31532
+TTA Entropy loss: 0.3980326877170139
+2022-04-10 14:31:14,777 TTA Entropy loss: 0.383274720509847
+Predsum: 1181037
+GtSum: 31532
+Predsum: 6
+GtSum: 31532
+Predsum: 6
+GtSum: 31532
+TTA Entropy loss: 0.383274720509847
+2022-04-10 14:31:41,862 TTA Entropy loss: 0.3740801696777344
+Predsum: 1187327
+GtSum: 31532
+Predsum: 3
+GtSum: 31532
+Predsum: 3
+GtSum: 31532
+TTA Entropy loss: 0.3740801696777344
+2022-04-10 14:32:08,773 TTA Entropy loss: 0.3695115793016222
+Predsum: 1190550
+GtSum: 31532
+Predsum: 1
+GtSum: 31532
+Predsum: 1
+GtSum: 31532
+TTA Entropy loss: 0.3695115793016222
+2022-04-10 14:32:08,773 TTA loop done for subject 20
+TTA loop done for subject 20
+2022-04-10 14:32:27,982 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 1190707
+GtSum: 147861
+TUMOR CORE (LABELS 1 and 4
+Predsum: 1
+GtSum: 63842
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 1
+GtSum: 31532
+WHOLE TUMOR:
+2022-04-10 14:32:27,982 case 20 mean_dice 0.220700 mean_hd95 66.850580
+case 20 mean_dice 0.220700 mean_hd95 66.850580
+2022-04-10 14:32:27,982 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-10 14:32:27,982 case 20 mean_dice 0.000000 mean_hd95 110.675200
+case 20 mean_dice 0.000000 mean_hd95 110.675200
+2022-04-10 14:32:27,982 TUMOR CORE:
+TUMOR CORE:
+2022-04-10 14:32:27,983 case 20 mean_dice 0.000000 mean_hd95 112.058021
+case 20 mean_dice 0.000000 mean_hd95 112.058021
+2022-04-10 14:32:28,088 ============================================================
+============================================================
+2022-04-10 14:32:28,089 Subject 22 out of 34: FeTS21_Training_361
+Subject 22 out of 34: FeTS21_Training_361
+2022-04-10 14:32:54,775 TTA Entropy loss: 0.256282487127516
+Predsum: 49000
+GtSum: 78549
+Predsum: 49
+GtSum: 3240
+Predsum: 49
+GtSum: 282
+TTA Entropy loss: 0.256282487127516
+2022-04-10 14:33:21,125 TTA Entropy loss: 0.10109366556008657
+Predsum: 25434
+GtSum: 282
+Predsum: 275
+GtSum: 282
+Predsum: 221
+GtSum: 282
+TTA Entropy loss: 0.10109366556008657
+2022-04-10 14:33:47,911 TTA Entropy loss: 0.0859442348215315
+Predsum: 18694
+GtSum: 282
+Predsum: 570
+GtSum: 282
+Predsum: 276
+GtSum: 282
+TTA Entropy loss: 0.0859442348215315
+2022-04-10 14:34:14,721 TTA Entropy loss: 0.08718095537688997
+Predsum: 14722
+GtSum: 282
+Predsum: 626
+GtSum: 282
+Predsum: 280
+GtSum: 282
+TTA Entropy loss: 0.08718095537688997
+2022-04-10 14:34:41,437 TTA Entropy loss: 0.08553640068239636
+Predsum: 9458
+GtSum: 282
+Predsum: 509
+GtSum: 282
+Predsum: 222
+GtSum: 282
+TTA Entropy loss: 0.08553640068239636
+2022-04-10 14:35:08,182 TTA Entropy loss: 0.075327432235082
+Predsum: 4248
+GtSum: 282
+Predsum: 359
+GtSum: 282
+Predsum: 149
+GtSum: 282
+TTA Entropy loss: 0.075327432235082
+2022-04-10 14:35:35,126 TTA Entropy loss: 0.06058575534820557
+Predsum: 887
+GtSum: 282
+Predsum: 230
+GtSum: 282
+Predsum: 96
+GtSum: 282
+TTA Entropy loss: 0.06058575534820557
+2022-04-10 14:36:01,826 TTA Entropy loss: 0.04692905767758687
+Predsum: 169
+GtSum: 282
+Predsum: 127
+GtSum: 282
+Predsum: 52
+GtSum: 282
+TTA Entropy loss: 0.04692905767758687
+2022-04-10 14:36:28,471 TTA Entropy loss: 0.03786042496893141
+Predsum: 50
+GtSum: 282
+Predsum: 50
+GtSum: 282
+Predsum: 23
+GtSum: 282
+TTA Entropy loss: 0.03786042496893141
+2022-04-10 14:36:55,189 TTA Entropy loss: 0.03315737990538279
+Predsum: 15
+GtSum: 282
+Predsum: 15
+GtSum: 282
+Predsum: 11
+GtSum: 282
+TTA Entropy loss: 0.03315737990538279
+2022-04-10 14:36:55,189 TTA loop done for subject 21
+TTA loop done for subject 21
+2022-04-10 14:37:13,950 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 13
+GtSum: 78549
+TUMOR CORE (LABELS 1 and 4
+Predsum: 13
+GtSum: 3240
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 10
+GtSum: 282
+WHOLE TUMOR:
+2022-04-10 14:37:13,950 case 21 mean_dice 0.000331 mean_hd95 37.322915
+case 21 mean_dice 0.000331 mean_hd95 37.322915
+2022-04-10 14:37:13,950 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-10 14:37:13,950 case 21 mean_dice 0.000000 mean_hd95 26.031710
+case 21 mean_dice 0.000000 mean_hd95 26.031710
+2022-04-10 14:37:13,951 TUMOR CORE:
+TUMOR CORE:
+2022-04-10 14:37:13,951 case 21 mean_dice 0.000000 mean_hd95 26.525435
+case 21 mean_dice 0.000000 mean_hd95 26.525435
+2022-04-10 14:37:14,057 ============================================================
+============================================================
+2022-04-10 14:37:14,058 Subject 23 out of 34: FeTS21_Training_364
+Subject 23 out of 34: FeTS21_Training_364
+2022-04-10 14:37:40,823 TTA Entropy loss: 0.2543777995109558
+Predsum: 110036
+GtSum: 98011
+Predsum: 47415
+GtSum: 50150
+Predsum: 25840
+GtSum: 30508
+TTA Entropy loss: 0.2543777995109558
+2022-04-10 14:38:07,764 TTA Entropy loss: 0.18335193966494667
+Predsum: 87675
+GtSum: 30508
+Predsum: 48027
+GtSum: 30508
+Predsum: 28039
+GtSum: 30508
+TTA Entropy loss: 0.18335193966494667
+2022-04-10 14:38:35,015 TTA Entropy loss: 0.17082712097300423
+Predsum: 77336
+GtSum: 30508
+Predsum: 47052
+GtSum: 30508
+Predsum: 28330
+GtSum: 30508
+TTA Entropy loss: 0.17082712097300423
+2022-04-10 14:39:02,025 TTA Entropy loss: 0.17322002713547813
+Predsum: 72170
+GtSum: 30508
+Predsum: 46240
+GtSum: 30508
+Predsum: 28221
+GtSum: 30508
+TTA Entropy loss: 0.17322002713547813
+2022-04-10 14:39:29,103 TTA Entropy loss: 0.17035899282826317
+Predsum: 68149
+GtSum: 30508
+Predsum: 44855
+GtSum: 30508
+Predsum: 27262
+GtSum: 30508
+TTA Entropy loss: 0.17035899282826317
+2022-04-10 14:39:56,456 TTA Entropy loss: 0.164506074057685
+Predsum: 65142
+GtSum: 30508
+Predsum: 43415
+GtSum: 30508
+Predsum: 26079
+GtSum: 30508
+TTA Entropy loss: 0.164506074057685
+2022-04-10 14:40:23,350 TTA Entropy loss: 0.15894095140033299
+Predsum: 62820
+GtSum: 30508
+Predsum: 42092
+GtSum: 30508
+Predsum: 24951
+GtSum: 30508
+TTA Entropy loss: 0.15894095140033299
+2022-04-10 14:40:50,569 TTA Entropy loss: 0.15533828545941247
+Predsum: 61307
+GtSum: 30508
+Predsum: 41110
+GtSum: 30508
+Predsum: 24079
+GtSum: 30508
+TTA Entropy loss: 0.15533828545941247
+2022-04-10 14:41:17,504 TTA Entropy loss: 0.15309204965167575
+Predsum: 60217
+GtSum: 30508
+Predsum: 40319
+GtSum: 30508
+Predsum: 23425
+GtSum: 30508
+TTA Entropy loss: 0.15309204965167575
+2022-04-10 14:41:44,855 TTA Entropy loss: 0.1520072711772389
+Predsum: 59617
+GtSum: 30508
+Predsum: 39872
+GtSum: 30508
+Predsum: 23024
+GtSum: 30508
+TTA Entropy loss: 0.1520072711772389
+2022-04-10 14:41:44,856 TTA loop done for subject 22
+TTA loop done for subject 22
+2022-04-10 14:42:04,115 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 59594
+GtSum: 98011
+TUMOR CORE (LABELS 1 and 4
+Predsum: 39855
+GtSum: 50150
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 23013
+GtSum: 30508
+WHOLE TUMOR:
+2022-04-10 14:42:04,116 case 22 mean_dice 0.750636 mean_hd95 11.180340
+case 22 mean_dice 0.750636 mean_hd95 11.180340
+2022-04-10 14:42:04,116 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-10 14:42:04,116 case 22 mean_dice 0.795239 mean_hd95 4.123106
+case 22 mean_dice 0.795239 mean_hd95 4.123106
+2022-04-10 14:42:04,116 TUMOR CORE:
+TUMOR CORE:
+2022-04-10 14:42:04,116 case 22 mean_dice 0.854153 mean_hd95 5.477226
+case 22 mean_dice 0.854153 mean_hd95 5.477226
+2022-04-10 14:42:04,222 ============================================================
+============================================================
+2022-04-10 14:42:04,222 Subject 24 out of 34: FeTS21_Training_338
+Subject 24 out of 34: FeTS21_Training_338
+2022-04-10 14:42:30,525 TTA Entropy loss: 0.3561484989590115
+Predsum: 147888
+GtSum: 138460
+Predsum: 59582
+GtSum: 63867
+Predsum: 39898
+GtSum: 47126
+TTA Entropy loss: 0.3561484989590115
+2022-04-10 14:42:57,557 TTA Entropy loss: 0.3253048543930054
+Predsum: 126810
+GtSum: 47126
+Predsum: 50505
+GtSum: 47126
+Predsum: 29731
+GtSum: 47126
+TTA Entropy loss: 0.3253048543930054
+2022-04-10 14:43:24,342 TTA Entropy loss: 0.31214362237188553
+Predsum: 107504
+GtSum: 47126
+Predsum: 37176
+GtSum: 47126
+Predsum: 16918
+GtSum: 47126
+TTA Entropy loss: 0.31214362237188553
+2022-04-10 14:43:51,337 TTA Entropy loss: 0.295521675268809
+Predsum: 89496
+GtSum: 47126
+Predsum: 23995
+GtSum: 47126
+Predsum: 8801
+GtSum: 47126
+TTA Entropy loss: 0.295521675268809
+2022-04-10 14:44:18,497 TTA Entropy loss: 0.2376913933886422
+Predsum: 66617
+GtSum: 47126
+Predsum: 6496
+GtSum: 47126
+Predsum: 1680
+GtSum: 47126
+TTA Entropy loss: 0.2376913933886422
+2022-04-10 14:44:45,523 TTA Entropy loss: 0.20323663356569077
+Predsum: 55771
+GtSum: 47126
+Predsum: 636
+GtSum: 47126
+Predsum: 67
+GtSum: 47126
+TTA Entropy loss: 0.20323663356569077
+2022-04-10 14:45:10,773 TTA Entropy loss: 0.19636337767706977
+Predsum: 51081
+GtSum: 47126
+Predsum: 18
+GtSum: 47126
+Predsum: 0
+GtSum: 47126
+TTA Entropy loss: 0.19636337767706977
+2022-04-10 14:45:38,110 TTA Entropy loss: 0.18560867245992024
+Predsum: 48967
+GtSum: 47126
+Predsum: 1
+GtSum: 47126
+Predsum: 1
+GtSum: 47126
+TTA Entropy loss: 0.18560867245992024
+2022-04-10 14:46:05,191 TTA Entropy loss: 0.1753040239546034
+Predsum: 48012
+GtSum: 47126
+Predsum: 2
+GtSum: 47126
+Predsum: 2
+GtSum: 47126
+TTA Entropy loss: 0.1753040239546034
+2022-04-10 14:46:32,075 TTA Entropy loss: 0.16988968171013727
+Predsum: 47650
+GtSum: 47126
+Predsum: 2
+GtSum: 47126
+Predsum: 2
+GtSum: 47126
+TTA Entropy loss: 0.16988968171013727
+2022-04-10 14:46:32,075 TTA loop done for subject 23
+TTA loop done for subject 23
+2022-04-10 14:46:50,917 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 47639
+GtSum: 138460
+TUMOR CORE (LABELS 1 and 4
+Predsum: 2
+GtSum: 63867
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 2
+GtSum: 47126
+WHOLE TUMOR:
+2022-04-10 14:46:50,918 case 23 mean_dice 0.509181 mean_hd95 17.204651
+case 23 mean_dice 0.509181 mean_hd95 17.204651
+2022-04-10 14:46:50,918 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-10 14:46:50,918 case 23 mean_dice 0.000000 mean_hd95 55.801434
+case 23 mean_dice 0.000000 mean_hd95 55.801434
+2022-04-10 14:46:50,918 TUMOR CORE:
+TUMOR CORE:
+2022-04-10 14:46:50,918 case 23 mean_dice 0.000000 mean_hd95 58.566202
+case 23 mean_dice 0.000000 mean_hd95 58.566202
+2022-04-10 14:46:51,024 ============================================================
+============================================================
+2022-04-10 14:46:51,025 Subject 25 out of 34: FeTS21_Training_356
+Subject 25 out of 34: FeTS21_Training_356
+2022-04-10 14:47:17,729 TTA Entropy loss: 0.16719882588916354
+Predsum: 31350
+GtSum: 42643
+Predsum: 24969
+GtSum: 30932
+Predsum: 11181
+GtSum: 20127
+TTA Entropy loss: 0.16719882588916354
+2022-04-10 14:47:44,654 TTA Entropy loss: 0.09441853425237867
+Predsum: 29003
+GtSum: 20127
+Predsum: 26740
+GtSum: 20127
+Predsum: 13530
+GtSum: 20127
+TTA Entropy loss: 0.09441853425237867
+2022-04-10 14:48:11,299 TTA Entropy loss: 0.08925997431741821
+Predsum: 27933
+GtSum: 20127
+Predsum: 26494
+GtSum: 20127
+Predsum: 13974
+GtSum: 20127
+TTA Entropy loss: 0.08925997431741821
+2022-04-10 14:48:38,341 TTA Entropy loss: 0.09255165753761928
+Predsum: 27535
+GtSum: 20127
+Predsum: 26160
+GtSum: 20127
+Predsum: 13911
+GtSum: 20127
+TTA Entropy loss: 0.09255165753761928
+2022-04-10 14:49:05,468 TTA Entropy loss: 0.09201112467712826
+Predsum: 26716
+GtSum: 20127
+Predsum: 25439
+GtSum: 20127
+Predsum: 13284
+GtSum: 20127
+TTA Entropy loss: 0.09201112467712826
+2022-04-10 14:49:32,255 TTA Entropy loss: 0.08892299554083083
+Predsum: 25672
+GtSum: 20127
+Predsum: 24529
+GtSum: 20127
+Predsum: 12380
+GtSum: 20127
+TTA Entropy loss: 0.08892299554083083
+2022-04-10 14:49:59,205 TTA Entropy loss: 0.08542165178722805
+Predsum: 24572
+GtSum: 20127
+Predsum: 23583
+GtSum: 20127
+Predsum: 11467
+GtSum: 20127
+TTA Entropy loss: 0.08542165178722805
+2022-04-10 14:50:26,166 TTA Entropy loss: 0.08224915111064911
+Predsum: 23661
+GtSum: 20127
+Predsum: 22698
+GtSum: 20127
+Predsum: 10662
+GtSum: 20127
+TTA Entropy loss: 0.08224915111064911
+2022-04-10 14:50:53,085 TTA Entropy loss: 0.08009928622179562
+Predsum: 22994
+GtSum: 20127
+Predsum: 21948
+GtSum: 20127
+Predsum: 10079
+GtSum: 20127
+TTA Entropy loss: 0.08009928622179562
+2022-04-10 14:51:19,702 TTA Entropy loss: 0.07894893983337614
+Predsum: 22635
+GtSum: 20127
+Predsum: 21542
+GtSum: 20127
+Predsum: 9757
+GtSum: 20127
+TTA Entropy loss: 0.07894893983337614
+2022-04-10 14:51:19,702 TTA loop done for subject 24
+TTA loop done for subject 24
+2022-04-10 14:51:38,729 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 22606
+GtSum: 42643
+TUMOR CORE (LABELS 1 and 4
+Predsum: 21512
+GtSum: 30932
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 9737
+GtSum: 20127
+WHOLE TUMOR:
+2022-04-10 14:51:38,729 case 24 mean_dice 0.692608 mean_hd95 9.433981
+case 24 mean_dice 0.692608 mean_hd95 9.433981
+2022-04-10 14:51:38,729 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-10 14:51:38,729 case 24 mean_dice 0.648406 mean_hd95 5.000000
+case 24 mean_dice 0.648406 mean_hd95 5.000000
+2022-04-10 14:51:38,729 TUMOR CORE:
+TUMOR CORE:
+2022-04-10 14:51:38,729 case 24 mean_dice 0.819655 mean_hd95 5.830952
+case 24 mean_dice 0.819655 mean_hd95 5.830952
+2022-04-10 14:51:38,836 ============================================================
+============================================================
+2022-04-10 14:51:38,836 Subject 26 out of 34: FeTS21_Training_350
+Subject 26 out of 34: FeTS21_Training_350
+2022-04-10 14:52:05,345 TTA Entropy loss: 0.20387390147315132
+Predsum: 113124
+GtSum: 107675
+Predsum: 49121
+GtSum: 49376
+Predsum: 33938
+GtSum: 38973
+TTA Entropy loss: 0.20387390147315132
+2022-04-10 14:52:32,045 TTA Entropy loss: 0.1457176979912652
+Predsum: 105520
+GtSum: 38973
+Predsum: 49885
+GtSum: 38973
+Predsum: 36167
+GtSum: 38973
+TTA Entropy loss: 0.1457176979912652
+2022-04-10 14:52:59,497 TTA Entropy loss: 0.1406494935883416
+Predsum: 102348
+GtSum: 38973
+Predsum: 50479
+GtSum: 38973
+Predsum: 37489
+GtSum: 38973
+TTA Entropy loss: 0.1406494935883416
+2022-04-10 14:53:26,215 TTA Entropy loss: 0.14250918579101562
+Predsum: 100469
+GtSum: 38973
+Predsum: 50792
+GtSum: 38973
+Predsum: 38177
+GtSum: 38973
+TTA Entropy loss: 0.14250918579101562
+2022-04-10 14:53:53,368 TTA Entropy loss: 0.14247972292370267
+Predsum: 99290
+GtSum: 38973
+Predsum: 50817
+GtSum: 38973
+Predsum: 38375
+GtSum: 38973
+TTA Entropy loss: 0.14247972292370267
+2022-04-10 14:54:20,411 TTA Entropy loss: 0.14096933378775914
+Predsum: 98934
+GtSum: 38973
+Predsum: 50742
+GtSum: 38973
+Predsum: 38313
+GtSum: 38973
+TTA Entropy loss: 0.14096933378775914
+2022-04-10 14:54:47,230 TTA Entropy loss: 0.13906588583522372
+Predsum: 99005
+GtSum: 38973
+Predsum: 50622
+GtSum: 38973
+Predsum: 38159
+GtSum: 38973
+TTA Entropy loss: 0.13906588583522372
+2022-04-10 14:55:14,415 TTA Entropy loss: 0.1374100448290507
+Predsum: 99284
+GtSum: 38973
+Predsum: 50516
+GtSum: 38973
+Predsum: 38007
+GtSum: 38973
+TTA Entropy loss: 0.1374100448290507
+2022-04-10 14:55:41,424 TTA Entropy loss: 0.13611613845825196
+Predsum: 99591
+GtSum: 38973
+Predsum: 50439
+GtSum: 38973
+Predsum: 37877
+GtSum: 38973
+TTA Entropy loss: 0.13611613845825196
+2022-04-10 14:56:08,229 TTA Entropy loss: 0.1354023405710856
+Predsum: 99776
+GtSum: 38973
+Predsum: 50396
+GtSum: 38973
+Predsum: 37804
+GtSum: 38973
+TTA Entropy loss: 0.1354023405710856
+2022-04-10 14:56:08,229 TTA loop done for subject 25
+TTA loop done for subject 25
+2022-04-10 14:56:27,269 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 99785
+GtSum: 107675
+TUMOR CORE (LABELS 1 and 4
+Predsum: 50394
+GtSum: 49376
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 37801
+GtSum: 38973
+WHOLE TUMOR:
+2022-04-10 14:56:27,269 case 25 mean_dice 0.941068 mean_hd95 3.000000
+case 25 mean_dice 0.941068 mean_hd95 3.000000
+2022-04-10 14:56:27,269 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-10 14:56:27,269 case 25 mean_dice 0.940058 mean_hd95 1.000000
+case 25 mean_dice 0.940058 mean_hd95 1.000000
+2022-04-10 14:56:27,270 TUMOR CORE:
+TUMOR CORE:
+2022-04-10 14:56:27,270 case 25 mean_dice 0.972697 mean_hd95 1.414214
+case 25 mean_dice 0.972697 mean_hd95 1.414214
+2022-04-10 14:56:27,376 ============================================================
+============================================================
+2022-04-10 14:56:27,377 Subject 27 out of 34: FeTS21_Training_342
+Subject 27 out of 34: FeTS21_Training_342
+2022-04-10 14:56:54,472 TTA Entropy loss: 1.4662732183668348
+Predsum: 659567
+GtSum: 150203
+Predsum: 67036
+GtSum: 111871
+Predsum: 29219
+GtSum: 57055
+TTA Entropy loss: 1.4662732183668348
+2022-04-10 14:57:21,488 TTA Entropy loss: 1.3297409968905978
+Predsum: 544478
+GtSum: 57055
+Predsum: 11242
+GtSum: 57055
+Predsum: 6774
+GtSum: 57055
+TTA Entropy loss: 1.3297409968905978
+2022-04-10 14:57:48,930 TTA Entropy loss: 1.1960876405504015
+Predsum: 409964
+GtSum: 57055
+Predsum: 938
+GtSum: 57055
+Predsum: 472
+GtSum: 57055
+TTA Entropy loss: 1.1960876405504015
+2022-04-10 14:58:15,807 TTA Entropy loss: 0.7053048095703125
+Predsum: 142202
+GtSum: 57055
+Predsum: 849
+GtSum: 57055
+Predsum: 318
+GtSum: 57055
+TTA Entropy loss: 0.7053048095703125
+2022-04-10 14:58:42,835 TTA Entropy loss: 0.31076479238933985
+Predsum: 68678
+GtSum: 57055
+Predsum: 1014
+GtSum: 57055
+Predsum: 392
+GtSum: 57055
+TTA Entropy loss: 0.31076479238933985
+2022-04-10 14:59:09,961 TTA Entropy loss: 0.21217446306678983
+Predsum: 52332
+GtSum: 57055
+Predsum: 940
+GtSum: 57055
+Predsum: 408
+GtSum: 57055
+TTA Entropy loss: 0.21217446306678983
+2022-04-10 14:59:36,821 TTA Entropy loss: 0.1887956358525488
+Predsum: 48711
+GtSum: 57055
+Predsum: 954
+GtSum: 57055
+Predsum: 496
+GtSum: 57055
+TTA Entropy loss: 0.1887956358525488
+2022-04-10 15:00:04,149 TTA Entropy loss: 0.18274888256854482
+Predsum: 47162
+GtSum: 57055
+Predsum: 922
+GtSum: 57055
+Predsum: 515
+GtSum: 57055
+TTA Entropy loss: 0.18274888256854482
+2022-04-10 15:00:31,334 TTA Entropy loss: 0.18104472715324826
+Predsum: 46477
+GtSum: 57055
+Predsum: 942
+GtSum: 57055
+Predsum: 516
+GtSum: 57055
+TTA Entropy loss: 0.18104472715324826
+2022-04-10 15:00:58,303 TTA Entropy loss: 0.18014635154936048
+Predsum: 46141
+GtSum: 57055
+Predsum: 930
+GtSum: 57055
+Predsum: 493
+GtSum: 57055
+TTA Entropy loss: 0.18014635154936048
+2022-04-10 15:00:58,303 TTA loop done for subject 26
+TTA loop done for subject 26
+2022-04-10 15:01:17,441 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 46122
+GtSum: 150203
+TUMOR CORE (LABELS 1 and 4
+Predsum: 929
+GtSum: 111871
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 492
+GtSum: 57055
+WHOLE TUMOR:
+2022-04-10 15:01:17,442 case 26 mean_dice 0.449764 mean_hd95 19.209373
+case 26 mean_dice 0.449764 mean_hd95 19.209373
+2022-04-10 15:01:17,442 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-10 15:01:17,442 case 26 mean_dice 0.017099 mean_hd95 53.373682
+case 26 mean_dice 0.017099 mean_hd95 53.373682
+2022-04-10 15:01:17,442 TUMOR CORE:
+TUMOR CORE:
+2022-04-10 15:01:17,442 case 26 mean_dice 0.016472 mean_hd95 41.340053
+case 26 mean_dice 0.016472 mean_hd95 41.340053
+2022-04-10 15:01:17,551 ============================================================
+============================================================
+2022-04-10 15:01:17,551 Subject 28 out of 34: FeTS21_Training_353
+Subject 28 out of 34: FeTS21_Training_353
+2022-04-10 15:01:43,897 TTA Entropy loss: 0.17734107237392002
+Predsum: 43502
+GtSum: 46538
+Predsum: 13130
+GtSum: 14715
+Predsum: 7358
+GtSum: 9120
+TTA Entropy loss: 0.17734107237392002
+2022-04-10 15:02:10,548 TTA Entropy loss: 0.11846626977125804
+Predsum: 36537
+GtSum: 9120
+Predsum: 13545
+GtSum: 9120
+Predsum: 8107
+GtSum: 9120
+TTA Entropy loss: 0.11846626977125804
+2022-04-10 15:02:37,641 TTA Entropy loss: 0.10855827760696411
+Predsum: 33300
+GtSum: 9120
+Predsum: 13114
+GtSum: 9120
+Predsum: 7819
+GtSum: 9120
+TTA Entropy loss: 0.10855827760696411
+2022-04-10 15:03:04,703 TTA Entropy loss: 0.10299853179852168
+Predsum: 31871
+GtSum: 9120
+Predsum: 12367
+GtSum: 9120
+Predsum: 7092
+GtSum: 9120
+TTA Entropy loss: 0.10299853179852168
+2022-04-10 15:03:31,382 TTA Entropy loss: 0.09839401434527503
+Predsum: 30740
+GtSum: 9120
+Predsum: 11365
+GtSum: 9120
+Predsum: 6106
+GtSum: 9120
+TTA Entropy loss: 0.09839401434527503
+2022-04-10 15:03:58,374 TTA Entropy loss: 0.09518425126870474
+Predsum: 29432
+GtSum: 9120
+Predsum: 10159
+GtSum: 9120
+Predsum: 5021
+GtSum: 9120
+TTA Entropy loss: 0.09518425126870474
+2022-04-10 15:04:25,708 TTA Entropy loss: 0.09319858444068167
+Predsum: 28092
+GtSum: 9120
+Predsum: 8963
+GtSum: 9120
+Predsum: 3852
+GtSum: 9120
+TTA Entropy loss: 0.09319858444068167
+2022-04-10 15:04:52,661 TTA Entropy loss: 0.09145200659500229
+Predsum: 26909
+GtSum: 9120
+Predsum: 7886
+GtSum: 9120
+Predsum: 3013
+GtSum: 9120
+TTA Entropy loss: 0.09145200659500229
+2022-04-10 15:05:19,612 TTA Entropy loss: 0.09019346038500468
+Predsum: 26006
+GtSum: 9120
+Predsum: 7157
+GtSum: 9120
+Predsum: 2437
+GtSum: 9120
+TTA Entropy loss: 0.09019346038500468
+2022-04-10 15:05:47,189 TTA Entropy loss: 0.08948511235912641
+Predsum: 25519
+GtSum: 9120
+Predsum: 6771
+GtSum: 9120
+Predsum: 2159
+GtSum: 9120
+TTA Entropy loss: 0.08948511235912641
+2022-04-10 15:05:47,189 TTA loop done for subject 27
+TTA loop done for subject 27
+2022-04-10 15:06:06,023 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 25502
+GtSum: 46538
+TUMOR CORE (LABELS 1 and 4
+Predsum: 6753
+GtSum: 14715
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 2143
+GtSum: 9120
+WHOLE TUMOR:
+2022-04-10 15:06:06,023 case 27 mean_dice 0.707329 mean_hd95 7.000000
+case 27 mean_dice 0.707329 mean_hd95 7.000000
+2022-04-10 15:06:06,023 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-10 15:06:06,023 case 27 mean_dice 0.379295 mean_hd95 7.483315
+case 27 mean_dice 0.379295 mean_hd95 7.483315
+2022-04-10 15:06:06,023 TUMOR CORE:
+TUMOR CORE:
+2022-04-10 15:06:06,023 case 27 mean_dice 0.629122 mean_hd95 7.000000
+case 27 mean_dice 0.629122 mean_hd95 7.000000
+2022-04-10 15:06:06,130 ============================================================
+============================================================
+2022-04-10 15:06:06,131 Subject 29 out of 34: FeTS21_Training_367
+Subject 29 out of 34: FeTS21_Training_367
+2022-04-10 15:06:32,873 TTA Entropy loss: 0.3421881861951616
+Predsum: 142573
+GtSum: 126642
+Predsum: 21745
+GtSum: 21460
+Predsum: 19218
+GtSum: 19484
+TTA Entropy loss: 0.3421881861951616
+2022-04-10 15:07:00,165 TTA Entropy loss: 0.23676525269614326
+Predsum: 120664
+GtSum: 19484
+Predsum: 23239
+GtSum: 19484
+Predsum: 21182
+GtSum: 19484
+TTA Entropy loss: 0.23676525269614326
+2022-04-10 15:07:27,242 TTA Entropy loss: 0.23252676859166888
+Predsum: 111885
+GtSum: 19484
+Predsum: 23325
+GtSum: 19484
+Predsum: 21447
+GtSum: 19484
+TTA Entropy loss: 0.23252676859166888
+2022-04-10 15:07:54,436 TTA Entropy loss: 0.2304276387459702
+Predsum: 107042
+GtSum: 19484
+Predsum: 22467
+GtSum: 19484
+Predsum: 20691
+GtSum: 19484
+TTA Entropy loss: 0.2304276387459702
+2022-04-10 15:08:21,945 TTA Entropy loss: 0.22243599618143506
+Predsum: 104516
+GtSum: 19484
+Predsum: 21435
+GtSum: 19484
+Predsum: 19689
+GtSum: 19484
+TTA Entropy loss: 0.22243599618143506
+2022-04-10 15:08:49,029 TTA Entropy loss: 0.2138291916184955
+Predsum: 102690
+GtSum: 19484
+Predsum: 20490
+GtSum: 19484
+Predsum: 18766
+GtSum: 19484
+TTA Entropy loss: 0.2138291916184955
+2022-04-10 15:09:16,307 TTA Entropy loss: 0.20808179987139172
+Predsum: 101166
+GtSum: 19484
+Predsum: 19621
+GtSum: 19484
+Predsum: 17882
+GtSum: 19484
+TTA Entropy loss: 0.20808179987139172
+2022-04-10 15:09:43,376 TTA Entropy loss: 0.2048829929696189
+Predsum: 99950
+GtSum: 19484
+Predsum: 18897
+GtSum: 19484
+Predsum: 17170
+GtSum: 19484
+TTA Entropy loss: 0.2048829929696189
+2022-04-10 15:10:10,619 TTA Entropy loss: 0.20327016762230132
+Predsum: 99067
+GtSum: 19484
+Predsum: 18279
+GtSum: 19484
+Predsum: 16589
+GtSum: 19484
+TTA Entropy loss: 0.20327016762230132
+2022-04-10 15:10:37,613 TTA Entropy loss: 0.20256427470842997
+Predsum: 98607
+GtSum: 19484
+Predsum: 17936
+GtSum: 19484
+Predsum: 16275
+GtSum: 19484
+TTA Entropy loss: 0.20256427470842997
+2022-04-10 15:10:37,613 TTA loop done for subject 28
+TTA loop done for subject 28
+2022-04-10 15:10:56,771 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 98590
+GtSum: 126642
+TUMOR CORE (LABELS 1 and 4
+Predsum: 17922
+GtSum: 21460
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 16263
+GtSum: 19484
+WHOLE TUMOR:
+2022-04-10 15:10:56,772 case 28 mean_dice 0.868003 mean_hd95 8.544004
+case 28 mean_dice 0.868003 mean_hd95 8.544004
+2022-04-10 15:10:56,772 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-10 15:10:56,772 case 28 mean_dice 0.855512 mean_hd95 4.898979
+case 28 mean_dice 0.855512 mean_hd95 4.898979
+2022-04-10 15:10:56,772 TUMOR CORE:
+TUMOR CORE:
+2022-04-10 15:10:56,772 case 28 mean_dice 0.871363 mean_hd95 6.000000
+case 28 mean_dice 0.871363 mean_hd95 6.000000
+2022-04-10 15:10:56,876 ============================================================
+============================================================
+2022-04-10 15:10:56,877 Subject 30 out of 34: FeTS21_Training_362
+Subject 30 out of 34: FeTS21_Training_362
+2022-04-10 15:11:23,796 TTA Entropy loss: 0.5833556755913628
+Predsum: 158092
+GtSum: 158381
+Predsum: 39107
+GtSum: 59926
+Predsum: 24112
+GtSum: 39129
+TTA Entropy loss: 0.5833556755913628
+2022-04-10 15:11:50,864 TTA Entropy loss: 0.36598885981241863
+Predsum: 126588
+GtSum: 39129
+Predsum: 40449
+GtSum: 39129
+Predsum: 26912
+GtSum: 39129
+TTA Entropy loss: 0.36598885981241863
+2022-04-10 15:12:18,049 TTA Entropy loss: 0.3020466054280599
+Predsum: 112652
+GtSum: 39129
+Predsum: 37111
+GtSum: 39129
+Predsum: 25246
+GtSum: 39129
+TTA Entropy loss: 0.3020466054280599
+2022-04-10 15:12:45,350 TTA Entropy loss: 0.27755359437730576
+Predsum: 105270
+GtSum: 39129
+Predsum: 34851
+GtSum: 39129
+Predsum: 23719
+GtSum: 39129
+TTA Entropy loss: 0.27755359437730576
+2022-04-10 15:13:12,277 TTA Entropy loss: 0.26368887053595647
+Predsum: 98381
+GtSum: 39129
+Predsum: 31960
+GtSum: 39129
+Predsum: 21731
+GtSum: 39129
+TTA Entropy loss: 0.26368887053595647
+2022-04-10 15:13:39,295 TTA Entropy loss: 0.2538844994439019
+Predsum: 90505
+GtSum: 39129
+Predsum: 26579
+GtSum: 39129
+Predsum: 18373
+GtSum: 39129
+TTA Entropy loss: 0.2538844994439019
+2022-04-10 15:14:06,608 TTA Entropy loss: 0.24185391659206815
+Predsum: 83506
+GtSum: 39129
+Predsum: 21301
+GtSum: 39129
+Predsum: 14885
+GtSum: 39129
+TTA Entropy loss: 0.24185391659206815
+2022-04-10 15:14:33,508 TTA Entropy loss: 0.23020111476050484
+Predsum: 78066
+GtSum: 39129
+Predsum: 16690
+GtSum: 39129
+Predsum: 11429
+GtSum: 39129
+TTA Entropy loss: 0.23020111476050484
+2022-04-10 15:15:00,485 TTA Entropy loss: 0.22121744293636747
+Predsum: 74269
+GtSum: 39129
+Predsum: 13152
+GtSum: 39129
+Predsum: 8648
+GtSum: 39129
+TTA Entropy loss: 0.22121744293636747
+2022-04-10 15:15:28,006 TTA Entropy loss: 0.21524873812993367
+Predsum: 72140
+GtSum: 39129
+Predsum: 10984
+GtSum: 39129
+Predsum: 7030
+GtSum: 39129
+TTA Entropy loss: 0.21524873812993367
+2022-04-10 15:15:28,007 TTA loop done for subject 29
+TTA loop done for subject 29
+2022-04-10 15:15:47,328 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 72046
+GtSum: 158381
+TUMOR CORE (LABELS 1 and 4
+Predsum: 10901
+GtSum: 59926
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 6968
+GtSum: 39129
+WHOLE TUMOR:
+2022-04-10 15:15:47,328 case 29 mean_dice 0.622531 mean_hd95 13.928388
+case 29 mean_dice 0.622531 mean_hd95 13.928388
+2022-04-10 15:15:47,328 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-10 15:15:47,328 case 29 mean_dice 0.290474 mean_hd95 18.493242
+case 29 mean_dice 0.290474 mean_hd95 18.493242
+2022-04-10 15:15:47,328 TUMOR CORE:
+TUMOR CORE:
+2022-04-10 15:15:47,328 case 29 mean_dice 0.307453 mean_hd95 20.322401
+case 29 mean_dice 0.307453 mean_hd95 20.322401
+2022-04-10 15:15:47,435 ============================================================
+============================================================
+2022-04-10 15:15:47,435 Subject 31 out of 34: FeTS21_Training_337
+Subject 31 out of 34: FeTS21_Training_337
+2022-04-10 15:16:13,816 TTA Entropy loss: 0.315519905090332
+Predsum: 102524
+GtSum: 111967
+Predsum: 43422
+GtSum: 49901
+Predsum: 21494
+GtSum: 28232
+TTA Entropy loss: 0.315519905090332
+2022-04-10 15:16:40,767 TTA Entropy loss: 0.1946803719997406
+Predsum: 79405
+GtSum: 28232
+Predsum: 41393
+GtSum: 28232
+Predsum: 21946
+GtSum: 28232
+TTA Entropy loss: 0.1946803719997406
+2022-04-10 15:17:07,694 TTA Entropy loss: 0.1885879872639974
+Predsum: 68097
+GtSum: 28232
+Predsum: 37768
+GtSum: 28232
+Predsum: 20850
+GtSum: 28232
+TTA Entropy loss: 0.1885879872639974
+2022-04-10 15:17:34,728 TTA Entropy loss: 0.18993952311409845
+Predsum: 58004
+GtSum: 28232
+Predsum: 32870
+GtSum: 28232
+Predsum: 18704
+GtSum: 28232
+TTA Entropy loss: 0.18993952311409845
+2022-04-10 15:18:01,847 TTA Entropy loss: 0.1820746962229411
+Predsum: 46764
+GtSum: 28232
+Predsum: 27093
+GtSum: 28232
+Predsum: 15645
+GtSum: 28232
+TTA Entropy loss: 0.1820746962229411
+2022-04-10 15:18:28,539 TTA Entropy loss: 0.16630197515090306
+Predsum: 35090
+GtSum: 28232
+Predsum: 21176
+GtSum: 28232
+Predsum: 12164
+GtSum: 28232
+TTA Entropy loss: 0.16630197515090306
+2022-04-10 15:18:55,433 TTA Entropy loss: 0.1437538575000233
+Predsum: 24262
+GtSum: 28232
+Predsum: 15425
+GtSum: 28232
+Predsum: 8464
+GtSum: 28232
+TTA Entropy loss: 0.1437538575000233
+2022-04-10 15:19:22,735 TTA Entropy loss: 0.11819856364197201
+Predsum: 15946
+GtSum: 28232
+Predsum: 10801
+GtSum: 28232
+Predsum: 5279
+GtSum: 28232
+TTA Entropy loss: 0.11819856364197201
+2022-04-10 15:19:49,621 TTA Entropy loss: 0.09769056097666423
+Predsum: 10715
+GtSum: 28232
+Predsum: 7644
+GtSum: 28232
+Predsum: 3247
+GtSum: 28232
+TTA Entropy loss: 0.09769056097666423
+2022-04-10 15:20:16,591 TTA Entropy loss: 0.08654988672998216
+Predsum: 7883
+GtSum: 28232
+Predsum: 5880
+GtSum: 28232
+Predsum: 2252
+GtSum: 28232
+TTA Entropy loss: 0.08654988672998216
+2022-04-10 15:20:16,591 TTA loop done for subject 30
+TTA loop done for subject 30
+2022-04-10 15:20:35,627 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 7752
+GtSum: 111967
+TUMOR CORE (LABELS 1 and 4
+Predsum: 5787
+GtSum: 49901
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 2202
+GtSum: 28232
+WHOLE TUMOR:
+2022-04-10 15:20:35,627 case 30 mean_dice 0.129403 mean_hd95 25.337719
+case 30 mean_dice 0.129403 mean_hd95 25.337719
+2022-04-10 15:20:35,627 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-10 15:20:35,627 case 30 mean_dice 0.135966 mean_hd95 17.378147
+case 30 mean_dice 0.135966 mean_hd95 17.378147
+2022-04-10 15:20:35,628 TUMOR CORE:
+TUMOR CORE:
+2022-04-10 15:20:35,628 case 30 mean_dice 0.207334 mean_hd95 17.233688
+case 30 mean_dice 0.207334 mean_hd95 17.233688
+2022-04-10 15:20:35,733 ============================================================
+============================================================
+2022-04-10 15:20:35,733 Subject 32 out of 34: FeTS21_Training_344
+Subject 32 out of 34: FeTS21_Training_344
+2022-04-10 15:21:02,118 TTA Entropy loss: 1.210135721842448
+Predsum: 259226
+GtSum: 79098
+Predsum: 6999
+GtSum: 19454
+Predsum: 5181
+GtSum: 8988
+TTA Entropy loss: 1.210135721842448
+2022-04-10 15:21:28,616 TTA Entropy loss: 0.2622479801177979
+Predsum: 58110
+GtSum: 8988
+Predsum: 4767
+GtSum: 8988
+Predsum: 3050
+GtSum: 8988
+TTA Entropy loss: 0.2622479801177979
+2022-04-10 15:21:55,485 TTA Entropy loss: 0.13960796507861878
+Predsum: 35717
+GtSum: 8988
+Predsum: 4581
+GtSum: 8988
+Predsum: 3073
+GtSum: 8988
+TTA Entropy loss: 0.13960796507861878
+2022-04-10 15:22:22,171 TTA Entropy loss: 0.1220411232014497
+Predsum: 25052
+GtSum: 8988
+Predsum: 4199
+GtSum: 8988
+Predsum: 2979
+GtSum: 8988
+TTA Entropy loss: 0.1220411232014497
+2022-04-10 15:22:48,698 TTA Entropy loss: 0.11088195419311524
+Predsum: 17241
+GtSum: 8988
+Predsum: 3407
+GtSum: 8988
+Predsum: 2477
+GtSum: 8988
+TTA Entropy loss: 0.11088195419311524
+2022-04-10 15:23:15,323 TTA Entropy loss: 0.09485110140509076
+Predsum: 10022
+GtSum: 8988
+Predsum: 2953
+GtSum: 8988
+Predsum: 2204
+GtSum: 8988
+TTA Entropy loss: 0.09485110140509076
+2022-04-10 15:23:42,160 TTA Entropy loss: 0.07557114318344328
+Predsum: 5181
+GtSum: 8988
+Predsum: 2665
+GtSum: 8988
+Predsum: 2041
+GtSum: 8988
+TTA Entropy loss: 0.07557114318344328
+2022-04-10 15:24:08,437 TTA Entropy loss: 0.06438141204251184
+Predsum: 3616
+GtSum: 8988
+Predsum: 2448
+GtSum: 8988
+Predsum: 1894
+GtSum: 8988
+TTA Entropy loss: 0.06438141204251184
+2022-04-10 15:24:34,964 TTA Entropy loss: 0.05835758223467403
+Predsum: 3030
+GtSum: 8988
+Predsum: 2343
+GtSum: 8988
+Predsum: 1816
+GtSum: 8988
+TTA Entropy loss: 0.05835758223467403
+2022-04-10 15:25:01,189 TTA Entropy loss: 0.054708655993143715
+Predsum: 2771
+GtSum: 8988
+Predsum: 2267
+GtSum: 8988
+Predsum: 1756
+GtSum: 8988
+TTA Entropy loss: 0.054708655993143715
+2022-04-10 15:25:01,189 TTA loop done for subject 31
+TTA loop done for subject 31
+2022-04-10 15:25:19,722 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 2762
+GtSum: 79098
+TUMOR CORE (LABELS 1 and 4
+Predsum: 2266
+GtSum: 19454
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 1755
+GtSum: 8988
+WHOLE TUMOR:
+2022-04-10 15:25:19,722 case 31 mean_dice 0.067481 mean_hd95 31.064449
+case 31 mean_dice 0.067481 mean_hd95 31.064449
+2022-04-10 15:25:19,722 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-10 15:25:19,723 case 31 mean_dice 0.325607 mean_hd95 19.209373
+case 31 mean_dice 0.325607 mean_hd95 19.209373
+2022-04-10 15:25:19,723 TUMOR CORE:
+TUMOR CORE:
+2022-04-10 15:25:19,723 case 31 mean_dice 0.204788 mean_hd95 23.537205
+case 31 mean_dice 0.204788 mean_hd95 23.537205
+2022-04-10 15:25:19,829 ============================================================
+============================================================
+2022-04-10 15:25:19,829 Subject 33 out of 34: FeTS21_Training_358
+Subject 33 out of 34: FeTS21_Training_358
+2022-04-10 15:25:45,681 TTA Entropy loss: 0.22819358740912543
+Predsum: 121626
+GtSum: 107935
+Predsum: 15359
+GtSum: 15643
+Predsum: 13278
+GtSum: 12469
+TTA Entropy loss: 0.22819358740912543
+2022-04-10 15:26:12,090 TTA Entropy loss: 0.21364943928188748
+Predsum: 105381
+GtSum: 12469
+Predsum: 16935
+GtSum: 12469
+Predsum: 15131
+GtSum: 12469
+TTA Entropy loss: 0.21364943928188748
+2022-04-10 15:26:38,817 TTA Entropy loss: 0.19435133075714112
+Predsum: 96230
+GtSum: 12469
+Predsum: 14651
+GtSum: 12469
+Predsum: 13104
+GtSum: 12469
+TTA Entropy loss: 0.19435133075714112
+2022-04-10 15:27:05,312 TTA Entropy loss: 0.18446089864108298
+Predsum: 90711
+GtSum: 12469
+Predsum: 11572
+GtSum: 12469
+Predsum: 10656
+GtSum: 12469
+TTA Entropy loss: 0.18446089864108298
+2022-04-10 15:27:31,880 TTA Entropy loss: 0.18044752339025338
+Predsum: 87540
+GtSum: 12469
+Predsum: 8733
+GtSum: 12469
+Predsum: 8230
+GtSum: 12469
+TTA Entropy loss: 0.18044752339025338
+2022-04-10 15:27:58,497 TTA Entropy loss: 0.17460067723360326
+Predsum: 83503
+GtSum: 12469
+Predsum: 6113
+GtSum: 12469
+Predsum: 5922
+GtSum: 12469
+TTA Entropy loss: 0.17460067723360326
+2022-04-10 15:28:25,166 TTA Entropy loss: 0.16846889075968
+Predsum: 79987
+GtSum: 12469
+Predsum: 4196
+GtSum: 12469
+Predsum: 4106
+GtSum: 12469
+TTA Entropy loss: 0.16846889075968
+2022-04-10 15:28:51,217 TTA Entropy loss: 0.16304309397273595
+Predsum: 76937
+GtSum: 12469
+Predsum: 2771
+GtSum: 12469
+Predsum: 2723
+GtSum: 12469
+TTA Entropy loss: 0.16304309397273595
+2022-04-10 15:29:17,669 TTA Entropy loss: 0.15905154157347148
+Predsum: 74980
+GtSum: 12469
+Predsum: 1750
+GtSum: 12469
+Predsum: 1718
+GtSum: 12469
+TTA Entropy loss: 0.15905154157347148
+2022-04-10 15:29:44,131 TTA Entropy loss: 0.1566305554078685
+Predsum: 73912
+GtSum: 12469
+Predsum: 1242
+GtSum: 12469
+Predsum: 1236
+GtSum: 12469
+TTA Entropy loss: 0.1566305554078685
+2022-04-10 15:29:44,131 TTA loop done for subject 32
+TTA loop done for subject 32
+2022-04-10 15:30:02,774 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 73864
+GtSum: 107935
+TUMOR CORE (LABELS 1 and 4
+Predsum: 1222
+GtSum: 15643
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 1215
+GtSum: 12469
+WHOLE TUMOR:
+2022-04-10 15:30:02,775 case 32 mean_dice 0.802887 mean_hd95 6.000000
+case 32 mean_dice 0.802887 mean_hd95 6.000000
+2022-04-10 15:30:02,775 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-10 15:30:02,775 case 32 mean_dice 0.176118 mean_hd95 14.798649
+case 32 mean_dice 0.176118 mean_hd95 14.798649
+2022-04-10 15:30:02,775 TUMOR CORE:
+TUMOR CORE:
+2022-04-10 15:30:02,775 case 32 mean_dice 0.143848 mean_hd95 15.000000
+case 32 mean_dice 0.143848 mean_hd95 15.000000
+2022-04-10 15:30:02,882 ============================================================
+============================================================
+2022-04-10 15:30:02,882 Subject 34 out of 34: FeTS21_Training_348
+Subject 34 out of 34: FeTS21_Training_348
+2022-04-10 15:30:29,249 TTA Entropy loss: 0.8005182071261936
+Predsum: 188321
+GtSum: 85112
+Predsum: 52081
+GtSum: 60044
+Predsum: 25698
+GtSum: 43762
+TTA Entropy loss: 0.8005182071261936
+2022-04-10 15:30:55,908 TTA Entropy loss: 0.2586393036312527
+Predsum: 90363
+GtSum: 43762
+Predsum: 55068
+GtSum: 43762
+Predsum: 30196
+GtSum: 43762
+TTA Entropy loss: 0.2586393036312527
+2022-04-10 15:31:23,020 TTA Entropy loss: 0.1822822051578098
+Predsum: 82667
+GtSum: 43762
+Predsum: 56420
+GtSum: 43762
+Predsum: 32479
+GtSum: 43762
+TTA Entropy loss: 0.1822822051578098
+2022-04-10 15:31:49,655 TTA Entropy loss: 0.17402901215023464
+Predsum: 81666
+GtSum: 43762
+Predsum: 57350
+GtSum: 43762
+Predsum: 34145
+GtSum: 43762
+TTA Entropy loss: 0.17402901215023464
+2022-04-10 15:32:16,547 TTA Entropy loss: 0.1779936762385898
+Predsum: 81471
+GtSum: 43762
+Predsum: 57925
+GtSum: 43762
+Predsum: 35224
+GtSum: 43762
+TTA Entropy loss: 0.1779936762385898
+2022-04-10 15:32:43,406 TTA Entropy loss: 0.18385166441069709
+Predsum: 81353
+GtSum: 43762
+Predsum: 58309
+GtSum: 43762
+Predsum: 35975
+GtSum: 43762
+TTA Entropy loss: 0.18385166441069709
+2022-04-10 15:33:10,258 TTA Entropy loss: 0.18870098166995578
+Predsum: 81263
+GtSum: 43762
+Predsum: 58499
+GtSum: 43762
+Predsum: 36356
+GtSum: 43762
+TTA Entropy loss: 0.18870098166995578
+2022-04-10 15:33:37,301 TTA Entropy loss: 0.19143696647220187
+Predsum: 81137
+GtSum: 43762
+Predsum: 58513
+GtSum: 43762
+Predsum: 36470
+GtSum: 43762
+TTA Entropy loss: 0.19143696647220187
+2022-04-10 15:34:04,479 TTA Entropy loss: 0.1927663261824184
+Predsum: 81011
+GtSum: 43762
+Predsum: 58447
+GtSum: 43762
+Predsum: 36454
+GtSum: 43762
+TTA Entropy loss: 0.1927663261824184
+2022-04-10 15:34:31,330 TTA Entropy loss: 0.1929913796318902
+Predsum: 80928
+GtSum: 43762
+Predsum: 58384
+GtSum: 43762
+Predsum: 36390
+GtSum: 43762
+TTA Entropy loss: 0.1929913796318902
+2022-04-10 15:34:31,330 TTA loop done for subject 33
+TTA loop done for subject 33
+2022-04-10 15:34:50,330 WHOLE TUMOR:
+WHOLE TUMOR (ALL LABELS)
+Predsum: 80923
+GtSum: 85112
+TUMOR CORE (LABELS 1 and 4
+Predsum: 58376
+GtSum: 60044
+ENHANCING TUMOR (ONLY LABEL 4
+Predsum: 36381
+GtSum: 43762
+WHOLE TUMOR:
+2022-04-10 15:34:50,330 case 33 mean_dice 0.953040 mean_hd95 2.236068
+case 33 mean_dice 0.953040 mean_hd95 2.236068
+2022-04-10 15:34:50,330 ENHANCING TUMOR:
+ENHANCING TUMOR:
+2022-04-10 15:34:50,330 case 33 mean_dice 0.861510 mean_hd95 1.414214
+case 33 mean_dice 0.861510 mean_hd95 1.414214
+2022-04-10 15:34:50,330 TUMOR CORE:
+TUMOR CORE:
+2022-04-10 15:34:50,330 case 33 mean_dice 0.955480 mean_hd95 2.000000
+case 33 mean_dice 0.955480 mean_hd95 2.000000
+2022-04-10 15:34:50,330 ---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+2022-04-10 15:34:50,331 Mean dice score on WHOLE TUMOR: 0.6377267283313554
+Mean dice score on WHOLE TUMOR: 0.6377267283313554
+2022-04-10 15:34:50,331 Mean dice score on ENHANCING TUMOR: 0.4830753219880309
+Mean dice score on ENHANCING TUMOR: 0.4830753219880309
+2022-04-10 15:34:50,331 Mean dice score on TUMOR CORE: 0.5270242332721052
+Mean dice score on TUMOR CORE: 0.5270242332721052
+2022-04-10 15:34:50,331 ---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+test.py successfully executed

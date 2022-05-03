@@ -20,29 +20,34 @@ import config.params as exp_config
 import utils
 from normalisation_module import Normalisation_Module_flair, Normalisation_Module_t1, Normalisation_Module_t1ce, Normalisation_Module_t2
 import torch.nn.functional as F
+from torchvision.utils import save_image
 
 
-seed = 21
+seed = 5555
 model_type = 'UNWT'
 data_aug = '0.25_TTA'
+use_tta = True
 
 def trainer_fets(args, model):
 
+    # ============================
+    # Instantiate normalisation modules
+    # ============================
 
-    i2n_module_t1 = Normalisation_Module_t1(in_channels = 1)
-    i2n_module_t1ce = Normalisation_Module_t1ce(in_channels = 1)
-    i2n_module_t2 = Normalisation_Module_t2(in_channels = 1)
-    i2n_module_flair = Normalisation_Module_flair(in_channels = 1)
+    if use_tta:
+        i2n_module_t1 = Normalisation_Module_t1(in_channels = 1)
+        i2n_module_t1ce = Normalisation_Module_t1ce(in_channels = 1)
+        i2n_module_t2 = Normalisation_Module_t2(in_channels = 1)
+        i2n_module_flair = Normalisation_Module_flair(in_channels = 1)
 
     
-
     base_lr = args.base_lr
     num_classes = args.num_classes
     batch_size = args.batch_size * args.n_gpu
 
 
     # ============================
-    # Load training data
+    # Load training data (3 parts) & validation data 
     # ============================   
     logging.info('============================================================')
     logging.info('Loading data...')
@@ -83,14 +88,7 @@ def trainer_fets(args, model):
     imvl = np.array(imvl)
     gtvl = np.array(gtvl)
 
-    #import pdb; pdb.set_trace()
-
-    #utils.save_nii(img_path = '/scratch_net/biwidl217_second/arismu/Data_MT/' + 'PART3_SUBJECT_30.nii.gz', data = imvl[:, :, 11780:12400], affine = np.eye(4))
-    #utils.save_nii(img_path = '/scratch_net/biwidl217_second/arismu/Data_MT/' + 'PART3_LABEL_30.nii.gz', data = gtvl[:, :, 11780:12400], affine = np.eye(4))
-
-
-    
-    gtvl[np.where(gtvl == 4)] = 3 
+    gtvl[np.where(gtvl == 4)] = 3 #turn labels [0 1 2 4] into [0 1 2 3]
     
     
 
@@ -114,13 +112,16 @@ def trainer_fets(args, model):
     gtvl = torch.from_numpy(gtvl)
 
 
+
+    # ============================
+    # Rearrange the slices such that the 4 modalities from one patient are stacked along the channel dimension
+    # ============================
     
     img_list = []
     label_list = []
 
     val_img_list = []
     val_label_list = []
-
 
 
     lim1 = 0
@@ -269,23 +270,27 @@ def trainer_fets(args, model):
 
     if args.n_gpu > 1:
         model = nn.DataParallel(model)
-        i2n_module_t1 = nn.DataParallel(i2n_module_t1)
-        i2n_module_t1ce = nn.DataParallel(i2n_module_t1ce)
-        i2n_module_t2 = nn.DataParallel(i2n_module_t2)
-        i2n_module_flair = nn.DataParallel(i2n_module_flair)
+        if use_tta:
+            i2n_module_t1 = nn.DataParallel(i2n_module_t1)
+            i2n_module_t1ce = nn.DataParallel(i2n_module_t1ce)
+            i2n_module_t2 = nn.DataParallel(i2n_module_t2)
+            i2n_module_flair = nn.DataParallel(i2n_module_flair)
+
     model.train()
-    i2n_module_t1.train()
-    i2n_module_t1ce.train()
-    i2n_module_t2.train()
-    i2n_module_flair.train()
+    if use_tta:
+        i2n_module_t1.train()
+        i2n_module_t1ce.train()
+        i2n_module_t2.train()
+        i2n_module_flair.train()
     
     ce_loss = CrossEntropyLoss()
     dice_loss = DiceLoss(num_classes)
     optimizer = optim.Adam(model.parameters(), lr=base_lr)
-    optim_i2n_t1 = optim.Adam(i2n_module_t1.parameters(), lr=base_lr)
-    optim_i2n_t1ce = optim.Adam(i2n_module_t1ce.parameters(), lr=base_lr)
-    optim_i2n_t2 = optim.Adam(i2n_module_t2.parameters(), lr=base_lr)
-    optim_i2n_flair = optim.Adam(i2n_module_flair.parameters(), lr=base_lr)
+    if use_tta:
+        optim_i2n_t1 = optim.Adam(i2n_module_t1.parameters(), lr=base_lr)
+        optim_i2n_t1ce = optim.Adam(i2n_module_t1ce.parameters(), lr=base_lr)
+        optim_i2n_t2 = optim.Adam(i2n_module_t2.parameters(), lr=base_lr)
+        optim_i2n_flair = optim.Adam(i2n_module_flair.parameters(), lr=base_lr)
     writer = SummaryWriter(f'/scratch_net/biwidl217_second/arismu/Tensorboard/2022/FETS/{model_type}/TTA/' + f'FETS_{model_type}_log_seed{seed}_da{data_aug}') 
     iter_num = 0
     max_epoch = args.max_epochs
@@ -303,62 +308,73 @@ def trainer_fets(args, model):
         print(f"EPOCH: {epoch_num}")
         for sampled_batch in iterate_minibatches(args, img_list, label_list, batch_size = exp_config.batch_size, train_or_eval = 'train'):
             model.train()
-            i2n_module_t1.train()
-            i2n_module_t1ce.train()
-            i2n_module_t2.train()
-            i2n_module_flair.train()
+            if use_tta:
+                i2n_module_t1.train()
+                i2n_module_t1ce.train()
+                i2n_module_t2.train()
+                i2n_module_flair.train()
 
-            i2n_module_t1.to(device)
-            i2n_module_t1ce.to(device)
-            i2n_module_t2.to(device)
-            i2n_module_flair.to(device)
+                i2n_module_t1.to(device)
+                i2n_module_t1ce.to(device)
+                i2n_module_t2.to(device)
+                i2n_module_flair.to(device)
     
             
             image_batch, label_batch = sampled_batch[0], sampled_batch[1]
             image_batch = torch.from_numpy(image_batch)
             label_batch = torch.from_numpy(label_batch)
             image_batch, label_batch = image_batch.cuda(), label_batch.cuda()      
-            image_batch = image_batch.permute(3, 2, 0, 1)
+            image_batch = image_batch.permute(3, 2, 0, 1) #we need shape [B, C, H, W]
             label_batch = label_batch.permute(3, 2, 0, 1)
-            norm_output_t1 = i2n_module_t1(image_batch[:, 0, :, :].unsqueeze(1))
-            norm_output_t1ce = i2n_module_t1ce(image_batch[:, 1, :, :].unsqueeze(1))
-            norm_output_t2 = i2n_module_t2(image_batch[:, 2, :, :].unsqueeze(1))
-            norm_output_flair = i2n_module_flair(image_batch[:, 3, :, :].unsqueeze(1))
 
-            norm_output = torch.cat((norm_output_t1, norm_output_t1ce, norm_output_t2, norm_output_flair), 1)
 
-            norm_output = norm_output.cuda()
+            if use_tta:
+                norm_output_t1 = i2n_module_t1(image_batch[:, 0, :, :].unsqueeze(1))
+                norm_output_t1ce = i2n_module_t1ce(image_batch[:, 1, :, :].unsqueeze(1))
+                norm_output_t2 = i2n_module_t2(image_batch[:, 2, :, :].unsqueeze(1))
+                norm_output_flair = i2n_module_flair(image_batch[:, 3, :, :].unsqueeze(1))
 
-            
-            outputs = model(norm_output)            
+                norm_output = torch.cat((norm_output_t1, norm_output_t1ce, norm_output_t2, norm_output_flair), 1)
+                norm_output = norm_output.cuda()
+                outputs = model(norm_output)   
+
+            else:
+                outputs = model(image_batch)
+
             loss_ce = ce_loss(outputs, label_batch[:, 0, :, :].long())
             loss_dice = dice_loss(outputs, label_batch[:, 0, :, :], softmax=True)
             loss = 0.5 * loss_ce + 0.5 * loss_dice
             optimizer.zero_grad()
-            optim_i2n_t1.zero_grad()
-            optim_i2n_t1ce.zero_grad()
-            optim_i2n_t2.zero_grad()
-            optim_i2n_flair.zero_grad()
+            if use_tta:
+                optim_i2n_t1.zero_grad()
+                optim_i2n_t1ce.zero_grad()
+                optim_i2n_t2.zero_grad()
+                optim_i2n_flair.zero_grad()
+
             loss.backward()
+
             optimizer.step()
-            optim_i2n_t1.step()
-            optim_i2n_t1ce.step()
-            optim_i2n_t2.step()
-            optim_i2n_flair.step()
+            if use_tta:
+                optim_i2n_t1.step()
+                optim_i2n_t1ce.step()
+                optim_i2n_t2.step()
+                optim_i2n_flair.step()
 
             lr_ = base_lr * (1.0 - iter_num / max_iterations) ** 0.9
+
             for param_group in optimizer.param_groups:
                 param_group['lr'] = lr_
-            for param_group in optim_i2n_t1.param_groups:
-                param_group['lr'] = lr_
-            for param_group in optim_i2n_t1ce.param_groups:
-                param_group['lr'] = lr_   
-            for param_group in optim_i2n_t2.param_groups:
-                param_group['lr'] = lr_
-            for param_group in optim_i2n_flair.param_groups:
-                param_group['lr'] = lr_
+
+            if use_tta:
+                for param_group in optim_i2n_t1.param_groups:
+                    param_group['lr'] = lr_
+                for param_group in optim_i2n_t1ce.param_groups:
+                    param_group['lr'] = lr_   
+                for param_group in optim_i2n_t2.param_groups:
+                    param_group['lr'] = lr_
+                for param_group in optim_i2n_flair.param_groups:
+                    param_group['lr'] = lr_
             
-            #add lr reduction for all optimizers
 
     # ============================
     # Write to Tensorboard
@@ -370,17 +386,6 @@ def trainer_fets(args, model):
             writer.add_scalar('info/loss_ce', loss_ce, iter_num)
 
             logging.info('iteration %d : loss : %f, loss_ce: %f' % (iter_num, loss.item(), loss_ce.item()))
-
-
-            #if iter_num % 500 == 0:
-            #    image = image_batch[1, 0:4, :, :]
-            #    image = (image - image.min()) / (image.max() - image.min())
-            #    writer.add_image('train/Image', image, iter_num)
-            #    outputs = torch.argmax(torch.softmax(outputs, dim=1), dim=1, keepdim=True)
-            #    writer.add_image('train/Prediction', outputs[1, 0:4, :, :] * 50, iter_num)
-                #labs = label_batch[1, 0, :, :].unsqueeze(0) * 50
-                #writer.add_image('train/GroundTruth', labs, iter_num)
-
             
 
             # ===========================
@@ -396,7 +401,7 @@ def trainer_fets(args, model):
                 
 
             # ===========================
-            # Evaluate the model periodically on a validation set 
+            # Evaluate the model periodically on the validation set 
             # ===========================
             if (iter_num+1) % 853 == 0:
                 logging.info('Validation Data Eval:')
@@ -406,31 +411,30 @@ def trainer_fets(args, model):
 
                 writer.add_scalar('info/total_loss_validation_set', val_loss, iter_num)
 
+
+                # ============================
+                # Save the trained model parameters
+                # ============================ 
+
+
                 if val_loss < best_val_loss:
                     save_mode_path = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_best_val_loss_seed{seed}_da{data_aug}' + '.pth')
                     torch.save(model.state_dict(), save_mode_path)
-                    save_t1_path = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_{seed}_da{data_aug}_NORM_T1' + '.pth')
-                    save_t1ce_path = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_{seed}_da{data_aug}_NORM_T1CE' + '.pth')
-                    save_t2_path = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_{seed}_da{data_aug}_NORM_T2' + '.pth')
-                    save_flair_path = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_{seed}_da{data_aug}_NORM_FLAIR' + '.pth')
 
-                    torch.save(i2n_module_t1.state_dict(), save_t1_path)
-                    torch.save(i2n_module_t1ce.state_dict(), save_t1ce_path)
-                    torch.save(i2n_module_t2.state_dict(), save_t2_path)
-                    torch.save(i2n_module_flair.state_dict(), save_flair_path)
+                    if use_tta:
+                        save_t1_path = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_{seed}_da{data_aug}_NORM_T1' + '.pth')
+                        save_t1ce_path = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_{seed}_da{data_aug}_NORM_T1CE' + '.pth')
+                        save_t2_path = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_{seed}_da{data_aug}_NORM_T2' + '.pth')
+                        save_flair_path = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/TTA/', f'FETS_{model_type}_{seed}_da{data_aug}_NORM_FLAIR' + '.pth')
+
+                        torch.save(i2n_module_t1.state_dict(), save_t1_path)
+                        torch.save(i2n_module_t1ce.state_dict(), save_t1ce_path)
+                        torch.save(i2n_module_t2.state_dict(), save_t2_path)
+                        torch.save(i2n_module_flair.state_dict(), save_flair_path)
 
                     logging.info(f"Found new lowest validation loss at iteration {iter_num}! Save model to {save_mode_path}")
                     best_val_loss = val_loss
             
-            #if (iter_num+1) % 10000 == 0:
-             #   logging.info(f'Saving model at iteration {iter_num}')
-            #    save_mode_path = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/FETS/{model_type}/', f'FETS_{model_type}_seed{seed}_iternum{iter_num}_da{data_aug}' + '.pth')
-            #    torch.save(model.state_dict(), save_mode_path)
-
-    # ============================
-    # Save the trained model parameters
-    # ============================  
-
 
     writer.close()
     return "Training Finished!"
@@ -445,7 +449,7 @@ def iterate_minibatches(args,
     # ===========================
     # generate indices to randomly select subjects in each minibatch
     # ===========================
-    #n_images = images.shape[2]
+
     n_images = len(images)
     random_indices = np.random.permutation(n_images)
 
@@ -482,7 +486,6 @@ def iterate_minibatches(args,
             # 90 degree rotation for cardiac images as the orientation is fixed for all other anatomies.
             do_rot90 = args.dataset in ['HVHD', 'CSF', 'UHE']
 
-            
             x, y = utils.do_data_augmentation_FETS(images = x,
                                             labels = y,
                                             data_aug_ratio = args.da_ratio,
@@ -503,10 +506,6 @@ def iterate_minibatches(args,
                                             rot90 = do_rot90)
 
                 
-
-               
-
-        #x = np.expand_dims(x, axis=-1)
         
         yield x, y
 
@@ -515,15 +514,16 @@ def do_train_eval(images, labels, batch_size, model, ce_loss, dice_loss):
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-    i2n_module_t1 = Normalisation_Module_t1(in_channels = 1)
-    i2n_module_t1ce = Normalisation_Module_t1ce(in_channels = 1)
-    i2n_module_t2 = Normalisation_Module_t2(in_channels = 1)
-    i2n_module_flair = Normalisation_Module_flair(in_channels = 1)
+    if use_tta:
+        i2n_module_t1 = Normalisation_Module_t1(in_channels = 1)
+        i2n_module_t1ce = Normalisation_Module_t1ce(in_channels = 1)
+        i2n_module_t2 = Normalisation_Module_t2(in_channels = 1)
+        i2n_module_flair = Normalisation_Module_flair(in_channels = 1)
 
-    i2n_module_t1.to(device)
-    i2n_module_t1ce.to(device)
-    i2n_module_t2.to(device)
-    i2n_module_flair.to(device)
+        i2n_module_t1.to(device)
+        i2n_module_t1ce.to(device)
+        i2n_module_t2.to(device)
+        i2n_module_flair.to(device)
 
     n_images = len(images)
     random_indices = np.random.permutation(n_images)
@@ -533,10 +533,11 @@ def do_train_eval(images, labels, batch_size, model, ce_loss, dice_loss):
 
 
     model.eval()
-    i2n_module_t1.eval()
-    i2n_module_t1ce.eval()
-    i2n_module_t2.eval()
-    i2n_module_flair.eval()
+    if use_tta:
+        i2n_module_t1.eval()
+        i2n_module_t1ce.eval()
+        i2n_module_t2.eval()
+        i2n_module_flair.eval()
 
     with torch.no_grad():
         # ===========================
@@ -564,16 +565,22 @@ def do_train_eval(images, labels, batch_size, model, ce_loss, dice_loss):
             x = x.permute(0, 3, 1, 2)
             y = y.permute(0, 3, 1, 2)
 
-            norm_output_t1 = i2n_module_t1(x[:, 0, :, :].unsqueeze(1))
-            norm_output_t1ce = i2n_module_t1ce(x[:, 1, :, :].unsqueeze(1))
-            norm_output_t2 = i2n_module_t2(x[:, 2, :, :].unsqueeze(1))
-            norm_output_flair = i2n_module_flair(x[:, 3, :, :].unsqueeze(1))
+            if use_tta:
+                norm_output_t1 = i2n_module_t1(x[:, 0, :, :].unsqueeze(1))
+                norm_output_t1ce = i2n_module_t1ce(x[:, 1, :, :].unsqueeze(1))
+                norm_output_t2 = i2n_module_t2(x[:, 2, :, :].unsqueeze(1))
+                norm_output_flair = i2n_module_flair(x[:, 3, :, :].unsqueeze(1))
 
-            norm_output = torch.cat((norm_output_t1, norm_output_t1ce, norm_output_t2, norm_output_flair), 1)
+                norm_output = torch.cat((norm_output_t1, norm_output_t1ce, norm_output_t2, norm_output_flair), 1)
+                
+                norm_output = norm_output.cuda()
             
-            norm_output = norm_output.cuda()
+                outputs = model(norm_output)
+
+            else:
+                outputs = model(x)
             
-            outputs = model(norm_output)
+            
             train_loss_ce = ce_loss(outputs, y[:, 0, :, :].long())
             train_loss_dice = dice_loss(outputs, y[:, 0, :, :], softmax=True)
             train_loss = 0.5 * train_loss_ce + 0.5 * train_loss_dice
@@ -593,15 +600,16 @@ def do_validation_eval(images, labels, batch_size, model, ce_loss, dice_loss):
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-    i2n_module_t1 = Normalisation_Module_t1(in_channels = 1)
-    i2n_module_t1ce = Normalisation_Module_t1ce(in_channels = 1)
-    i2n_module_t2 = Normalisation_Module_t2(in_channels = 1)
-    i2n_module_flair = Normalisation_Module_flair(in_channels = 1)
+    if use_tta:
+        i2n_module_t1 = Normalisation_Module_t1(in_channels = 1)
+        i2n_module_t1ce = Normalisation_Module_t1ce(in_channels = 1)
+        i2n_module_t2 = Normalisation_Module_t2(in_channels = 1)
+        i2n_module_flair = Normalisation_Module_flair(in_channels = 1)
 
-    i2n_module_t1.to(device)
-    i2n_module_t1ce.to(device)
-    i2n_module_t2.to(device)
-    i2n_module_flair.to(device)
+        i2n_module_t1.to(device)
+        i2n_module_t1ce.to(device)
+        i2n_module_t2.to(device)
+        i2n_module_flair.to(device)
 
     writer = SummaryWriter(f'/scratch_net/biwidl217_second/arismu/Tensorboard/2022/FETS/{model_type}/TTA/' + f'FETS_{model_type}_log_seed{seed}_da{data_aug}') 
 
@@ -612,10 +620,11 @@ def do_validation_eval(images, labels, batch_size, model, ce_loss, dice_loss):
     num_batches = 0
 
     model.eval()
-    i2n_module_t1.eval()
-    i2n_module_t1ce.eval()
-    i2n_module_t2.eval()
-    i2n_module_flair.eval()
+    if use_tta:
+        i2n_module_t1.eval()
+        i2n_module_t1ce.eval()
+        i2n_module_t2.eval()
+        i2n_module_flair.eval()
 
     with torch.no_grad():
         # ===========================
@@ -634,48 +643,32 @@ def do_validation_eval(images, labels, batch_size, model, ce_loss, dice_loss):
                 lab_list.append(labels[b])
             x = torch.stack(b_list)
             y = torch.stack(lab_list)
-            #x = images[..., batch_indices]
-            #y = labels[..., batch_indices]
-
-            #x = np.expand_dims(x, axis=-1)
-
-            #x = torch.from_numpy(x)
-            #y = torch.from_numpy(y)
             
             x, y = x.cuda(), y.cuda()   
 
             x = x.permute(0, 3, 1, 2)
             y = y.permute(0, 3, 1, 2)
 
+            if use_tta:
+                norm_output_t1 = i2n_module_t1(x[:, 0, :, :].unsqueeze(1))
+                norm_output_t1ce = i2n_module_t1ce(x[:, 1, :, :].unsqueeze(1))
+                norm_output_t2 = i2n_module_t2(x[:, 2, :, :].unsqueeze(1))
+                norm_output_flair = i2n_module_flair(x[:, 3, :, :].unsqueeze(1))
 
-            norm_output_t1 = i2n_module_t1(x[:, 0, :, :].unsqueeze(1))
-            norm_output_t1ce = i2n_module_t1ce(x[:, 1, :, :].unsqueeze(1))
-            norm_output_t2 = i2n_module_t2(x[:, 2, :, :].unsqueeze(1))
-            norm_output_flair = i2n_module_flair(x[:, 3, :, :].unsqueeze(1))
+                norm_output = torch.cat((norm_output_t1, norm_output_t1ce, norm_output_t2, norm_output_flair), 1)
+                norm_output = norm_output.cuda()
 
-            norm_output = torch.cat((norm_output_t1, norm_output_t1ce, norm_output_t2, norm_output_flair), 1)
-
-            norm_output = norm_output.cuda()
-
-            outputs = model(norm_output)
+                outputs = model(norm_output)
+            
+            else: 
+                outputs = model(x)
+                
             val_loss_ce = ce_loss(outputs, y[:, 0, :, :].long())
             val_loss_dice = dice_loss(outputs, y[:, 0, :, :], softmax=True)
             val_loss = 0.5 * val_loss_ce + 0.5 * val_loss_dice
 
-        
-
-
             loss_ii += val_loss
             num_batches += 1
-
-            #if b_i % 100 == 0:
-            #    image = x[1, 0:4, :, :]
-            #    image = (image - image.min()) / (image.max() - image.min())
-            #    writer.add_image('validation/Image', image, b_i)
-            #    outputs = torch.argmax(torch.softmax(outputs, dim=1), dim=1, keepdim=True)
-            #    writer.add_image('validation/Prediction', outputs[1, 0:4, :, :] * 50, b_i)
-            #    #labs = y[1, ...].unsqueeze(0) * 50
-                #writer.add_image('train/GroundTruth', labs[0, :, :], b_i)
 
         
         avg_loss = loss_ii / num_batches
