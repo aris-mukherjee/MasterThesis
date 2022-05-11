@@ -14,7 +14,7 @@ This repo contains training & test files for prostate datasets (NCI = RUNMC, UCL
 
 ### Prostate
 
-* `train_prostate.py` (parameters and main function) and trainer_prostate.py (dataloading & training loop)
+* `train_prostate.py` (parameters and main function) and `trainer_prostate.py` (dataloading & training loop)
 * `test_[dataset].py` with dataset in [NCI, UCL, HK, BIDMC, BMC, USZ] files are the test files - evaluation and Dice score calculation happens in `utils.py`
 
 
