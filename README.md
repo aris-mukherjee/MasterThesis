@@ -27,7 +27,7 @@ To run different types of experiments, certain parameters can be set manually at
 
 ## Prepare Data 
 
-Preprocessed training and test data for prostate and brain tumor is stored as hdf5 files under `/itet-stor/arismu/bmicdatasets_bmicnas01/Processed/Aris/FeTS`
+Preprocessed training and test data for prostate and brain tumor is stored as hdf5 files under `bmicdatasets_bmicnas01/Processed/Aris/FeTS`
 Note: FeTS training set is split up into 3 parts 
 
 ## Environment
