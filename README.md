@@ -1,5 +1,4 @@
-# MasterThesis
-OOD-Robustness and Calibration Comparison U-Net vs. UNWT
+# OOD-Robustness and Calibration Comparison U-Net vs. UNWT
 
 ## File Structure
 
