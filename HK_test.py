@@ -19,17 +19,18 @@ from sklearn.calibration import CalibrationDisplay
 import matplotlib.pyplot as plt
 from calibration_functions import find_bin_values
 from calibration_functions import find_area
-from calibration_functions import plot_roc_curve
-from sklearn.metrics import roc_curve, auc
-from sklearn.metrics import roc_auc_score
 
 
+seed = 1234
+model_type = 'UNET'
+measure_calibration = False
+dataset = 'HK'
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--volume_path', type=str,
                     default='/itet-stor/arismu/bmicdatasets-originals/Originals/Challenge_Datasets/Prostate_PROMISE12/TrainingData/', help='root dir for validation volume data')  # for acdc volume_path=root_dir
 parser.add_argument('--test_dataset', type=str,
-                    default='HK', help='experiment_name')
+                    default=f'{dataset}', help='experiment_name')
 parser.add_argument('--num_classes', type=int,
                     default=3, help='output channel of network')
 parser.add_argument('--max_iterations', type=int,default=6800, help='maximum epoch number to train')
@@ -37,7 +38,6 @@ parser.add_argument('--max_epochs', type=int, default=400, help='maximum epoch n
 parser.add_argument('--batch_size', type=int, default=16,
                     help='batch_size per gpu')
 parser.add_argument('--img_size', type=int, default=256, help='input patch size of network input')
-#parser.add_argument('--is_savenii', action="store_true", help='whether to save results during inference')
 parser.add_argument('--is_savenii', type=bool, default=True, help='whether to save results during inference')
 
 parser.add_argument('--n_skip', type=int, default=3, help='using number of skip-connect, default is num')
@@ -62,14 +62,14 @@ def inference(args, model, test_save_path=None):
     # Load test data
     # ============================ 
     
-    loaded_test_data = utils_data.load_testing_data(args.test_dataset,  #needs to be adapted for different test set
+    loaded_test_data = utils_data.load_testing_data(args.test_dataset,  
                                                     args.test_cv_fold_num,
                                                     args.img_size,
                                                     args.target_resolution,
                                                     args.image_depth_ts)
 
 
-    imts = loaded_test_data[0]   #shape (194, 256, 256)
+    imts = loaded_test_data[0]   
     gtts = loaded_test_data[1]
     orig_data_res_x = loaded_test_data[2]
     orig_data_res_y = loaded_test_data[3]
@@ -81,15 +81,11 @@ def inference(args, model, test_save_path=None):
     num_test_subjects = loaded_test_data[9]
     ids = loaded_test_data[10]
 
-    
 
     model.eval()
     metric_list = 0.0
     pred_list = []
     label_list = []
-    fpr = dict()
-    tpr = dict()
-    roc_auc = dict() 
     
 
     
@@ -127,34 +123,31 @@ def inference(args, model, test_save_path=None):
         # Perform the prediction for each test patient individually & calculate dice score and Hausdorff distance
         # ============================ 
 
-        metric_i, pred_l, label_l = test_single_volume(image, label, model, classes=args.num_classes, dataset = 'HK', optim = 'ADAM', model_type = 'UNWT', seed= '1234', patch_size=[args.img_size, args.img_size],
+        metric_i, pred_l, label_l = test_single_volume(image, label, model, classes=args.num_classes, dataset = f'{dataset}', optim = 'ADAM', model_type = 'UNWT', seed= '1234', patch_size=[args.img_size, args.img_size],
                                       test_save_path=test_save_path, case=sub_num, z_spacing=args.z_spacing)
 
         metric_list += np.array(metric_i)
         pred_list.extend(pred_l)
         label_list.extend(label_l)
+
         logging.info('case %s mean_dice %f mean_hd95 %f' % (sub_num, np.mean(metric_i, axis=0)[0], np.mean(metric_i, axis=0)[1]))
     metric_list = metric_list / num_test_subjects   #get mean metrics for every class
-
-        # ============================
-        # Log the mean performance achieved for each class
-        # ============================ 
     
-    #first_bin_frac_pos, second_bin_frac_pos, third_bin_frac_pos, fourth_bin_frac_pos, fifth_bin_frac_pos = find_bin_values(pred_list, label_list)
-    #find_area(first_bin_frac_pos, second_bin_frac_pos, third_bin_frac_pos, fourth_bin_frac_pos, fifth_bin_frac_pos)
-    #disp = CalibrationDisplay.from_predictions(label_list, pred_list)
-    #plt.show()
-    #plt.savefig(f'/scratch_net/biwidl217_second/arismu/Data_MT/plots/UNWT_HK.png')
+    if measure_calibration:
+        first_bin_frac_pos, second_bin_frac_pos, third_bin_frac_pos, fourth_bin_frac_pos, fifth_bin_frac_pos = find_bin_values(pred_list, label_list)
+        find_area(first_bin_frac_pos, second_bin_frac_pos, third_bin_frac_pos, fourth_bin_frac_pos, fifth_bin_frac_pos)
+        disp = CalibrationDisplay.from_predictions(label_list, pred_list)
+        plt.show()
+        plt.savefig(f'/scratch_net/biwidl217_second/arismu/Data_MT/plots/{model_type}_{dataset}.png')
 
-    fpr, tpr, _ = roc_curve(label_list, pred_list,  pos_label = 1)
-    roc_auc = auc(fpr, tpr)
-    plot_roc_curve(fpr, tpr, roc_auc, 'ROC_UNWT_HK')
 
-    for i in range(0, args.num_classes):
-        logging.info('Mean class %d mean_dice %f mean_hd95 %f' % (i, metric_list[i][0], metric_list[i][1]))
+    # ============================
+    # Log the mean performance achieved for each class
+    # ============================ 
+
+    logging.info('AVERAGE OVER ALL TEST SUBJECTS: mean_dice %f mean_hd95 %f' % (metric_list[0][0], metric_list[0][1]))
     performance = np.mean(metric_list, axis=0)[0]
     mean_hd95 = np.mean(metric_list, axis=0)[1]
-    logging.info('Testing performance in best val model: mean_dice : %f mean_hd95 : %f' % (performance, mean_hd95))
     return "Testing Finished!"
 
 
@@ -172,7 +165,7 @@ if __name__ == "__main__":
     torch.cuda.manual_seed(args.seed)
 
     dataset_config = {
-        'HK': {
+        f'{dataset}': {
             'volume_path': '/itet-stor/arismu/bmicdatasets-originals/Originals/Challenge_Datasets/Prostate_PROMISE12/TrainingData/',
             'num_classes': 3,
             'z_spacing': 1,
@@ -183,26 +176,6 @@ if __name__ == "__main__":
     args.volume_path = dataset_config[dataset_name]['volume_path']
     args.Dataset = dataset_name
     args.z_spacing = dataset_config[dataset_name]['z_spacing']
-    args.is_pretrain = True
-
-    # ============================
-    # Same snapshot path as defined in the train script to access the trained model
-    # ============================  
-
-    args.exp = 'TU_RUNMC' + str(args.img_size) 
-    snapshot_path = "../model/{}/{}".format(args.exp, 'TU')
-    snapshot_path = snapshot_path + '_pretrain' if args.is_pretrain else snapshot_path
-    snapshot_path += '_' + args.vit_name
-    snapshot_path = snapshot_path + '_skip' + str(args.n_skip)
-    snapshot_path = snapshot_path + '_vitpatch' + str(args.vit_patches_size) if args.vit_patches_size!=16 else snapshot_path
-    snapshot_path = snapshot_path+'_'+str(args.max_iterations)[0:2]+'k' if args.max_iterations != 6800 else snapshot_path
-    snapshot_path = snapshot_path + '_epo' +str(args.max_epochs) if args.max_epochs != 400 else snapshot_path
-    if dataset_name == 'ACDC':  # using max_epoch instead of iteration to control training duration
-        snapshot_path = snapshot_path + '_' + str(args.max_iterations)[0:2] + 'k' if args.max_iterations != 30000 else snapshot_path
-    snapshot_path = snapshot_path+'_bs'+str(args.batch_size)
-    snapshot_path = snapshot_path + '_lr' + str(args.base_lr) if args.base_lr != 1e-3 else snapshot_path
-    snapshot_path = snapshot_path + '_'+str(args.img_size)
-    snapshot_path = snapshot_path + '_s'+str(args.seed) if args.seed!=1234 else snapshot_path
 
     config_vit = CONFIGS_ViT_seg[args.vit_name]
     config_vit.n_classes = args.num_classes
@@ -210,29 +183,19 @@ if __name__ == "__main__":
     config_vit.patches.size = (args.vit_patches_size, args.vit_patches_size)
     if args.vit_name.find('R50') !=-1:
         config_vit.patches.grid = (int(args.img_size/args.vit_patches_size), int(args.img_size/args.vit_patches_size))
-    net = ViT_seg(config_vit, img_size=args.img_size, num_classes=config_vit.n_classes).cuda()
-    #net = UNET(in_channels = 3, out_channels = 3, features = [32, 64, 128, 256]).cuda()
 
-    snapshot = os.path.join('/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2021/TU_3seeds/', 'REVISED_ADAM_best_val_loss_seed1234.pth')
-    #if not os.path.exists(snapshot): snapshot = snapshot.replace('best_model',  'epoch_' + str(args.max_epochs-1))
+    if model_type == 'UNWT':
+        net = ViT_seg(config_vit, img_size=args.img_size, num_classes=config_vit.n_classes).cuda()
+    elif model_type == 'UNET':   
+        net = UNET(in_channels = 3, out_channels = 3, features = [32, 64, 128, 256]).cuda()
+    else:
+        print("Model type error")
 
     # ============================
     # Load the trained parameters into the model
     # ============================  
-
+    snapshot = os.path.join(f'/scratch_net/biwidl217_second/arismu/Master_Thesis_Codes/project_TransUNet/model/2022/{model_type}/', f'{model_type}_best_val_loss_seed{seed}.pth')
     net.load_state_dict(torch.load(snapshot))
-
-    # ============================
-    # Logging
-    # ============================ 
-
-    snapshot_name = snapshot_path.split('/')[-1]
-    log_folder = './test_log/test_log_' + 'TU_HK256'
-    os.makedirs(log_folder, exist_ok=True)
-    logging.basicConfig(filename=log_folder + '/'+snapshot_name+".txt", level=logging.INFO, format='[%(asctime)s.%(msecs)03d] %(message)s', datefmt='%H:%M:%S')
-    logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
-    logging.info(str(args))
-    logging.info(snapshot_name)
 
     # ============================
     # Save the predictions as nii files
@@ -240,7 +203,7 @@ if __name__ == "__main__":
 
     if args.is_savenii:
         args.test_save_dir = '../predictions_2022/'
-        test_save_path = os.path.join(args.test_save_dir, 'HK_UNWT_test_seed1234')
+        test_save_path = os.path.join(args.test_save_dir, f'{dataset}_{model_type}_test_seed{seed}')
         os.makedirs(test_save_path, exist_ok=True)
     else:
         test_save_path = None

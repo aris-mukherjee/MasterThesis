@@ -71,8 +71,6 @@ class DiceLoss(nn.Module):
 def calculate_metric_percase(pred, gt):
     pred[pred > 0] = 1
     gt[gt > 0] = 1
-    print(f"Predsum: {pred.sum()}")
-    print(f"GtSum: {gt.sum()}")
     if pred.sum() > 0 and gt.sum()>0:
         dice = metric.binary.dc(pred, gt)
         hd95 = metric.binary.hd95(pred, gt)
@@ -114,25 +112,13 @@ def test_single_volume(image, label, net, classes, dataset, optim, model_type, s
                 out_hard = (out_soft>0.5).float()
                 out_hard_argmax = torch.argmax(out_hard, dim=1).squeeze(0) 
                 out = torch.argmax(torch.softmax(outputs, dim=1), dim=1).squeeze(0)
-                #color_map = torch.tensor([[255, 0, 0], [0, 255, 0], [0, 0, 255]])
-                rgb = np.zeros((256, 256, 3))
-                #io.imshow(color.label2rgb(out, slice))
-                """ if (dataset == 'NCI' and case == 5 and ind == 10) or (dataset == 'UCL' and case == 3 and ind == 14) or (dataset == 'HK' and case == 2 and ind == 13) or (dataset == 'BIDMC' and case == 5 and ind == 26):
-                    
-                    for i in range(3):
-                        out_soft_squeezed = out_soft.squeeze(0)
-                        out_soft_squeezed = out_soft_squeezed[i, :, :]
-                        out_soft_squeezed = out_soft_squeezed.cpu().detach().numpy()
-                        plt.imshow(out_soft_squeezed, cmap = 'gray', vmin = 0, vmax = 1)
-                        plt.savefig('/scratch_net/biwidl217_second/arismu/Data_MT/2022/%s_%s_%s_hard_pred_case%s_slice%s_channel%s_seed%s.png' % (dataset, model_type, optim, case, ind, i, seed)) """
-
+    
                 out_soft_sq = out_soft.squeeze(0)
                 out_soft_foreground = out_soft_sq[1, :, : ] + out_soft_sq[2, :, : ]
                 out_soft_foreground = out_soft_foreground.flatten()
                 out_soft_foreground = out_soft_foreground.cpu().detach().numpy()
                 foreground_list.append(out_soft_foreground)
-                
-
+            
                 label_temp = label[ind]
                 label_temp = label_temp.flatten()
                 label_temp[np.where(label_temp > 0)] = 1
@@ -160,16 +146,6 @@ def test_single_volume(image, label, net, classes, dataset, optim, model_type, s
 
     foreground_list_arr = np.array(foreground_list)
     foreground_list_arr = foreground_list_arr.flatten()
-
-    #test_label = [0, 1, 0, 1, 0, 1, 0, 1, 0, 1]
-    #test_pred = [0.3, 0.2, 0.9, 0.4, 0.7, 0.3, 0.5, 0.6, 0.3, 0.9]
-    #disp = CalibrationDisplay.from_predictions(label_list_arr, foreground_list_arr)
-    #disp = CalibrationDisplay.from_predictions(test_label, test_pred)
-    #plt.show()
-    #plt.savefig(f'/scratch_net/biwidl217_second/arismu/Data_MT/plots/{dataset}_case{case}.png')
-
-    
-
 
     # ============================
     # Calculate Dice & Hausdorff
