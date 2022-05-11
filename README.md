@@ -1,5 +1,3 @@
-# OOD-Robustness and Calibration Comparison U-Net vs. UNWT
-
 ## File Structure
 
 This repo contains training & test files for prostate datasets (NCI = RUNMC, UCL, HK, BIDMC, BMC and USZ) and FeTS Brain tumor datasets (SD, TD1 and TD2). 
