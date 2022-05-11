@@ -17,6 +17,7 @@ This repo contains training & test files for prostate datasets (NCI = RUNMC, UCL
 * `train_prostate.py` (parameters and main function) and `trainer_prostate.py` (dataloading & training loop)
 * `test_[dataset].py` with dataset in [NCI, UCL, HK, BIDMC, BMC, USZ] files are the test files - evaluation and Dice score calculation happens in `utils.py`
 
+To run different types of experiments, certain parameters can be set manually at the top of the file: `seed`, `model type` ('UNET'/'UNWT') and `measure_calibration` (True/False). No other parts of the code need to be modified. 
 
 
 ### Brain Tumor (FeTS)
@@ -25,6 +26,7 @@ Organised in the same way as prostate files:
 * `train_FETS.py` (parameters and main function) and `trainer_FETS.py` (dataloading & training loop)
 * `test_FETS_SD.py`, `test_FETS_TD1.py` and `test_FETS_TD2.py` are the test files - evaluation and Dice score calculation happens in `utils.py`
 
+To run different types of experiments, certain parameters can be set manually at the top of the file: `seed`, `model type` ('UNET'/'UNWT'), `data_aug` (e.g. 0.25), `use_tta` (True/False), `tta_epochs` (e.g. 10), `tta_type` ('Entropy'/'FoE') and `measure_calibration` (True/False). No other parts of the code need to be modified. 
 
 ## Prepare Data 
 
